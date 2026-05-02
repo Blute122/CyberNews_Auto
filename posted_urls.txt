@@ -4,3 +4,4 @@ https://www.darkreading.com/cybersecurity-analytics/crypto-stolen-2026-north-kor
 https://www.bleepingcomputer.com/news/security/consentfix-v3-attacks-target-azure-with-automated-oauth-abuse/
 https://cyberscoop.com/cisa-nsa-five-eyes-guidance-secure-deployment-ai-agents/
 https://www.darkreading.com/cloud-security/ais-so-smart-keep-deleting-production-databases
+https://thehackernews.com/2026/05/30000-facebook-accounts-hacked-via.html
