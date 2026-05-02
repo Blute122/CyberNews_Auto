@@ -1,0 +1,42 @@
+name: Auto Cyber News Bot
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Runs at the top of every hour
+  workflow_dispatch: # Allows you to run it manually from the GitHub website
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Needed to commit posted_urls.txt back to the repo
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Cyber Agent
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+        run: python cyber_agent.py
+
+      - name: Commit and Push URL History
+        # This step is CRITICAL. GitHub Actions resets the server every run.
+        # This ensures the new URLs saved to posted_urls.txt are pushed back to your repo.
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add posted_urls.txt
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update posted_urls.txt" && git push)
