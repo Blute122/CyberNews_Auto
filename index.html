@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A real-time Cyber Threat Intelligence Dashboard showcasing the latest automated security alerts and news.">
+    <meta name="description"
+        content="A real-time Cyber Threat Intelligence Dashboard showcasing the latest automated security alerts and news.">
     <title>Cyber Threat Intelligence Dashboard</title>
-    
+
     <!-- Google Fonts: Inter and Fira Code for a modern tech feel -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
+
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -36,7 +40,7 @@
             font-family: var(--font-main);
             line-height: 1.6;
             min-height: 100vh;
-            background-image: 
+            background-image:
                 radial-gradient(circle at 15% 50%, rgba(0, 255, 170, 0.05), transparent 25%),
                 radial-gradient(circle at 85% 30%, rgba(0, 184, 255, 0.05), transparent 25%);
             background-attachment: fixed;
@@ -213,18 +217,38 @@
         }
 
         @keyframes pulse {
-            0% { opacity: 0.5; transform: scale(0.95); }
-            50% { opacity: 1; transform: scale(1.05); }
-            100% { opacity: 0.5; transform: scale(0.95); }
+            0% {
+                opacity: 0.5;
+                transform: scale(0.95);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+
+            100% {
+                opacity: 0.5;
+                transform: scale(0.95);
+            }
         }
 
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .animate-in {
@@ -233,12 +257,21 @@
         }
 
         @media (max-width: 768px) {
-            body { padding: 1rem; }
-            h1 { font-size: 1.8rem; }
-            .intel-card { padding: 1.2rem; }
+            body {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .intel-card {
+                padding: 1.2rem;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -249,7 +282,8 @@
     <main class="dashboard-container" id="intel-container">
         <div id="loading-indicator" style="text-align: center;">
             <div class="loader"></div>
-            <p style="color: var(--text-secondary); font-family: var(--font-mono); margin-top: 1rem;">ESTABLISHING SECURE CONNECTION...</p>
+            <p style="color: var(--text-secondary); font-family: var(--font-mono); margin-top: 1rem;">ESTABLISHING
+                SECURE CONNECTION...</p>
         </div>
     </main>
 
@@ -263,11 +297,11 @@
             const loader = document.getElementById('loading-indicator');
 
             try {
-                const response = await fetch('database.json');
+                const response = await fetch('database.json?v=' + new Date().getTime())
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                
+
                 const data = await response.json();
                 loader.style.display = 'none';
 
@@ -289,7 +323,7 @@
                     const card = document.createElement('article');
                     card.className = 'intel-card animate-in';
                     card.style.animationDelay = `${index * 0.1}s`;
-                    
+
                     card.innerHTML = `
                         <div class="card-header">
                             <span class="date-badge">${item.date || 'UNKNOWN DATE'}</span>
@@ -323,7 +357,7 @@
         // Utility function to escape HTML to prevent XSS
         function escapeHTML(str) {
             if (!str) return '';
-            return str.replace(/[&<>'"]/g, 
+            return str.replace(/[&<>'"]/g,
                 tag => ({
                     '&': '&amp;',
                     '<': '&lt;',
@@ -335,4 +369,5 @@
         }
     </script>
 </body>
+
 </html>
