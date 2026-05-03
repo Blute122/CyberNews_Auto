@@ -4,6 +4,8 @@ import feedparser
 import tweepy
 import requests
 import traceback
+import json
+import datetime
 from groq import Groq
 
 # Fetch environment variables for GitHub Actions
@@ -126,6 +128,27 @@ def run_agent():
                     print("Posting to X...")
                     post_to_x(tweet)
                     save_posted_url(entry.link)
+                    
+                    # Update database.json
+                    db_file = "database.json"
+                    if os.path.exists(db_file) and os.path.getsize(db_file) > 0:
+                        try:
+                            with open(db_file, "r") as f:
+                                db_data = json.load(f)
+                        except json.JSONDecodeError:
+                            db_data = []
+                    else:
+                        db_data = []
+                        
+                    db_data.append({
+                        "date": datetime.datetime.now().strftime("%Y-%m-%d %H:%M"),
+                        "content": tweet,
+                        "url": entry.link
+                    })
+                    
+                    with open(db_file, "w") as f:
+                        json.dump(db_data, f, indent=4)
+
                     
                     print("Agent finished successfully. Exiting.")
                     return # Instantly exit execution flow after one tweet

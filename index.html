@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A real-time Cyber Threat Intelligence Dashboard showcasing the latest automated security alerts and news.">
+    <title>Cyber Threat Intelligence Dashboard</title>
+    
+    <!-- Google Fonts: Inter and Fira Code for a modern tech feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(17, 24, 39, 0.7);
+            --border-color: rgba(0, 255, 170, 0.2);
+            --accent-glow: #00ffaa;
+            --accent-glow-alt: #00b8ff;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --font-main: 'Inter', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(0, 255, 170, 0.05), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(0, 184, 255, 0.05), transparent 25%);
+            background-attachment: fixed;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        h1 {
+            font-family: var(--font-mono);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 20px rgba(0, 255, 170, 0.4);
+            background: linear-gradient(90deg, var(--accent-glow), var(--accent-glow-alt));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .dashboard-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .intel-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .intel-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-glow), var(--accent-glow-alt));
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+
+        .intel-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 170, 0.4);
+            box-shadow: 0 10px 20px -5px rgba(0, 255, 170, 0.1);
+        }
+
+        .intel-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 0.75rem;
+        }
+
+        .date-badge {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--accent-glow);
+            background: rgba(0, 255, 170, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .date-badge::before {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-glow);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-glow);
+            animation: pulse 2s infinite;
+        }
+
+        .card-content {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            white-space: pre-wrap;
+            color: var(--text-primary);
+        }
+
+        .card-actions {
+            margin-top: 0.5rem;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-glow-alt);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            padding: 0.5rem 1rem;
+            border: 1px solid transparent;
+            border-radius: 6px;
+        }
+
+        .read-more:hover {
+            color: #ffffff;
+            background: rgba(0, 184, 255, 0.1);
+            border-color: rgba(0, 184, 255, 0.3);
+            text-shadow: 0 0 8px rgba(0, 184, 255, 0.5);
+        }
+
+        .read-more svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.2s ease;
+        }
+
+        .read-more:hover svg {
+            transform: translateX(4px);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px dashed var(--border-color);
+        }
+
+        .loader {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(0, 255, 170, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--accent-glow);
+            animation: spin 1s ease-in-out infinite;
+            margin: 2rem auto;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; transform: scale(0.95); }
+            50% { opacity: 1; transform: scale(1.05); }
+            100% { opacity: 0.5; transform: scale(0.95); }
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-in {
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            h1 { font-size: 1.8rem; }
+            .intel-card { padding: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Cyber Threat Intelligence</h1>
+        <p>Real-time automated security advisories & threat reports</p>
+    </header>
+
+    <main class="dashboard-container" id="intel-container">
+        <div id="loading-indicator" style="text-align: center;">
+            <div class="loader"></div>
+            <p style="color: var(--text-secondary); font-family: var(--font-mono); margin-top: 1rem;">ESTABLISHING SECURE CONNECTION...</p>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchIntelData();
+        });
+
+        async function fetchIntelData() {
+            const container = document.getElementById('intel-container');
+            const loader = document.getElementById('loading-indicator');
+
+            try {
+                const response = await fetch('database.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                loader.style.display = 'none';
+
+                if (!Array.isArray(data) || data.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <svg style="width: 48px; height: 48px; margin-bottom: 1rem; opacity: 0.5;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
+                            <p>No threat intelligence data available yet.</p>
+                            <p style="font-size: 0.85rem; margin-top: 0.5rem; opacity: 0.7;">Awaiting agent transmission...</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                // Reverse the array to show newest first
+                const reversedData = [...data].reverse();
+
+                reversedData.forEach((item, index) => {
+                    const card = document.createElement('article');
+                    card.className = 'intel-card animate-in';
+                    card.style.animationDelay = `${index * 0.1}s`;
+                    
+                    card.innerHTML = `
+                        <div class="card-header">
+                            <span class="date-badge">${item.date || 'UNKNOWN DATE'}</span>
+                        </div>
+                        <div class="card-content">${escapeHTML(item.content)}</div>
+                        <div class="card-actions">
+                            <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="read-more" aria-label="Read full report">
+                                VIEW SOURCE
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    `;
+                    container.appendChild(card);
+                });
+
+            } catch (error) {
+                console.error('Error fetching database:', error);
+                loader.style.display = 'none';
+                container.innerHTML = `
+                    <div class="empty-state" style="border-color: rgba(255, 50, 50, 0.3);">
+                        <svg style="width: 48px; height: 48px; margin-bottom: 1rem; color: #ff4444;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <p style="color: #ff4444;">Connection Failed</p>
+                        <p style="font-size: 0.85rem; margin-top: 0.5rem; color: var(--text-secondary);">Unable to retrieve threat intelligence database.<br>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Utility function to escape HTML to prevent XSS
+        function escapeHTML(str) {
+            if (!str) return '';
+            return str.replace(/[&<>'"]/g, 
+                tag => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    "'": '&#39;',
+                    '"': '&quot;'
+                }[tag] || tag)
+            );
+        }
+    </script>
+</body>
+</html>
