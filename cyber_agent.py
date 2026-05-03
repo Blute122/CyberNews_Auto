@@ -140,7 +140,7 @@ def run_agent():
                 print(f"New article found: {entry.title}")
                 if hasattr(entry, 'published_parsed'):
                     article_time = datetime.fromtimestamp(mktime(entry.published_parsed))
-                    if datetime.now() - article_time > timedelta(hours=6):
+                    if datetime.now() - article_time > timedelta(hours=72):
                         print(f"Skipping old article: {entry.title}")
                         continue
                 try:
