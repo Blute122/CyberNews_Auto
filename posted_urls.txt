@@ -7,3 +7,4 @@ https://www.darkreading.com/cloud-security/ais-so-smart-keep-deleting-production
 https://thehackernews.com/2026/05/30000-facebook-accounts-hacked-via.html
 https://www.darkreading.com/cybersecurity-operations/name-that-toon-mark-security-progress
 https://cyberscoop.com/incident-responders-ryan-goldberg-kevin-martin-sentenced-ransomware/
+https://www.bleepingcomputer.com/news/security/critrical-cpanel-flaw-mass-exploited-in-sorry-ransomware-attacks/
