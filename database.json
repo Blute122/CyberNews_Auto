@@ -6,7 +6,12 @@
     },
     {
         "date": "2026-05-03 06:54",
-        "content": "🟠 A local privilege escalation flaw (CVE-2026-31431 (CVSS: 7.8/10)) in various Linux distributions allows attackers to gain Linux root access.\nCVE: CVE-2026-31431 (CVSS: 7.8/10)\nTarget: Various Linux distributions\nAccording to The Hacker News. #LinuxLPE #CVEupdate",
+        "content": "\ud83d\udfe0 A local privilege escalation flaw (CVE-2026-31431 (CVSS: 7.8/10)) in various Linux distributions allows attackers to gain Linux root access.\nCVE: CVE-2026-31431 (CVSS: 7.8/10)\nTarget: Various Linux distributions\nAccording to The Hacker News. #LinuxLPE #CVEupdate",
         "url": "https://thehackernews.com/2026/05/cisa-adds-actively-exploited-linux-root.html"
+    },
+    {
+        "date": "2026-05-03 15:36",
+        "content": "\ud83d\udfe1 Researchers discovered a large-scale scam using Telegram Mini Apps for crypto scams & Android malware distribution.\nCVE: None listed\nActor: Not specified\nTarget: Telegram Mini Apps/Android\nAccording to BleepingComputer. #TelegramMiniApps #AndroidMalware",
+        "url": "https://www.bleepingcomputer.com/news/security/telegram-mini-apps-abused-for-crypto-scams-android-malware-delivery/"
     }
 ]
