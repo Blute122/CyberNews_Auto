@@ -37,28 +37,30 @@ def save_posted_url(url):
 def generate_tweet(title, summary, source_name):
     client = Groq(api_key=GROQ_API_KEY)
     
-    prompt = f"""You are an elite cybersecurity news bot. Your job is to filter, analyze the threat level, and summarize technical articles into a single, punchy tweet.
+    prompt = f"""You are an elite cyber threat intelligence analyst. Your job is to read cybersecurity articles, extract actionable intelligence, and summarize the threat into a single, highly structured tweet.
 
 STRICT RULES:
 1. CONTENT FILTER: If the article is a contest, giveaway, advertisement, webinar, or sponsored marketing, output exactly the word "SKIP" and nothing else.
-2. THREAT LEVEL SCORING: If it is legitimate news, you must start the tweet with one of these three emojis based on severity:
-   - 🔴 CRITICAL: Massive data breaches, active zero-days, widespread ransomware, or state-sponsored attacks.
-   - 🟡 WARNING: Discovered vulnerabilities, new malware variants, or targeted attacks.
-   - 🟢 INFO: General security research, policy changes, or minor news.
-3. DYNAMIC HASHTAGS: Do NOT use generic hashtags. Generate exactly two highly specific hashtags based on the technology or attack vector (e.g., #Ransomware, #ActiveDirectory, #Phishing). Place them at the very end.
-4. Output ONLY the tweet text. Do not add conversational filler.
-5. Do NOT include URLs or links anywhere in the output.
-6. End the tweet text with the exact phrase: "According to {source_name}." before the hashtags.
-7. Keep the total length under 240 characters.
+2. THREAT LEVEL SCORING: Start the tweet with an emoji based on severity:
+   - 🔴 CRITICAL: Massive breaches, active zero-days, or state-sponsored attacks.
+   - 🟡 WARNING: Discovered vulnerabilities, new malware variants.
+   - 🟢 INFO: General security research or policy updates.
+3. THE SUMMARY: Write a concise, 1-2 sentence summary of the core threat or news.
+4. INTELLIGENCE EXTRACTION: If (and ONLY if) the article mentions them, you MUST append these structured data points below your summary:
+   - CVE: [List the CVE numbers, e.g., CVE-2026-1234]
+   - Actor: [List the threat actor/group, e.g., Lazarus, LockBit]
+   - Target: [List the affected software/hardware, e.g., Cisco IOS, Windows 11]
+   (If any of these are missing from the article, do not include that specific line).
+5. SOURCE: End with the exact phrase: "According to {source_name}."
+6. HASHTAGS: Include exactly two highly specific technical hashtags at the very end.
+7. LENGTH: Keep the entire output strictly under 240 characters.
+8. FORMATTING: Output ONLY the requested text. No conversational filler, no URLs, no introductory phrases.
 
-EXAMPLE OUTPUT (CRITICAL):
-🔴 Microsoft has discovered a massive zero-day exploit targeting unpatched Exchange servers globally. Admins are urged to apply patches immediately to prevent remote code execution. According to Dark Reading. #ZeroDay #ExchangeServer
-
-EXAMPLE OUTPUT (WARNING):
-🟡 A new phishing campaign is targeting remote workers using fake Zoom update installers to deploy the Qakbot banking trojan. According to BleepingComputer. #Phishing #Qakbot
-
-EXAMPLE OUTPUT (INFO):
-🟢 The US government has published new guidelines for federal agencies regarding the secure deployment of internal AI models. According to CyberScoop. #AIPolicy #GovTech
+EXAMPLE OUTPUT:
+🔴 Hackers are actively exploiting a critical flaw in PAN-OS to gain unauthenticated remote code execution on global firewall networks. 
+CVE: CVE-2026-3456
+Target: Palo Alto Networks
+According to Dark Reading. #PANOS #ZeroDay
 
 ACTUAL INPUT:
 Title: {title}
