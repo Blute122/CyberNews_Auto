@@ -35,9 +35,9 @@ jobs:
 
       - name: Commit and Push URL History
         # This step is CRITICAL. GitHub Actions resets the server every run.
-        # This ensures the new URLs saved to posted_urls.txt are pushed back to your repo.
+        # This ensures the new URLs saved to posted_urls.txt and database.json are pushed back to your repo.
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add posted_urls.txt
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update posted_urls.txt" && git push)
+          git add posted_urls.txt database.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update database and URLs" && git push)
