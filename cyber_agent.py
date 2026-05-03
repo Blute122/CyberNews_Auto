@@ -5,7 +5,8 @@ import tweepy
 import requests
 import traceback
 import json
-import datetime
+from datetime import datetime, timedelta, timezone
+from time import mktime
 from groq import Groq
 
 # Fetch environment variables for GitHub Actions
@@ -115,6 +116,11 @@ def run_agent():
         for entry in feed.entries:
             if entry.link not in posted_urls:
                 print(f"New article found: {entry.title}")
+                if hasattr(entry, 'published_parsed'):
+                    article_time = datetime.fromtimestamp(mktime(entry.published_parsed))
+                    if datetime.now() - article_time > timedelta(hours=6):
+                        print(f"Skipping old article: {entry.title}")
+                        continue
                 try:
                     print("Asking Groq to write the tweet...")
                     tweet = generate_tweet(entry.title, entry.description, feed_info["name"])
@@ -141,7 +147,7 @@ def run_agent():
                         db_data = []
                         
                     db_data.append({
-                        "date": datetime.datetime.now().strftime("%Y-%m-%d %H:%M"),
+                        "date": datetime.now().strftime("%Y-%m-%d %H:%M"),
                         "content": tweet,
                         "url": entry.link
                     })
