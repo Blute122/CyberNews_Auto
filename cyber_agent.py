@@ -1,5 +1,6 @@
 import os
 import random
+import re
 import feedparser
 import tweepy
 import requests
@@ -104,6 +105,27 @@ def send_discord_alert(error_message):
     except Exception as e:
         print(f"Failed to send Discord alert: {e}")
 
+def get_nvd_cvss(cve_id):
+    url = f"https://services.nvd.nist.gov/rest/json/cves/2.0?cveId={cve_id}"
+    try:
+        # NIST API can be slow, adding a 10-second timeout
+        response = requests.get(url, timeout=10)
+        if response.status_code == 200:
+            data = response.json()
+            vulns = data.get("vulnerabilities", [])
+            if vulns:
+                metrics = vulns[0].get("cve", {}).get("metrics", {})
+                # Try v3.1 first, then v3.0
+                if "cvssMetricV31" in metrics:
+                    return metrics["cvssMetricV31"][0]["cvssData"]["baseScore"]
+                elif "cvssMetricV3" in metrics:
+                    return metrics["cvssMetricV3"][0]["cvssData"]["baseScore"]
+                else:
+                    return "Score Pending"
+    except Exception as e:
+        print(f"NVD API Error: {e}")
+    return "N/A"
+
 def run_agent():
     print("Agent waking up. Checking for new cybersecurity news...")
     random.shuffle(RSS_FEEDS)
@@ -129,6 +151,20 @@ def run_agent():
                         save_posted_url(entry.link)
                         print("Skipped promotional content.")
                         continue
+                    
+                    # Check if Groq included a CVE in the generated tweet
+                    cve_match = re.search(r'(CVE-\d{4}-\d+)', tweet)
+                    
+                    if cve_match:
+                        cve_id = cve_match.group(1)
+                        print(f"Extracted {cve_id}. Fetching official CVSS score from NIST...")
+                        cvss_score = get_nvd_cvss(cve_id)
+                        
+                        # Inject the score into the tweet text
+                        if cvss_score not in ["N/A", "Score Pending"]:
+                            tweet = tweet.replace(cve_id, f"{cve_id} (CVSS: {cvss_score}/10)")
+                        else:
+                            tweet = tweet.replace(cve_id, f"{cve_id} (CVSS: {cvss_score})")
                     
                     print(f"Drafted Tweet:\n{tweet}\n")
                     print("Posting to X...")
