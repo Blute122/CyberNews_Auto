@@ -2,6 +2,8 @@ import os
 import random
 import feedparser
 import tweepy
+import requests
+import traceback
 from groq import Groq
 
 # Fetch environment variables for GitHub Actions
@@ -10,6 +12,7 @@ X_API_SECRET = os.environ.get("X_API_SECRET")
 X_ACCESS_TOKEN = os.environ.get("X_ACCESS_TOKEN")
 X_ACCESS_TOKEN_SECRET = os.environ.get("X_ACCESS_TOKEN_SECRET")
 GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
+DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
 
 RSS_FEEDS = [
     {"url": "https://feeds.feedburner.com/TheHackersNews", "name": "The Hacker News"},
@@ -82,6 +85,20 @@ def post_to_x(tweet_text):
     response = client.create_tweet(text=tweet_text)
     print(f"Success! Tweet ID: {response.data['id']}")
 
+def send_discord_alert(error_message):
+    if not DISCORD_WEBHOOK_URL:
+        print("No Discord Webhook URL configured. Skipping alert.")
+        return
+
+    data = {
+        "content": f"🚨 **CyberNewsBot Crash Report** 🚨\nAn error occurred during the latest run:\n```python\n{error_message}\n```"
+    }
+    
+    try:
+        requests.post(DISCORD_WEBHOOK_URL, json=data)
+    except Exception as e:
+        print(f"Failed to send Discord alert: {e}")
+
 def run_agent():
     print("Agent waking up. Checking for new cybersecurity news...")
     random.shuffle(RSS_FEEDS)
@@ -117,4 +134,11 @@ def run_agent():
     print("No new articles found. Exiting.")
 
 if __name__ == "__main__":
-    run_agent()
+    try:
+        run_agent()
+    except Exception as e:
+        # If anything crashes, grab the detailed error trace and send it to Discord
+        error_details = traceback.format_exc()
+        print(f"CRITICAL ERROR: {e}")
+        send_discord_alert(error_details)
+        raise e  # Re-raise the error so GitHub Actions correctly logs it as a "Failed" run
