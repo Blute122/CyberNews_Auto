@@ -18,5 +18,10 @@
         "date": "2026-05-03 18:40",
         "content": "\ud83d\udfe1 Microsoft Defender is detecting legitimate DigiCert root certificates as malware, causing false positives and potential certificate removal.\nCVE: None\nActor: None\nAccording to BleepingComputer. #DigiCert #WindowsCert",
         "url": "https://www.bleepingcomputer.com/news/security/microsoft-defender-wrongly-flags-digicert-certs-as-trojan-win32-cerdigentadha/"
+    },
+    {
+        "date": "2026-05-03 22:29",
+        "content": "\ud83d\udfe1 ShinyHunters claims a successful data breach against Instructure, allegedly stealing user data. \nAccording to BleepingComputer. #ShinyHunters #DataBreach",
+        "url": "https://www.bleepingcomputer.com/news/security/instructure-confirms-data-breach-shinyhunters-claims-attack/"
     }
 ]
