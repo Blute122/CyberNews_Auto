@@ -160,6 +160,24 @@ def run_agent():
                         print(f"Extracted {cve_id}. Fetching official CVSS score from NIST...")
                         cvss_score = get_nvd_cvss(cve_id)
                         
+                        # Dynamically set the threat color based on the CVSS v3.1 scale
+                        try:
+                            score_float = float(cvss_score)
+                            if score_float >= 9.0:
+                                threat_color = "🔴" # Critical
+                            elif score_float >= 7.0:
+                                threat_color = "🟠" # High
+                            elif score_float >= 4.0:
+                                threat_color = "🟡" # Medium
+                            else:
+                                threat_color = "🟢" # Low
+                                
+                            # Replace the default yellow emoji with the calculated severity color
+                            tweet = tweet.replace("🟡", threat_color)
+                        except ValueError:
+                            # If the score is "Score Pending" or "N/A", leave the emoji as is
+                            pass
+                        
                         # Inject the score into the tweet text
                         if cvss_score not in ["N/A", "Score Pending"]:
                             tweet = tweet.replace(cve_id, f"{cve_id} (CVSS: {cvss_score}/10)")
