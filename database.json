@@ -48,5 +48,10 @@
         "date": "2026-05-04 13:01",
         "content": "\ud83d\udd34 A China-based group known as Silver Fox has successfully deployed the malware known as ABCDoor via tax-themed phishing campaigns targeting Russian and Indian entities.\n\n\ud83d\udea8 Threat: ABCDoor (no specified threat actor or CVE mentioned)\n\ud83c\udfaf Target: Organizations in Russia and India (specifically, entities targeted by tax-themed phishing)\n\u26a0\ufe0f Simply Put: Hackers sent fake tax emails to target Russian and Indian companies, infecting them with malware that could be used for cyber attacks.\n\nAccording to The Hacker News. #CyberAttack #Phishing",
         "url": "https://thehackernews.com/2026/05/silver-fox-deploys-abcdoor-malware-via.html"
+    },
+    {
+        "date": "2026-05-04 13:10",
+        "content": "\ud83d\udd34 A critical cPanel vulnerability is being exploited by an unknown threat actor to target government and MSP networks.\n\n\ud83d\udea8 Threat: CVE-2023xxxxx\n\ud83c\udfaf Target: cPanel, government and MSP networks in Southeast Asia, and the U.S.\n\u26a0\ufe0f Simply Put: Hackers are using a recently discovered flaw in a web hosting software to break into government and business networks.\n\nAccording to The Hacker News. #CyberAttack #cPanel",
+        "url": "https://thehackernews.com/2026/05/critical-cpanel-vulnerability.html"
     }
 ]
