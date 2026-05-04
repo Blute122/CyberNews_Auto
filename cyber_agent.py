@@ -85,7 +85,7 @@ def generate_threat_card(severity_icon, technical_title, bluf_summary, cve, thre
         return y + padding
 
     # 1. Header (Colored Alert Type)
-    alert_text = f"THREAT INTELLIGENCE ALERT  |  {severity_icon}"
+    alert_text = f"THREAT INTELLIGENCE ALERT"
     draw.text((margin_x, current_y), alert_text, font=font_alert, fill=accent_color)
     current_y += 35
 
