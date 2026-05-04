@@ -43,5 +43,10 @@
         "date": "2026-05-04 12:55",
         "content": "\ud83d\udd34 \nA 17-year-old in Japan hacked into Kaikatsu Club's database, stealing the personal data of over 7 million users to fund his Pok\u00e9mon card habit.\n\n\ud83d\udea8 Threat: \n\ud83c\udfaf Target: \n\u26a0\ufe0f Simply Put: A teenager used hacking skills to steal millions of people's personal data for personal gain.\n\nAccording to The Hacker News. #DataBreach #UnauthorizedAccess",
         "url": "https://thehackernews.com/2026/05/2026-year-of-ai-assisted-attacks.html"
+    },
+    {
+        "date": "2026-05-04 13:01",
+        "content": "\ud83d\udd34 A China-based group known as Silver Fox has successfully deployed the malware known as ABCDoor via tax-themed phishing campaigns targeting Russian and Indian entities.\n\n\ud83d\udea8 Threat: ABCDoor (no specified threat actor or CVE mentioned)\n\ud83c\udfaf Target: Organizations in Russia and India (specifically, entities targeted by tax-themed phishing)\n\u26a0\ufe0f Simply Put: Hackers sent fake tax emails to target Russian and Indian companies, infecting them with malware that could be used for cyber attacks.\n\nAccording to The Hacker News. #CyberAttack #Phishing",
+        "url": "https://thehackernews.com/2026/05/silver-fox-deploys-abcdoor-malware-via.html"
     }
 ]
