@@ -92,7 +92,7 @@ def save_db(db_data: list):
 # ─────────────────────────────────────────────
 def generate_threat_card(severity_icon, technical_title, bluf_summary,
                          cve, threat_actor, simply_put_summary, source_site) -> str:
-    """Generates a premium dark-mode PNG threat card."""
+    """Generates a premium dark-mode PNG threat card with tightened vertical spacing."""
     card_width  = 1024
     card_height = 512
 
@@ -105,27 +105,25 @@ def generate_threat_card(severity_icon, technical_title, bluf_summary,
     image = Image.new("RGB", (card_width, card_height), color=bg_color)
     draw  = ImageDraw.Draw(image)
 
-    # TWEAK: Fallback size limits for missing fonts
+    # TWEAK: Slightly smaller fonts to prevent vertical overflow
     try:
-        font_alert       = ImageFont.truetype("Roboto-Bold.ttf",   22)
-        font_title       = ImageFont.truetype("Roboto-Bold.ttf",   38)
-        font_body        = ImageFont.truetype("Roboto-Medium.ttf", 26)
-        font_meta_label  = ImageFont.truetype("Roboto-Bold.ttf",   24)
-        font_meta_data   = ImageFont.truetype("Roboto-Medium.ttf", 26)
-        font_footer_head = ImageFont.truetype("Roboto-Bold.ttf",   20)
-        font_footer_body = ImageFont.truetype("Roboto-Medium.ttf", 24)
+        font_alert       = ImageFont.truetype("Roboto-Bold.ttf",   20)
+        font_title       = ImageFont.truetype("Roboto-Bold.ttf",   34) # Was 38
+        font_body        = ImageFont.truetype("Roboto-Medium.ttf", 24) # Was 26
+        font_meta_label  = ImageFont.truetype("Roboto-Bold.ttf",   22) # Was 24
+        font_meta_data   = ImageFont.truetype("Roboto-Medium.ttf", 24) # Was 26
+        font_footer_head = ImageFont.truetype("Roboto-Bold.ttf",   18)
+        font_footer_body = ImageFont.truetype("Roboto-Medium.ttf", 22)
     except OSError:
-        # NOTE: Ensure the Roboto .ttf files are uploaded to your repo to avoid this!
-        print("WARNING: Custom fonts not found. Falling back to default.")
         font_alert = font_title = font_body = font_meta_label = \
         font_meta_data = font_footer_head = font_footer_body = ImageFont.load_default()
 
     margin_x  = 45
-    current_y = 40
+    current_y = 35 # Started slightly higher
 
     draw.rectangle([(0, 0), (card_width, 12)], fill=accent_color)
 
-    def draw_wrapped_text(text, font, width_chars, x, y, fill_color, padding=8):
+    def draw_wrapped_text(text, font, width_chars, x, y, fill_color, padding=6): # Reduced padding
         wrapper = textwrap.TextWrapper(width=width_chars)
         lines   = wrapper.wrap(text)
         for line in lines:
@@ -135,36 +133,39 @@ def generate_threat_card(severity_icon, technical_title, bluf_summary,
         return y + padding
 
     draw.text((margin_x, current_y), "THREAT INTELLIGENCE ALERT", font=font_alert, fill=accent_color)
-    current_y += 35
+    current_y += 30 # Reduced jump
 
-    current_y = draw_wrapped_text(technical_title, font_title, 48, margin_x, current_y, text_primary, padding=12)
-    current_y += 10
+    # TWEAK: Wider wrap (52) so titles take fewer lines
+    current_y = draw_wrapped_text(technical_title, font_title, 52, margin_x, current_y, text_primary, padding=8)
+    current_y += 5
 
-    current_y = draw_wrapped_text(f"Summary: {bluf_summary}", font_body, 75, margin_x, current_y, "#c9d1d9")
+    # TWEAK: Wider wrap (85) so summaries take fewer lines
+    current_y = draw_wrapped_text(f"Summary: {bluf_summary}", font_body, 85, margin_x, current_y, "#c9d1d9")
     if source_site:
-        current_y = draw_wrapped_text(f"Source: {source_site}", font_body, 75, margin_x, current_y, text_secondary, padding=5)
-    current_y += 20
+        current_y = draw_wrapped_text(f"Source: {source_site}", font_body, 85, margin_x, current_y, text_secondary, padding=4)
+    current_y += 15
 
     draw.line([(margin_x, current_y), (card_width - margin_x, current_y)], fill="#30363d", width=2)
-    current_y += 25
+    current_y += 15
 
-    meta_x_col2 = margin_x + 140
+    meta_x_col2 = margin_x + 130
 
     if cve:
         draw.text((margin_x, current_y), "THREAT:", font=font_meta_label, fill=text_secondary)
-        current_y = draw_wrapped_text(cve, font_meta_data, 55, meta_x_col2, current_y, accent_color)
+        current_y = draw_wrapped_text(cve, font_meta_data, 60, meta_x_col2, current_y, accent_color)
 
     if threat_actor:
-        current_y += 10
+        current_y += 5
         draw.text((margin_x, current_y), "TARGET:", font=font_meta_label, fill=text_secondary)
-        current_y = draw_wrapped_text(threat_actor, font_meta_data, 55, meta_x_col2, current_y, text_primary)
+        current_y = draw_wrapped_text(threat_actor, font_meta_data, 60, meta_x_col2, current_y, text_primary)
 
-    footer_height = 110
+    # Footer layout remains the same
+    footer_height = 100 # Slightly shorter footer
     footer_top    = card_height - footer_height
     draw.rectangle([(0, footer_top), (card_width, card_height)], fill=footer_color)
     draw.line([(0, footer_top), (card_width, footer_top)], fill="#30363d", width=2)
     draw.text((margin_x, footer_top + 15), "SIMPLY PUT:", font=font_footer_head, fill=text_secondary)
-    draw_wrapped_text(simply_put_summary, font_footer_body, 82, margin_x, footer_top + 45, text_primary, padding=5)
+    draw_wrapped_text(simply_put_summary, font_footer_body, 90, margin_x, footer_top + 40, text_primary, padding=5)
 
     output_filename = "threat_card.png"
     image.save(output_filename, "PNG")
@@ -212,7 +213,7 @@ STRICT RULES:
 {{
   "skip": false,
   "severity_icon": "<single emoji>",
-  "cve": "<CVE-XXXX-XXXXX or empty string>",
+  "cve": "<Extract the exact CVE ID if mentioned, otherwise leave as empty string>",
   "threat_actor": "<name or empty string>",
   "target": "<affected software/org or empty string>",
   "hook": "<Tweet 1: 1-2 punchy sentences that stop the scroll. Lead with the severity emoji. State WHAT happened and to WHOM. Max 240 chars.>",
@@ -369,7 +370,8 @@ def run_agent():
                     continue
 
                 severity_icon  = thread_data.get("severity_icon", "🟡")
-                cve_id         = thread_data.get("cve", "")
+                if "XXX" in cve_id.upper():
+                    cve_id = ""
                 threat_actor   = thread_data.get("threat_actor", "")
                 target         = thread_data.get("target", "")
                 simply_put     = thread_data.get("simply_put", "")
