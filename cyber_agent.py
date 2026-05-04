@@ -38,78 +38,94 @@ COLOR_MAP = {
     '🟢': '#2ecc71'  # Low Green
 }
 
-def generate_threat_card(severity_icon, technical_title, bluf_summary, cve, threat_actor, simply_put_summary):
-    """Dynamically generates a highly structured 1024x512 Threat Card image."""
+def generate_threat_card(severity_icon, technical_title, bluf_summary, cve, threat_actor, simply_put_summary, source_site):
+    """Generates a professional-grade, dense, highly structured 1024x512 Threat Card image."""
     card_width = 1024
     card_height = 512
-    bg_color = COLOR_MAP.get(severity_icon, '#34495e') 
+    bg_color = COLOR_MAP.get(severity_icon, '#e74c3c') 
     
+    # Use a solid background, like a premium alert asset
     image = Image.new('RGB', (card_width, card_height), color=bg_color)
     draw = ImageDraw.Draw(image)
     
-    # Fonts
+    # Fonts: Ensure Roboto-Bold.ttf is in your project folder, or fall back to default
     try:
         font_alert = ImageFont.truetype("Roboto-Bold.ttf", 24)
-        font_title = ImageFont.truetype("Roboto-Bold.ttf", 42)
+        font_title = ImageFont.truetype("Roboto-Bold.ttf", 40)
         font_body = ImageFont.truetype("Roboto-Bold.ttf", 28)
-        font_meta_label = ImageFont.truetype("Roboto-Bold.ttf", 28)
+        font_body_source = ImageFont.truetype("Roboto-Bold.ttf", 26)
+        font_meta_label = ImageFont.truetype("Roboto-Bold.ttf", 26)
         font_meta_data = ImageFont.truetype("Roboto-Bold.ttf", 28)
         font_footer_head = ImageFont.truetype("Roboto-Bold.ttf", 20)
         font_footer_body = ImageFont.truetype("Roboto-Bold.ttf", 24)
     except OSError:
-        font_alert = font_title = font_body = font_meta_label = font_meta_data = font_footer_head = font_footer_body = ImageFont.load_default()
+        font_alert = font_title = font_body = font_body_source = font_meta_label = font_meta_data = font_footer_head = font_footer_body = ImageFont.load_default()
 
-    text_color = "black" if bg_color in ['#f1c40f', '#2ecc71'] else "white" # High contrast text
+    # Determine high-contrast text color
+    text_color = "black" if bg_color in ['#f1c40f', '#2ecc71'] else "white"
     margin_x = 40
     current_y = 30 
 
-    # Helper function for dynamic text wrapping and drawing
-    def draw_wrapped_text(text, font, max_chars, x, y, fill_color):
-        wrapper = textwrap.TextWrapper(width=max_chars)
+    # Helper function: dynamic Y-tracking text wrapping and drawing
+    def draw_wrapped_text(text, font, width_chars, x, y, fill_color, draw, padding=8):
+        wrapper = textwrap.TextWrapper(width=width_chars)
         lines = wrapper.wrap(text)
         for line in lines:
             draw.text((x, y), line, font=font, fill=fill_color)
-            # Use font.getbbox to calculate height of the line plus some padding
             bbox = font.getbbox(line)
             line_height = bbox[3] - bbox[1]
-            y += line_height + 8 
-        return y
+            y += line_height + padding # small padding between lines of the same block
+        return y + padding # returns the starting y for the next block
 
-    # 1. Header
+    # 1. Header (Alert Type)
     draw.text((margin_x, current_y), "THREAT INTELLIGENCE ALERT", font=font_alert, fill=text_color)
     current_y += 40
 
-    # 2. Technical Title
-    current_y = draw_wrapped_text(technical_title, font_title, 45, margin_x, current_y, text_color)
-    current_y += 15
+    # 2. Technical Title (Wrap at ~45 chars, large font)
+    current_y = draw_wrapped_text(technical_title, font=font_title, width_chars=48, x=margin_x, y=current_y, fill_color=text_color, draw=draw, padding=12)
+    current_y += 15 # extra padding to separate from summary
 
-    # 3. BLUF Summary
-    current_y = draw_wrapped_text(f"Summary: {bluf_summary}", font_body, 70, margin_x, current_y, text_color)
-    current_y += 20
+    # 3. BLUF Summary (Wrap at ~70 chars, medium font, dense paragraph)
+    current_y = draw_wrapped_text(f"Summary: {bluf_summary}", font=font_body, width_chars=72, x=margin_x, y=current_y, fill_color=text_color, draw=draw, padding=8)
+    current_y += 10 # small gap to source
 
-    # 4. Metadata Section (Two-column layout)
+    # --- 4. NEW ADDITION: Source Attribution ---
+    if source_site:
+        current_y = draw_wrapped_text(f"Source: {source_site}", font=font_body_source, width_chars=72, x=margin_x, y=current_y, fill_color=text_color, draw=draw, padding=5)
+    
+    # --- Gap to Metadata ---
+    current_y += 20 # fixed gap
+
+    # 5. Metadata Section (Two-column, dense layout)
     draw.text((margin_x, current_y), "METADATA", font=font_alert, fill=text_color)
     current_y += 35
     
     meta_x_col2 = margin_x + 160
     
-    if cve:
-        draw.text((margin_x, current_y), "🚨 THREAT:", font=font_meta_label, fill=text_color)
-        draw.text((meta_x_col2, current_y), cve, font=font_meta_data, fill=text_color)
-        current_y += 40
-        
-    if threat_actor:
-        draw.text((margin_x, current_y), "🎯 TARGET:", font=font_meta_label, fill=text_color)
-        draw_wrapped_text(threat_actor, font_meta_data, 50, meta_x_col2, current_y, text_color)
-        current_y += 40
+    # Dynamic vertical tracking in metadata columns
+    start_meta_y = current_y
+    label_draw = ImageDraw.Draw(image)
+    data_draw = ImageDraw.Draw(image)
 
-    # 5. Simply Put Footer (Dark Box at the bottom)
+    if cve:
+        label_draw.text((margin_x, start_meta_y), "🚨 THREAT:", font=font_meta_label, fill=text_color)
+        current_y_col2 = draw_wrapped_text(cve, font=font_meta_data, width_chars=50, x=meta_x_col2, y=start_meta_y, fill_color=text_color, draw=data_draw, padding=8)
+        current_y = current_y_col2 # track vertical progress
+
+    if threat_actor:
+        # Extra vertical gap before next label, based on column text size
+        start_target_y = current_y + 15
+        label_draw.text((margin_x, start_target_y), "🎯 TARGET:", font=font_meta_label, fill=text_color)
+        current_y_col2 = draw_wrapped_text(threat_actor, font=font_meta_data, width_chars=50, x=meta_x_col2, y=start_target_y, fill_color=text_color, draw=data_draw, padding=8)
+        current_y = current_y_col2
+
+    # 6. Simply Put Footer (Dark box at bottom, fixed height)
     footer_height = 110
     footer_top = card_height - footer_height
     draw.rectangle([(0, footer_top), (card_width, card_height)], fill="#2c3e50")
     
     draw.text((margin_x, footer_top + 15), "SIMPLY PUT:", font=font_footer_head, fill="#95a5a6")
-    draw_wrapped_text(simply_put_summary, font_footer_body, 80, margin_x, footer_top + 40, "white")
+    draw_wrapped_text(simply_put_summary, font=font_footer_body, width_chars=82, x=margin_x, y=footer_top + 40, fill_color="white", draw=draw, padding=5)
 
     output_filename = "threat_card.jpg"
     image.save(output_filename, "JPEG", quality=95)
@@ -301,12 +317,12 @@ def run_agent():
                     
                     print(f"Drafted Tweet:\n{tweet}\n")
                     
-                    # --- PARSE GROQ OUTPUT ---
+                    # --- PARSE GROQ OUTPUT AND PREPARE DATA ---
                     parts = tweet.strip().split('\n')
                     
                     severity_icon = parts[0][:1] 
                     
-                    # Extract the BLUF summary from the first line (removing the emoji)
+                    # Extract the coherent BLUF summary from the first line (removing the emoji)
                     bluf_summary = parts[0][1:].strip()
                     
                     cve_id_to_pass = ""
@@ -320,31 +336,39 @@ def run_agent():
                         if line.startswith("⚠️ Simply Put:"): simply_put_summary = line.replace("⚠️ Simply Put:", "").strip()
                         if "According to" in line: 
                             try:
-                                hashtags = line.split("According to")[1].split(".")[1].strip()
+                                # Use robust parsing: "According to The Hacker News. #cPanel #Vulnerability"
+                                site_part = line.split("According to")[1].split(".")[0].strip()
+                                hashtag_part = line.split("According to")[1].split(".")[1].strip()
+                                hashtags = hashtag_part
                             except IndexError:
-                                hashtags = "#CyberSecurity #InfoSec" # Fallback if parsing fails
+                                hashtags = "#CyberSecurity #InfoSec" # Fallback
 
                     # Re-extract CVE since it might have been modified with CVSS score
                     cve_match2 = re.search(r'(CVE-\d{4}-\d+)', tweet)
                     if cve_match2:
                         cve_id_to_pass = cve_match2.group(1)
 
+                    # The original title for dynamic drawing
                     technical_title = entry.title 
 
-                    # --- GENERATE THE IMAGE ---
+                    # --- EXTRACT SITE SOURCE NAME ---
+                    source_site = feed_info.get('name', 'Unknown Feed')
+
+                    # --- GENERATE THE DENSE THREAT CARD ---
+                    # We now pass the bluf_summary and the newly extracted source_site
                     try:
                         card_filename = generate_threat_card(
-                            severity_icon, technical_title, bluf_summary, cve_id_to_pass, threat_actor, simply_put_summary
+                            severity_icon, technical_title, bluf_summary, cve_id_to_pass, threat_actor, simply_put_summary, source_site
                         )
                     except Exception as img_e:
                         print(f"Failed to generate threat card image: {img_e}")
                         card_filename = None
 
-                    # --- COMPILE THE SHORT TWEET ---
-                    # The text payload is dramatically shortened to prevent 403 Spam filtering
-                    short_tweet = f"{severity_icon} {bluf_summary[:100]}...\n\nFull details in the threat card below 👇\n\n{hashtags}"
+                    # --- COMPILE THE SHORT TWEET (Safely under 280 chars) ---
+                    # The text payload is dramatically shortened to prevent 403 Spam filtering and truncation `...`
+                    short_tweet = f"{severity_icon} {bluf_summary[:110]}...\n\nFull details in the threat card below 👇\n\n{hashtags}"
                     
-                    # Failsafe limit
+                    # Failsafe limit to protect your API tier
                     if len(short_tweet) > 270:
                         short_tweet = short_tweet[:267] + "..."
 
