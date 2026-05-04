@@ -38,8 +38,8 @@ COLOR_MAP = {
     '🟢': '#2ecc71'  # Low Green
 }
 
-def generate_threat_card(severity_icon, technical_title, cve, threat_actor, simply_put_summary):
-    """Dynamically generates a 1024x512 Threat Card image."""
+def generate_threat_card(severity_icon, technical_title, bluf_summary, cve, threat_actor, simply_put_summary):
+    """Dynamically generates a highly structured 1024x512 Threat Card image."""
     card_width = 1024
     card_height = 512
     bg_color = COLOR_MAP.get(severity_icon, '#34495e') 
@@ -47,50 +47,69 @@ def generate_threat_card(severity_icon, technical_title, cve, threat_actor, simp
     image = Image.new('RGB', (card_width, card_height), color=bg_color)
     draw = ImageDraw.Draw(image)
     
+    # Fonts
     try:
-        font_header = ImageFont.truetype("Roboto-Bold.ttf", 32)
-        font_title = ImageFont.truetype("Roboto-Bold.ttf", 48)
-        font_meta = ImageFont.truetype("Roboto-Bold.ttf", 36)
-        font_simply_put = ImageFont.truetype("Roboto-Bold.ttf", 28)
+        font_alert = ImageFont.truetype("Roboto-Bold.ttf", 24)
+        font_title = ImageFont.truetype("Roboto-Bold.ttf", 42)
+        font_body = ImageFont.truetype("Roboto-Bold.ttf", 28)
+        font_meta_label = ImageFont.truetype("Roboto-Bold.ttf", 28)
+        font_meta_data = ImageFont.truetype("Roboto-Bold.ttf", 28)
+        font_footer_head = ImageFont.truetype("Roboto-Bold.ttf", 20)
+        font_footer_body = ImageFont.truetype("Roboto-Bold.ttf", 24)
     except OSError:
-        font_header = font_title = font_meta = font_simply_put = ImageFont.load_default()
+        font_alert = font_title = font_body = font_meta_label = font_meta_data = font_footer_head = font_footer_body = ImageFont.load_default()
 
-    text_color = "white"
-    current_y = 40 
-    margin_x = 50
+    text_color = "black" if bg_color in ['#f1c40f', '#2ecc71'] else "white" # High contrast text
+    margin_x = 40
+    current_y = 30 
 
-    draw.text((margin_x, current_y), "THREAT INTELLIGENCE ALERT", font=font_header, fill=text_color)
-    current_y += 60
+    # Helper function for dynamic text wrapping and drawing
+    def draw_wrapped_text(text, font, max_chars, x, y, fill_color):
+        wrapper = textwrap.TextWrapper(width=max_chars)
+        lines = wrapper.wrap(text)
+        for line in lines:
+            draw.text((x, y), line, font=font, fill=fill_color)
+            # Use font.getbbox to calculate height of the line plus some padding
+            bbox = font.getbbox(line)
+            line_height = bbox[3] - bbox[1]
+            y += line_height + 8 
+        return y
 
-    wrapper_title = textwrap.TextWrapper(width=35)
-    wrapped_title = wrapper_title.wrap(text=technical_title)
-    for line in wrapped_title:
-        draw.text((margin_x, current_y), line, font=font_title, fill=text_color)
-        current_y += 55
-    
-    current_y += 20
-
-    if cve:
-        draw.text((margin_x, current_y), f"CVE: {cve}", font=font_meta, fill=text_color)
-        current_y += 50
-    if threat_actor:
-        draw.text((margin_x, current_y), f"Actor: {threat_actor}", font=font_meta, fill=text_color)
-        current_y += 50
-    
+    # 1. Header
+    draw.text((margin_x, current_y), "THREAT INTELLIGENCE ALERT", font=font_alert, fill=text_color)
     current_y += 40
 
-    box_top = current_y
-    box_height = 120
-    draw.rectangle([(0, box_top), (card_width, box_top + box_height)], fill="#2c3e50")
-    draw.text((margin_x, box_top + 15), "SIMPLY PUT:", font=font_header, fill="#95a5a6")
+    # 2. Technical Title
+    current_y = draw_wrapped_text(technical_title, font_title, 45, margin_x, current_y, text_color)
+    current_y += 15
+
+    # 3. BLUF Summary
+    current_y = draw_wrapped_text(f"Summary: {bluf_summary}", font_body, 70, margin_x, current_y, text_color)
+    current_y += 20
+
+    # 4. Metadata Section (Two-column layout)
+    draw.text((margin_x, current_y), "METADATA", font=font_alert, fill=text_color)
+    current_y += 35
     
-    wrapper_summary = textwrap.TextWrapper(width=65)
-    wrapped_summary = wrapper_summary.wrap(text=simply_put_summary)
+    meta_x_col2 = margin_x + 160
     
-    summary_y = box_top + 55
-    for line in wrapped_summary:
-        draw.text((margin_x, summary_y), line, font=font_simply_put, fill=text_color)
-        summary_y += 35
+    if cve:
+        draw.text((margin_x, current_y), "🚨 THREAT:", font=font_meta_label, fill=text_color)
+        draw.text((meta_x_col2, current_y), cve, font=font_meta_data, fill=text_color)
+        current_y += 40
+        
+    if threat_actor:
+        draw.text((margin_x, current_y), "🎯 TARGET:", font=font_meta_label, fill=text_color)
+        draw_wrapped_text(threat_actor, font_meta_data, 50, meta_x_col2, current_y, text_color)
+        current_y += 40
+
+    # 5. Simply Put Footer (Dark Box at the bottom)
+    footer_height = 110
+    footer_top = card_height - footer_height
+    draw.rectangle([(0, footer_top), (card_width, card_height)], fill="#2c3e50")
+    
+    draw.text((margin_x, footer_top + 15), "SIMPLY PUT:", font=font_footer_head, fill="#95a5a6")
+    draw_wrapped_text(simply_put_summary, font_footer_body, 80, margin_x, footer_top + 40, "white")
 
     output_filename = "threat_card.jpg"
     image.save(output_filename, "JPEG", quality=95)
@@ -282,37 +301,55 @@ def run_agent():
                     
                     print(f"Drafted Tweet:\n{tweet}\n")
                     
+                    # --- PARSE GROQ OUTPUT ---
+                    parts = tweet.strip().split('\n')
+                    
+                    severity_icon = parts[0][:1] 
+                    
+                    # Extract the BLUF summary from the first line (removing the emoji)
+                    bluf_summary = parts[0][1:].strip()
+                    
+                    cve_id_to_pass = ""
+                    threat_actor = ""
+                    simply_put_summary = ""
+                    hashtags = ""
+                    
+                    for line in parts:
+                        if line.startswith("🚨 Threat:"): cve_id_to_pass = line.replace("🚨 Threat:", "").strip()
+                        if line.startswith("🎯 Target:"): threat_actor = line.replace("🎯 Target:", "").strip()
+                        if line.startswith("⚠️ Simply Put:"): simply_put_summary = line.replace("⚠️ Simply Put:", "").strip()
+                        if "According to" in line: 
+                            try:
+                                hashtags = line.split("According to")[1].split(".")[1].strip()
+                            except IndexError:
+                                hashtags = "#CyberSecurity #InfoSec" # Fallback if parsing fails
+
+                    # Re-extract CVE since it might have been modified with CVSS score
+                    cve_match2 = re.search(r'(CVE-\d{4}-\d+)', tweet)
+                    if cve_match2:
+                        cve_id_to_pass = cve_match2.group(1)
+
+                    technical_title = entry.title 
+
+                    # --- GENERATE THE IMAGE ---
                     try:
-                        lines = [line.strip() for line in tweet.strip().split('\n') if line.strip()]
-                        severity_icon = lines[0][0] if lines else '🟡'
-                        technical_title = lines[0][1:].strip() if lines else 'Cybersecurity Alert'
-                        
-                        threat_actor = ""
-                        simply_put_summary = "Please read the full article for more details."
-                        for line in lines:
-                            if line.startswith("🚨 Threat:"):
-                                threat_actor = line.replace("🚨 Threat:", "").strip()
-                            elif line.startswith("⚠️ Simply Put:"):
-                                simply_put_summary = line.replace("⚠️ Simply Put:", "").strip()
-                        
-                        cve_id_to_pass = ""
-                        cve_match2 = re.search(r'(CVE-\d{4}-\d+)', tweet)
-                        if cve_match2:
-                            cve_id_to_pass = cve_match2.group(1)
-                            
-                        image_path = generate_threat_card(
-                            severity_icon=severity_icon,
-                            technical_title=technical_title,
-                            cve=cve_id_to_pass,
-                            threat_actor=threat_actor,
-                            simply_put_summary=simply_put_summary
+                        card_filename = generate_threat_card(
+                            severity_icon, technical_title, bluf_summary, cve_id_to_pass, threat_actor, simply_put_summary
                         )
                     except Exception as img_e:
                         print(f"Failed to generate threat card image: {img_e}")
-                        image_path = None
+                        card_filename = None
+
+                    # --- COMPILE THE SHORT TWEET ---
+                    # The text payload is dramatically shortened to prevent 403 Spam filtering
+                    short_tweet = f"{severity_icon} {bluf_summary[:100]}...\n\nFull details in the threat card below 👇\n\n{hashtags}"
+                    
+                    # Failsafe limit
+                    if len(short_tweet) > 270:
+                        short_tweet = short_tweet[:267] + "..."
 
                     print("Posting to X...")
-                    post_to_x(tweet, media_path=image_path)
+                    post_to_x(short_tweet, media_path=card_filename)
                     save_posted_url(entry.link)
                     
                     # Update database.json
