@@ -30,43 +30,50 @@ RSS_FEEDS = [
 
 HISTORY_FILE = "posted_urls.txt"
 
-# Severity Color Map
+# Severity Color Map (Neon Accents for Dark Mode)
 COLOR_MAP = {
-    '🔴': '#e74c3c', # Critical Red
-    '🟠': '#e67e22', # High Orange
-    '🟡': '#f1c40f', # Medium Yellow
-    '🟢': '#2ecc71'  # Low Green
+    '🔴': '#ff4757', # Neon Red
+    '🟠': '#ffa502', # Neon Orange
+    '🟡': '#eccc68', # Neon Yellow
+    '🟢': '#2ed573'  # Neon Green
 }
 
 def generate_threat_card(severity_icon, technical_title, bluf_summary, cve, threat_actor, simply_put_summary, source_site):
-    """Generates a professional-grade, dense, highly structured 1024x512 Threat Card image."""
+    """Generates a premium, Dark Mode, lossless PNG Threat Card."""
     card_width = 1024
     card_height = 512
-    bg_color = COLOR_MAP.get(severity_icon, '#e74c3c') 
     
-    # Use a solid background, like a premium alert asset
+    # Dark Mode Backgrounds
+    bg_color = "#0d1117"  # Deep slate/black
+    footer_color = "#161b22" # Slightly lighter dark gray for depth
+    accent_color = COLOR_MAP.get(severity_icon, '#ff4757') 
+    text_primary = "#ffffff" # Pure white for main text
+    text_secondary = "#8b949e" # Muted gray for labels and source
+    
+    # Create Canvas
     image = Image.new('RGB', (card_width, card_height), color=bg_color)
     draw = ImageDraw.Draw(image)
     
-    # Fonts: Ensure Roboto-Bold.ttf is in your project folder, or fall back to default
+    # Load Fonts
     try:
-        font_alert = ImageFont.truetype("Roboto-Bold.ttf", 24)
-        font_title = ImageFont.truetype("Roboto-Bold.ttf", 40)
-        font_body = ImageFont.truetype("Roboto-Bold.ttf", 28)
-        font_body_source = ImageFont.truetype("Roboto-Bold.ttf", 26)
-        font_meta_label = ImageFont.truetype("Roboto-Bold.ttf", 26)
-        font_meta_data = ImageFont.truetype("Roboto-Bold.ttf", 28)
+        font_alert = ImageFont.truetype("Roboto-Bold.ttf", 22)
+        font_title = ImageFont.truetype("Roboto-Bold.ttf", 38)
+        font_body = ImageFont.truetype("Roboto-Medium.ttf", 26) # Using Medium or Regular if available
+        font_meta_label = ImageFont.truetype("Roboto-Bold.ttf", 24)
+        font_meta_data = ImageFont.truetype("Roboto-Medium.ttf", 26)
         font_footer_head = ImageFont.truetype("Roboto-Bold.ttf", 20)
-        font_footer_body = ImageFont.truetype("Roboto-Bold.ttf", 24)
+        font_footer_body = ImageFont.truetype("Roboto-Medium.ttf", 24)
     except OSError:
-        font_alert = font_title = font_body = font_body_source = font_meta_label = font_meta_data = font_footer_head = font_footer_body = ImageFont.load_default()
+        font_alert = font_title = font_body = font_meta_label = font_meta_data = font_footer_head = font_footer_body = ImageFont.load_default()
 
-    # Determine high-contrast text color
-    text_color = "black" if bg_color in ['#f1c40f', '#2ecc71'] else "white"
-    margin_x = 40
-    current_y = 30 
+    margin_x = 45
+    current_y = 40 
 
-    # Helper function: dynamic Y-tracking text wrapping and drawing
+    # --- VISUAL FLAIR: Top Accent Bar ---
+    # Draws a 12-pixel thick neon bar at the very top of the image to indicate severity
+    draw.rectangle([(0, 0), (card_width, 12)], fill=accent_color)
+
+    # Dynamic Text Wrapping Helper
     def draw_wrapped_text(text, font, width_chars, x, y, fill_color, draw, padding=8):
         wrapper = textwrap.TextWrapper(width=width_chars)
         lines = wrapper.wrap(text)
@@ -74,61 +81,60 @@ def generate_threat_card(severity_icon, technical_title, bluf_summary, cve, thre
             draw.text((x, y), line, font=font, fill=fill_color)
             bbox = font.getbbox(line)
             line_height = bbox[3] - bbox[1]
-            y += line_height + padding # small padding between lines of the same block
-        return y + padding # returns the starting y for the next block
+            y += line_height + padding
+        return y + padding
 
-    # 1. Header (Alert Type)
-    draw.text((margin_x, current_y), "THREAT INTELLIGENCE ALERT", font=font_alert, fill=text_color)
-    current_y += 40
-
-    # 2. Technical Title (Wrap at ~45 chars, large font)
-    current_y = draw_wrapped_text(technical_title, font=font_title, width_chars=48, x=margin_x, y=current_y, fill_color=text_color, draw=draw, padding=12)
-    current_y += 15 # extra padding to separate from summary
-
-    # 3. BLUF Summary (Wrap at ~70 chars, medium font, dense paragraph)
-    current_y = draw_wrapped_text(f"Summary: {bluf_summary}", font=font_body, width_chars=72, x=margin_x, y=current_y, fill_color=text_color, draw=draw, padding=8)
-    current_y += 10 # small gap to source
-
-    # --- 4. NEW ADDITION: Source Attribution ---
-    if source_site:
-        current_y = draw_wrapped_text(f"Source: {source_site}", font=font_body_source, width_chars=72, x=margin_x, y=current_y, fill_color=text_color, draw=draw, padding=5)
-    
-    # --- Gap to Metadata ---
-    current_y += 20 # fixed gap
-
-    # 5. Metadata Section (Two-column, dense layout)
-    draw.text((margin_x, current_y), "METADATA", font=font_alert, fill=text_color)
+    # 1. Header (Colored Alert Type)
+    alert_text = f"THREAT INTELLIGENCE ALERT  |  {severity_icon}"
+    draw.text((margin_x, current_y), alert_text, font=font_alert, fill=accent_color)
     current_y += 35
+
+    # 2. Technical Title
+    current_y = draw_wrapped_text(technical_title, font=font_title, width_chars=48, x=margin_x, y=current_y, fill_color=text_primary, draw=draw, padding=12)
+    current_y += 10
+
+    # 3. BLUF Summary & Source
+    current_y = draw_wrapped_text(f"Summary: {bluf_summary}", font=font_body, width_chars=75, x=margin_x, y=current_y, fill_color="#c9d1d9", draw=draw, padding=8)
     
-    meta_x_col2 = margin_x + 160
+    if source_site:
+        current_y = draw_wrapped_text(f"Source: {source_site}", font=font_body, width_chars=75, x=margin_x, y=current_y, fill_color=text_secondary, draw=draw, padding=5)
     
-    # Dynamic vertical tracking in metadata columns
+    current_y += 20
+
+    # --- VISUAL FLAIR: Divider Line ---
+    draw.line([(margin_x, current_y), (card_width - margin_x, current_y)], fill="#30363d", width=2)
+    current_y += 25
+
+    # 4. Metadata Section
+    meta_x_col2 = margin_x + 140
     start_meta_y = current_y
-    label_draw = ImageDraw.Draw(image)
-    data_draw = ImageDraw.Draw(image)
 
     if cve:
-        label_draw.text((margin_x, start_meta_y), "🚨 THREAT:", font=font_meta_label, fill=text_color)
-        current_y_col2 = draw_wrapped_text(cve, font=font_meta_data, width_chars=50, x=meta_x_col2, y=start_meta_y, fill_color=text_color, draw=data_draw, padding=8)
-        current_y = current_y_col2 # track vertical progress
-
-    if threat_actor:
-        # Extra vertical gap before next label, based on column text size
-        start_target_y = current_y + 15
-        label_draw.text((margin_x, start_target_y), "🎯 TARGET:", font=font_meta_label, fill=text_color)
-        current_y_col2 = draw_wrapped_text(threat_actor, font=font_meta_data, width_chars=50, x=meta_x_col2, y=start_target_y, fill_color=text_color, draw=data_draw, padding=8)
+        draw.text((margin_x, start_meta_y), "THREAT:", font=font_meta_label, fill=text_secondary)
+        current_y_col2 = draw_wrapped_text(cve, font=font_meta_data, width_chars=55, x=meta_x_col2, y=start_meta_y, fill_color=accent_color, draw=draw, padding=8)
         current_y = current_y_col2
 
-    # 6. Simply Put Footer (Dark box at bottom, fixed height)
+    if threat_actor:
+        start_target_y = current_y + 10
+        draw.text((margin_x, start_target_y), "TARGET:", font=font_meta_label, fill=text_secondary)
+        current_y_col2 = draw_wrapped_text(threat_actor, font=font_meta_data, width_chars=55, x=meta_x_col2, y=start_target_y, fill_color=text_primary, draw=draw, padding=8)
+        current_y = current_y_col2
+
+    # 5. Simply Put Footer
     footer_height = 110
     footer_top = card_height - footer_height
-    draw.rectangle([(0, footer_top), (card_width, card_height)], fill="#2c3e50")
     
-    draw.text((margin_x, footer_top + 15), "SIMPLY PUT:", font=font_footer_head, fill="#95a5a6")
-    draw_wrapped_text(simply_put_summary, font=font_footer_body, width_chars=82, x=margin_x, y=footer_top + 40, fill_color="white", draw=draw, padding=5)
+    # Draw dark footer background
+    draw.rectangle([(0, footer_top), (card_width, card_height)], fill=footer_color)
+    # Draw subtle top border for footer
+    draw.line([(0, footer_top), (card_width, footer_top)], fill="#30363d", width=2)
+    
+    draw.text((margin_x, footer_top + 15), "SIMPLY PUT:", font=font_footer_head, fill=text_secondary)
+    draw_wrapped_text(simply_put_summary, font=font_footer_body, width_chars=82, x=margin_x, y=footer_top + 45, fill_color=text_primary, draw=draw, padding=5)
 
-    output_filename = "threat_card.jpg"
-    image.save(output_filename, "JPEG", quality=95)
+    # --- CRITICAL FIX: Save as lossless PNG ---
+    output_filename = "threat_card.png"
+    image.save(output_filename, "PNG") 
     return output_filename
 
 def get_posted_urls():
