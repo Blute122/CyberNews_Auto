@@ -4,3 +4,4 @@ groq
 streamlit
 pandas
 plotly
+pillow
