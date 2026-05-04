@@ -156,7 +156,7 @@ Summary: {summary}"""
     return tweet_text
 
 def post_to_x(tweet_text, media_path=None):
-    client = tweepy.Client(
+    client_v2 = tweepy.Client(
         consumer_key=X_API_KEY,
         consumer_secret=X_API_SECRET,
         access_token=X_ACCESS_TOKEN,
@@ -168,17 +168,21 @@ def post_to_x(tweet_text, media_path=None):
             auth = tweepy.OAuth1UserHandler(
                 X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_TOKEN_SECRET
             )
-            api = tweepy.API(auth)
-            media = api.media_upload(media_path)
-            response = client.create_tweet(text=tweet_text, media_ids=[media.media_id])
+            api_v1 = tweepy.API(auth)
+            # 1. Upload the image using v1.1
+            media = api_v1.media_upload(filename=media_path)
+            media_id = media.media_id
+            
+            # 2. Post the tweet using v2, attaching the media_id
+            response = client_v2.create_tweet(text=tweet_text, media_ids=[media_id])
         else:
-            response = client.create_tweet(text=tweet_text)
+            response = client_v2.create_tweet(text=tweet_text)
         print(f"Success! Tweet ID: {response.data['id']}")
     except Exception as e:
         print(f"Error posting tweet: {e}")
         if media_path:
             print("Falling back to text-only tweet...")
-            response = client.create_tweet(text=tweet_text)
+            response = client_v2.create_tweet(text=tweet_text)
             print(f"Success! Tweet ID: {response.data['id']}")
         else:
             raise e
