@@ -2,7 +2,7 @@ name: Auto Cyber News Bot
 
 on:
   schedule:
-    - cron: '0 * * * *' # Runs at the top of every hour
+    - cron: '14 * * * *' # Runs at the top of every hour
   workflow_dispatch: # Allows you to run it manually from the GitHub website
 
 jobs:
