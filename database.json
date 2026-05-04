@@ -6,7 +6,32 @@
     },
     {
         "date": "2026-05-03 06:54",
-        "content": "\ud83d\udfe1 A local privilege escalation flaw (CVE-2026-31431 (CVSS: 7.8/10)) in various Linux distributions allows attackers to gain Linux root access.\nCVE: CVE-2026-31431 (CVSS: 7.8/10)\nTarget: Various Linux distributions\nAccording to The Hacker News. #LinuxLPE #CVEupdate",
+        "content": "\ud83d\udfe0 A local privilege escalation flaw (CVE-2026-31431 (CVSS: 7.8/10)) in various Linux distributions allows attackers to gain Linux root access.\nCVE: CVE-2026-31431 (CVSS: 7.8/10)\nTarget: Various Linux distributions\nAccording to The Hacker News. #LinuxLPE #CVEupdate",
         "url": "https://thehackernews.com/2026/05/cisa-adds-actively-exploited-linux-root.html"
+    },
+    {
+        "date": "2026-05-03 15:36",
+        "content": "\ud83d\udfe1 Researchers discovered a large-scale scam using Telegram Mini Apps for crypto scams & Android malware distribution.\nCVE: None listed\nActor: Not specified\nTarget: Telegram Mini Apps/Android\nAccording to BleepingComputer. #TelegramMiniApps #AndroidMalware",
+        "url": "https://www.bleepingcomputer.com/news/security/telegram-mini-apps-abused-for-crypto-scams-android-malware-delivery/"
+    },
+    {
+        "date": "2026-05-03 18:40",
+        "content": "\ud83d\udfe1 Microsoft Defender is detecting legitimate DigiCert root certificates as malware, causing false positives and potential certificate removal.\nCVE: None\nActor: None\nAccording to BleepingComputer. #DigiCert #WindowsCert",
+        "url": "https://www.bleepingcomputer.com/news/security/microsoft-defender-wrongly-flags-digicert-certs-as-trojan-win32-cerdigentadha/"
+    },
+    {
+        "date": "2026-05-03 22:29",
+        "content": "\ud83d\udfe1 ShinyHunters claims a successful data breach against Instructure, allegedly stealing user data. \nAccording to BleepingComputer. #ShinyHunters #DataBreach",
+        "url": "https://www.bleepingcomputer.com/news/security/instructure-confirms-data-breach-shinyhunters-claims-attack/"
+    },
+    {
+        "date": "2026-05-04 08:03",
+        "content": "\ud83d\udfe1 A global crackdown has led to the arrest of 276 suspects, shutting down 9 cryptocurrency scam centers and seizing $701M from investment fraud schemes targeting Americans. \nAccording to The Hacker News. #CryptoScam #FinancialFraud",
+        "url": "https://thehackernews.com/2026/05/global-crackdown-arrests-276-shuts-9.html"
+    },
+    {
+        "date": "2026-05-04 10:24",
+        "content": "\ud83d\udfe2 Data centers are becoming critical infrastructure targets as AI drives dependence on cloud infrastructure.\nCVE: \nTarget: \nAccording to CyberScoop. #CloudSecurity #AIInfrastructure",
+        "url": "https://cyberscoop.com/data-centers-critical-infrastructure-ai-security-op-ed/"
     }
 ]

@@ -1,3 +1,6 @@
 feedparser
 tweepy
 groq
+streamlit
+pandas
+plotly
