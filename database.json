@@ -33,5 +33,15 @@
         "date": "2026-05-04 10:24",
         "content": "\ud83d\udfe2 Data centers are becoming critical infrastructure targets as AI drives dependence on cloud infrastructure.\nCVE: \nTarget: \nAccording to CyberScoop. #CloudSecurity #AIInfrastructure",
         "url": "https://cyberscoop.com/data-centers-critical-infrastructure-ai-security-op-ed/"
+    },
+    {
+        "date": "2026-05-04 12:37",
+        "content": "\ud83d\udd34 Progress Software warns of a critical MOVEit Automation auth bypass flaw that can lead to unauthorized access and execution of code.\n\n\ud83d\udea8 Threat: CVE-2023-33149 (CVSS: 7.8/10) \n\ud83c\udfaf Target: Progress Software's MOVEit Automation\n\u26a0\ufe0f Simply Put: A hacker can bypass security checks and access sensitive file transfers without a password.\n\nAccording to BleepingComputer. #CVE202333149 #AuthBypass",
+        "url": "https://www.bleepingcomputer.com/news/security/moveit-automation-customers-warned-to-patch-critical-auth-bypass-flaw/"
+    },
+    {
+        "date": "2026-05-04 12:55",
+        "content": "\ud83d\udd34 \nA 17-year-old in Japan hacked into Kaikatsu Club's database, stealing the personal data of over 7 million users to fund his Pok\u00e9mon card habit.\n\n\ud83d\udea8 Threat: \n\ud83c\udfaf Target: \n\u26a0\ufe0f Simply Put: A teenager used hacking skills to steal millions of people's personal data for personal gain.\n\nAccording to The Hacker News. #DataBreach #UnauthorizedAccess",
+        "url": "https://thehackernews.com/2026/05/2026-year-of-ai-assisted-attacks.html"
     }
 ]
