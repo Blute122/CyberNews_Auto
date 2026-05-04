@@ -9,3 +9,4 @@ https://cyberscoop.com/data-centers-critical-infrastructure-ai-security-op-ed/
 https://www.darkreading.com/vulnerabilities-threats/how-dark-reading-lifted-off-launchpad-2006
 https://www.bleepingcomputer.com/news/security/moveit-automation-customers-warned-to-patch-critical-auth-bypass-flaw/
 https://thehackernews.com/2026/05/2026-year-of-ai-assisted-attacks.html
+https://thehackernews.com/2026/05/silver-fox-deploys-abcdoor-malware-via.html
