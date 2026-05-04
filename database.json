@@ -53,5 +53,10 @@
         "date": "2026-05-04 13:10",
         "content": "\ud83d\udd34 A critical cPanel vulnerability is being exploited by an unknown threat actor to target government and MSP networks.\n\n\ud83d\udea8 Threat: CVE-2023xxxxx\n\ud83c\udfaf Target: cPanel, government and MSP networks in Southeast Asia, and the U.S.\n\u26a0\ufe0f Simply Put: Hackers are using a recently discovered flaw in a web hosting software to break into government and business networks.\n\nAccording to The Hacker News. #CyberAttack #cPanel",
         "url": "https://thehackernews.com/2026/05/critical-cpanel-vulnerability.html"
+    },
+    {
+        "date": "2026-05-04 14:55 UTC",
+        "content": "Cyber attacks rock India & Russia! China-backed APT group delivers ABCDoor & ValleyRAT malware via over 1,600 tax-themed phishing messages. Targeted sectors: unknown.\nTechnical breakdown: ABCDoor backdoor, ValleyRAT malware delivered via phishing campaigns, targeting various sectors in India and Russia.\nAt least 1,600 orgs targeted across India and Russia. Unknown number of users/systems affected. Sensitive data and access at risk.\nReported by Dark Reading. Follow for daily threat intelligence. #Cybersecurity #APTAfrica #ThreatIntelligence",
+        "url": "https://www.darkreading.com/endpoint-security/silver-fox-tax-themed-attacks-india-russia"
     }
 ]
