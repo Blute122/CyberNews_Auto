@@ -41,30 +41,36 @@ def save_posted_url(url):
 def generate_tweet(title, summary, source_name):
     client = Groq(api_key=GROQ_API_KEY)
     
-    prompt = f"""You are an elite cyber threat intelligence analyst. Your job is to read cybersecurity articles, extract actionable intelligence, and summarize the threat into a single, highly structured tweet.
+    prompt = f"""You are an elite cyber threat intelligence analyst. Your job is to read cybersecurity articles, extract actionable intelligence, and summarize the threat into a highly structured format.
 
 STRICT RULES:
-1. CONTENT FILTER: If the article is a contest, giveaway, advertisement, webinar, or sponsored marketing, output exactly the word "SKIP" and nothing else.
-2. THREAT LEVEL SCORING: Start the tweet with an emoji based on severity:
-   - 🔴 CRITICAL: Massive breaches, active zero-days, or state-sponsored attacks.
-   - 🟡 WARNING: Discovered vulnerabilities, new malware variants.
-   - 🟢 INFO: General security research or policy updates.
-3. THE SUMMARY: Write a concise, 1-2 sentence summary of the core threat or news.
-4. INTELLIGENCE EXTRACTION: If (and ONLY if) the article mentions them, you MUST append these structured data points below your summary:
-   - CVE: [List the CVE numbers, e.g., CVE-2026-1234]
-   - Actor: [List the threat actor/group, e.g., Lazarus, LockBit]
-   - Target: [List the affected software/hardware, e.g., Cisco IOS, Windows 11]
-   (If any of these are missing from the article, do not include that specific line).
-5. SOURCE: End with the exact phrase: "According to {source_name}."
-6. HASHTAGS: Include exactly two highly specific technical hashtags at the very end.
-7. LENGTH: Keep the entire output strictly under 240 characters.
-8. FORMATTING: Output ONLY the requested text. No conversational filler, no URLs, no introductory phrases.
+1. CONTENT FILTER: If the article is a contest, giveaway, advertisement, webinar, opinion piece, or sponsored marketing, output exactly the word "SKIP" and nothing else.
+2. THREAT LEVEL SCORING: You must categorize the threat strictly using these emoji guidelines. Start your response with the chosen emoji:
+   - 🔴 CRITICAL: ALL data breaches (confirmed or claimed), ransomware deployments, active zero-day exploits, or state-sponsored APT activity.
+   - 🟠 HIGH: High severity vulnerabilities (CVSS 7.0-8.9), new malware variants, or large-scale phishing campaigns.
+   - 🟡 MEDIUM: Discovered vulnerabilities with no active exploitation, or general security research.
+   - 🟢 LOW: Policy updates, industry news, or minor bugs.
+3. FORMATTING: You must follow this EXACT structure. Do not deviate or add conversational text.
+   
+   [Emoji from Rule 2] [A 1-2 sentence high-level summary of the incident, breach, or discovery (BLUF format).]
+   
+   🚨 Threat: [Technical name, Threat Actor, and/or CVE]
+   🎯 Target: [The affected software, hardware, or organization]
+   ⚠️ Simply Put: [A 1-sentence, zero-jargon explanation of the risk so a beginner can easily understand]
+   
+   According to {source_name}. #[Tag1] #[Tag2]
+
+4. MISSING DATA: If the Threat or Target is not explicitly mentioned in the article, omit that specific bullet point entirely. 
+5. LENGTH: The entire output MUST be as concise as possible to fit Twitter character limits.
 
 EXAMPLE OUTPUT:
-🔴 Hackers are actively exploiting a critical flaw in PAN-OS to gain unauthenticated remote code execution on global firewall networks. 
-CVE: CVE-2026-3456
-Target: Palo Alto Networks
-According to Dark Reading. #PANOS #ZeroDay
+🔴 ShinyHunters claims a successful data breach against Instructure, allegedly stealing massive amounts of user data and offering it for sale on dark web forums.
+
+🚨 Threat: ShinyHunters
+🎯 Target: Instructure
+⚠️ Simply Put: Hackers broke into an education technology company's database and stole private user information.
+
+According to BleepingComputer. #DataBreach #ShinyHunters
 
 ACTUAL INPUT:
 Title: {title}
