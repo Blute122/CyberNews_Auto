@@ -88,5 +88,10 @@
         "date": "2026-05-05 18:45 UTC",
         "content": "\ud83d\udd34 A student hacked Taiwan's high-speed rail TETRA system, triggering emergency brakes. Multiple trains affected. via BleepingComputer #cybersecurity #railways",
         "url": "https://www.bleepingcomputer.com/news/security/student-hacked-taiwan-high-speed-rail-to-trigger-emergency-brakes/"
+    },
+    {
+        "date": "2026-05-05 20:16 UTC",
+        "content": "\ud83d\udfe0 High-severity phishing campaign targets US organizations via fake emails with Microsoft branding. via SecurityWeek #phishingcampaign",
+        "url": "https://www.securityweek.com/microsoft-warns-of-sophisticated-phishing-campaign-targeting-us-organizations/"
     }
 ]
