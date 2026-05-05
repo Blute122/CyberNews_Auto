@@ -58,5 +58,10 @@
         "date": "2026-05-04 14:55 UTC",
         "content": "Cyber attacks rock India & Russia! China-backed APT group delivers ABCDoor & ValleyRAT malware via over 1,600 tax-themed phishing messages. Targeted sectors: unknown.\nTechnical breakdown: ABCDoor backdoor, ValleyRAT malware delivered via phishing campaigns, targeting various sectors in India and Russia.\nAt least 1,600 orgs targeted across India and Russia. Unknown number of users/systems affected. Sensitive data and access at risk.\nReported by Dark Reading. Follow for daily threat intelligence. #Cybersecurity #APTAfrica #ThreatIntelligence",
         "url": "https://www.darkreading.com/endpoint-security/silver-fox-tax-themed-attacks-india-russia"
+    },
+    {
+        "date": "2026-05-05 06:51 UTC",
+        "content": "Critical bug exploited in Weaver E-cology office automation since March. Hackers using CVE-2026-22679 (CVSS: 9.8/10). via BleepingComputer #WEcologyVulnerability",
+        "url": "https://www.bleepingcomputer.com/news/security/weaver-e-cology-critical-bug-exploited-in-attacks-since-march/"
     }
 ]
