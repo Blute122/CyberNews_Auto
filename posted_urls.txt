@@ -15,3 +15,4 @@ https://www.darkreading.com/endpoint-security/silver-fox-tax-themed-attacks-indi
 https://www.bleepingcomputer.com/news/security/weaver-e-cology-critical-bug-exploited-in-attacks-since-march/
 https://www.bleepingcomputer.com/news/security/scarcruft-hackers-push-birdcall-android-malware-via-game-platform/
 https://www.bleepingcomputer.com/news/security/google-now-offers-up-to-15-million-for-some-android-exploits/
+https://www.darkreading.com/cyberattacks-data-breaches/how-story-usb-penetration-test-went-viral
