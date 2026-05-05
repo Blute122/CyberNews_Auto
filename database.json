@@ -63,5 +63,20 @@
         "date": "2026-05-05 06:51 UTC",
         "content": "Critical bug exploited in Weaver E-cology office automation since March. Hackers using CVE-2026-22679 (CVSS: 9.8/10). via BleepingComputer #WEcologyVulnerability",
         "url": "https://www.bleepingcomputer.com/news/security/weaver-e-cology-critical-bug-exploited-in-attacks-since-march/"
+    },
+    {
+        "date": "2026-05-05 09:18 UTC",
+        "content": "\ud83d\udd34 ScarCruft group pushes Android malware \"BirdCall\" via video game platform. North Korea-linked APT37 targets Android users via game supply-chain attack via BleepingComputer #ScarCruft #AndroidMalware",
+        "url": "https://www.bleepingcomputer.com/news/security/scarcruft-hackers-push-birdcall-android-malware-via-game-platform/"
+    },
+    {
+        "date": "2026-05-05 11:37 UTC",
+        "content": "\ud83d\udfe1 Google increases Android exploit bounties to $1.5 million for toughest flaws, while reducing payouts for those AI can easily find. via BleepingComputer #AndroidRewards #BugBounty",
+        "url": "https://www.bleepingcomputer.com/news/security/google-now-offers-up-to-15-million-for-some-android-exploits/"
+    },
+    {
+        "date": "2026-05-05 14:22 UTC",
+        "content": "",
+        "url": "https://www.darkreading.com/cyberattacks-data-breaches/how-story-usb-penetration-test-went-viral"
     }
 ]
