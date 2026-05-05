@@ -370,8 +370,7 @@ def run_agent():
                     continue
 
                 severity_icon  = thread_data.get("severity_icon", "🟡")
-                if "XXX" in cve_id.upper():
-                    cve_id = ""
+                cve_id = thread_data.get("cve_id", "")
                 threat_actor   = thread_data.get("threat_actor", "")
                 target         = thread_data.get("target", "")
                 simply_put     = thread_data.get("simply_put", "")
@@ -379,7 +378,8 @@ def run_agent():
                 technical_tweet = thread_data.get("technical", "")
                 impact_tweet   = thread_data.get("impact", "")
                 closer_tweet   = thread_data.get("closer", "")
-
+                if "XXX" in cve_id.upper():
+                    cve_id = ""
                 if cve_id:
                     print(f"Fetching CVSS score for {cve_id}...")
                     cvss_score = get_nvd_cvss(cve_id)
