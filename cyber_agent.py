@@ -23,15 +23,15 @@ X_ACCESS_TOKEN_SECRET = os.environ.get("X_ACCESS_TOKEN_SECRET")
 GROQ_API_KEY          = os.environ.get("GROQ_API_KEY")
 DISCORD_WEBHOOK_URL   = os.environ.get("DISCORD_WEBHOOK_URL")
 
-DAILY_POST_CAP = 7          # Maximum tweets/threads per day
-ARTICLE_MAX_AGE_HOURS = 6   # Skip articles older than this
+DAILY_POST_CAP        = 7    # Max tweets per day (UTC)
+ARTICLE_MAX_AGE_HOURS = 6    # Skip articles older than this
 
 RSS_FEEDS = [
-    {"url": "https://feeds.feedburner.com/TheHackersNews",  "name": "The Hacker News"},
-    {"url": "https://www.bleepingcomputer.com/feed/",       "name": "BleepingComputer"},
-    {"url": "https://www.darkreading.com/rss.xml",          "name": "Dark Reading"},
-    {"url": "https://cyberscoop.com/feed/",                 "name": "CyberScoop"},
-    {"url": "https://krebsonsecurity.com/feed/",            "name": "Krebs on Security"},
+    {"url": "https://feeds.feedburner.com/TheHackersNews", "name": "The Hacker News"},
+    {"url": "https://www.bleepingcomputer.com/feed/",      "name": "BleepingComputer"},
+    {"url": "https://www.darkreading.com/rss.xml",         "name": "Dark Reading"},
+    {"url": "https://cyberscoop.com/feed/",                "name": "CyberScoop"},
+    {"url": "https://krebsonsecurity.com/feed/",           "name": "Krebs on Security"},
 ]
 
 HISTORY_FILE = "posted_urls.txt"
@@ -44,11 +44,14 @@ COLOR_MAP = {
     "🟢": "#2ed573",
 }
 
+# Strict CVE pattern — rejects any placeholder like CVE-XXXX-XXXXX
+CVE_PATTERN = re.compile(r"CVE-\d{4}-\d{4,}$", re.IGNORECASE)
+
+
 # ─────────────────────────────────────────────
-# DAILY CAP HELPERS
+# DAILY CAP
 # ─────────────────────────────────────────────
 def get_todays_post_count() -> int:
-    """Count how many entries were added to database.json today (Strict UTC)."""
     if not os.path.exists(DB_FILE) or os.path.getsize(DB_FILE) == 0:
         return 0
     try:
@@ -56,10 +59,9 @@ def get_todays_post_count() -> int:
             db_data = json.load(f)
     except json.JSONDecodeError:
         return 0
-
-    # TWEAK: Strict UTC time to prevent server timezone desync
     today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     return sum(1 for item in db_data if item.get("date", "").startswith(today_str))
+
 
 # ─────────────────────────────────────────────
 # URL HISTORY & DATABASE
@@ -87,96 +89,12 @@ def save_db(db_data: list):
     with open(DB_FILE, "w") as f:
         json.dump(db_data, f, indent=4)
 
-# ─────────────────────────────────────────────
-# THREAT CARD IMAGE
-# ─────────────────────────────────────────────
-def generate_threat_card(severity_icon, technical_title, bluf_summary,
-                         cve, threat_actor, simply_put_summary, source_site) -> str:
-    """Generates a premium dark-mode PNG threat card with tightened vertical spacing."""
-    card_width  = 1024
-    card_height = 512
-
-    bg_color     = "#0d1117"
-    footer_color = "#161b22"
-    accent_color = COLOR_MAP.get(severity_icon, "#ff4757")
-    text_primary   = "#ffffff"
-    text_secondary = "#8b949e"
-
-    image = Image.new("RGB", (card_width, card_height), color=bg_color)
-    draw  = ImageDraw.Draw(image)
-
-    # TWEAK: Slightly smaller fonts to prevent vertical overflow
-    try:
-        font_alert       = ImageFont.truetype("Roboto-Bold.ttf",   20)
-        font_title       = ImageFont.truetype("Roboto-Bold.ttf",   34) # Was 38
-        font_body        = ImageFont.truetype("Roboto-Medium.ttf", 24) # Was 26
-        font_meta_label  = ImageFont.truetype("Roboto-Bold.ttf",   22) # Was 24
-        font_meta_data   = ImageFont.truetype("Roboto-Medium.ttf", 24) # Was 26
-        font_footer_head = ImageFont.truetype("Roboto-Bold.ttf",   18)
-        font_footer_body = ImageFont.truetype("Roboto-Medium.ttf", 22)
-    except OSError:
-        font_alert = font_title = font_body = font_meta_label = \
-        font_meta_data = font_footer_head = font_footer_body = ImageFont.load_default()
-
-    margin_x  = 45
-    current_y = 35 # Started slightly higher
-
-    draw.rectangle([(0, 0), (card_width, 12)], fill=accent_color)
-
-    def draw_wrapped_text(text, font, width_chars, x, y, fill_color, padding=6): # Reduced padding
-        wrapper = textwrap.TextWrapper(width=width_chars)
-        lines   = wrapper.wrap(text)
-        for line in lines:
-            draw.text((x, y), line, font=font, fill=fill_color)
-            bbox = font.getbbox(line)
-            y += (bbox[3] - bbox[1]) + padding
-        return y + padding
-
-    draw.text((margin_x, current_y), "THREAT INTELLIGENCE ALERT", font=font_alert, fill=accent_color)
-    current_y += 30 # Reduced jump
-
-    # TWEAK: Wider wrap (52) so titles take fewer lines
-    current_y = draw_wrapped_text(technical_title, font_title, 52, margin_x, current_y, text_primary, padding=8)
-    current_y += 5
-
-    # TWEAK: Wider wrap (85) so summaries take fewer lines
-    current_y = draw_wrapped_text(f"Summary: {bluf_summary}", font_body, 85, margin_x, current_y, "#c9d1d9")
-    if source_site:
-        current_y = draw_wrapped_text(f"Source: {source_site}", font_body, 85, margin_x, current_y, text_secondary, padding=4)
-    current_y += 15
-
-    draw.line([(margin_x, current_y), (card_width - margin_x, current_y)], fill="#30363d", width=2)
-    current_y += 15
-
-    meta_x_col2 = margin_x + 130
-
-    if cve:
-        draw.text((margin_x, current_y), "THREAT:", font=font_meta_label, fill=text_secondary)
-        current_y = draw_wrapped_text(cve, font_meta_data, 60, meta_x_col2, current_y, accent_color)
-
-    if threat_actor:
-        current_y += 5
-        draw.text((margin_x, current_y), "TARGET:", font=font_meta_label, fill=text_secondary)
-        current_y = draw_wrapped_text(threat_actor, font_meta_data, 60, meta_x_col2, current_y, text_primary)
-
-    # Footer layout remains the same
-    footer_height = 100 # Slightly shorter footer
-    footer_top    = card_height - footer_height
-    draw.rectangle([(0, footer_top), (card_width, card_height)], fill=footer_color)
-    draw.line([(0, footer_top), (card_width, footer_top)], fill="#30363d", width=2)
-    draw.text((margin_x, footer_top + 15), "SIMPLY PUT:", font=font_footer_head, fill=text_secondary)
-    draw_wrapped_text(simply_put_summary, font_footer_body, 90, margin_x, footer_top + 40, text_primary, padding=5)
-
-    output_filename = "threat_card.png"
-    image.save(output_filename, "PNG")
-    return output_filename
 
 # ─────────────────────────────────────────────
 # NVD CVSS LOOKUP
 # ─────────────────────────────────────────────
 def get_nvd_cvss(cve_id: str):
-    # TWEAK: Adding a 1-second sleep to respect NVD API rate limits
-    time.sleep(1) 
+    time.sleep(1)  # Respect NVD rate limits
     url = f"https://services.nvd.nist.gov/rest/json/cves/2.0?cveId={cve_id}"
     try:
         response = requests.get(url, timeout=10)
@@ -194,46 +112,55 @@ def get_nvd_cvss(cve_id: str):
         print(f"NVD API Error: {e}")
     return "N/A"
 
+
 # ─────────────────────────────────────────────
-# GROQ — STRICT JSON MODE
+# GROQ — SINGLE CALL, 3 FIELDS ONLY
 # ─────────────────────────────────────────────
-def generate_thread_content(title: str, summary: str, source_name: str) -> dict | None:
+def generate_content(title: str, summary: str, source_name: str) -> dict | None:
+    """
+    One Groq call. Returns a dict with:
+        severity_icon, cve, threat_actor, target, tweet, card_summary, simply_put
+    Returns None if the article should be skipped.
+    """
     client = Groq(api_key=GROQ_API_KEY)
 
-    prompt = f"""You are an elite cyber threat intelligence analyst. Read the cybersecurity article below and produce a structured Twitter thread in JSON format.
+    prompt = f"""You are a cyber threat intelligence analyst. Analyze the article and return a JSON object.
 
-STRICT RULES:
-1. CONTENT FILTER: If the article is a contest, giveaway, advertisement, webinar, opinion piece, or sponsored content, output exactly: {{"skip": true}}
-2. THREAT LEVEL: Choose ONE severity emoji using these strict criteria:
-   - 🔴 CRITICAL: Confirmed data breaches, ransomware deployments, active zero-day exploits, state-sponsored APT activity.
-   - 🟠 HIGH: High severity vulnerabilities (CVSS 7.0-8.9), new malware variants, large-scale phishing campaigns.
-   - 🟡 MEDIUM: Discovered vulnerabilities with no active exploitation, general security research.
-   - 🟢 LOW: Policy updates, industry news, minor bugs.
-3. OUTPUT FORMAT: Return ONLY valid JSON, no markdown, no backticks, no preamble. Schema:
+CONTENT FILTER: If the article is a contest, giveaway, advertisement, webinar, opinion piece, or sponsored content — return exactly: {{"skip": true}}
+
+SEVERITY RULES (pick ONE emoji):
+🔴 CRITICAL — confirmed data breach, ransomware deployed, active zero-day, state-sponsored APT
+🟠 HIGH     — CVSS 7.0-8.9, new malware variant, large phishing campaign
+🟡 MEDIUM   — vulnerability with no active exploitation, security research
+🟢 LOW      — policy update, industry news, minor bug
+
+OUTPUT: Return ONLY a valid JSON object. No markdown, no backticks, no extra text.
+
 {{
   "skip": false,
-  "severity_icon": "<single emoji>",
-  "cve": "<Extract the exact CVE ID if mentioned, otherwise leave as empty string>",
-  "threat_actor": "<name or empty string>",
-  "target": "<affected software/org or empty string>",
-  "hook": "<Tweet 1: 1-2 punchy sentences that stop the scroll. Lead with the severity emoji. State WHAT happened and to WHOM. Max 240 chars.>",
-  "technical": "<Tweet 2: Factual technical breakdown. Include CVE, threat actor, target if available. Max 240 chars.>",
-  "impact": "<Tweet 3: Real-world blast radius. Who is at risk, how many users/systems affected, what data or access is at stake. Strictly factual, no speculation. Max 240 chars.>",
-  "closer": "<Tweet 4: Professional close. 'Reported by {source_name}. Follow for daily threat intelligence.' Then 2-3 relevant hashtags. Max 240 chars.>",
-  "simply_put": "<1 sentence, zero-jargon explanation for the threat card image. Max 120 chars.>"
+  "severity_icon": "<one emoji>",
+  "cve": "<exact CVE-YYYY-NNNNN if explicitly stated in the article, else empty string>",
+  "threat_actor": "<attacker or group name if present, else empty string>",
+  "target": "<affected software or organization if present, else empty string>",
+  "tweet": "<A single punchy tweet. Lead with the severity emoji. State WHAT happened and WHO is affected. End with 'via {source_name}' and 1-2 relevant hashtags. STRICT MAX: 210 CHARACTERS. Count carefully.>",
+  "card_summary": "<1-2 sentence factual summary for the threat card image. Max 130 chars.>",
+  "simply_put": "<1 sentence plain-English explanation for a non-technical reader. Max 100 chars.>"
 }}
-4. MISSING DATA: If CVE, threat actor, or target is not in the article, use an empty string. Do NOT invent details.
-5. FACTUAL ONLY: Do not include mitigation advice, recommendations, or speculation.
+
+STRICT RULES:
+- cve field: only write a real CVE ID (e.g. CVE-2024-12345). If none is in the article, write empty string "". Never invent or guess.
+- tweet must be 210 characters or fewer BEFORE any CVSS injection happens in post-processing.
+- No mitigation advice, recommendations, or speculation anywhere.
+- All fields must be factual and sourced only from the article provided.
 
 ARTICLE:
 Title: {title}
 Summary: {summary}"""
 
-    # TWEAK: Enforcing strict JSON object output natively in the API call
     response = client.chat.completions.create(
         model="llama-3.1-8b-instant",
         messages=[{"role": "user", "content": prompt}],
-        response_format={"type": "json_object"}
+        response_format={"type": "json_object"},
     )
 
     raw = response.choices[0].message.content.strip()
@@ -247,77 +174,190 @@ Summary: {summary}"""
     if data.get("skip"):
         return None
 
+    # Validate CVE strictly — reject placeholders, partial matches, invented IDs
+    cve = data.get("cve", "").strip()
+    if cve and not CVE_PATTERN.fullmatch(cve):
+        print(f"Rejected invalid CVE: '{cve}'")
+        data["cve"] = ""
+
     return data
 
+
 # ─────────────────────────────────────────────
-# TWITTER POSTING
+# THREAT CARD — FIXED ZONE LAYOUT
 # ─────────────────────────────────────────────
-def get_twitter_clients():
+def generate_threat_card(severity_icon: str, title: str, card_summary: str,
+                         cve: str, target: str, simply_put: str, source_site: str) -> str:
+    """
+    Three fixed vertical zones so THREAT and TARGET always render
+    regardless of title or summary length.
+
+    Zone 1 (top)    — Alert label + title + summary + source
+    Zone 2 (middle) — THREAT row + TARGET row
+    Zone 3 (bottom) — SIMPLY PUT footer
+    """
+    W, H      = 1024, 512
+    FOOTER_H  = 95   # Zone 3 height
+    META_H    = 85   # Zone 2 height
+    HEADER_H  = H - FOOTER_H - META_H  # Zone 1 height (~332px)
+
+    bg_color     = "#0d1117"
+    footer_color = "#161b22"
+    accent_color = COLOR_MAP.get(severity_icon, "#ff4757")
+    text_primary   = "#ffffff"
+    text_secondary = "#8b949e"
+
+    image = Image.new("RGB", (W, H), color=bg_color)
+    draw  = ImageDraw.Draw(image)
+
+    try:
+        f_label  = ImageFont.truetype("Roboto-Bold.ttf",   18)
+        f_title  = ImageFont.truetype("Roboto-Bold.ttf",   30)
+        f_body   = ImageFont.truetype("Roboto-Medium.ttf", 20)
+        f_meta_l = ImageFont.truetype("Roboto-Bold.ttf",   19)
+        f_meta_v = ImageFont.truetype("Roboto-Medium.ttf", 20)
+        f_foot_l = ImageFont.truetype("Roboto-Bold.ttf",   16)
+        f_foot_v = ImageFont.truetype("Roboto-Medium.ttf", 20)
+    except OSError:
+        f_label = f_title = f_body = f_meta_l = f_meta_v = \
+        f_foot_l = f_foot_v = ImageFont.load_default()
+
+    MX = 45  # Horizontal margin
+
+    # ── Top accent bar ──────────────────────────────────
+    draw.rectangle([(0, 0), (W, 10)], fill=accent_color)
+
+    def line_height(font) -> int:
+        bbox = font.getbbox("Ag")
+        return bbox[3] - bbox[1]
+
+    def draw_lines_clipped(text: str, font, x: int, y: int, fill, max_y: int,
+                           width_chars: int = 80, padding: int = 5) -> int:
+        """Wraps and draws text lines, stopping before max_y. Returns final y."""
+        for line in textwrap.TextWrapper(width=width_chars).wrap(text):
+            lh = line_height(font)
+            if y + lh > max_y:
+                break
+            draw.text((x, y), line, font=font, fill=fill)
+            y += lh + padding
+        return y
+
+    # ── ZONE 1: Header ──────────────────────────────────
+    zone1_top    = 14
+    zone1_bottom = HEADER_H   # ~332
+
+    y = zone1_top + 8
+    draw.text((MX, y), "THREAT INTELLIGENCE ALERT", font=f_label, fill=accent_color)
+    y += 26
+
+    # Title — hard cap at 2 lines
+    for line in textwrap.TextWrapper(width=52).wrap(title)[:2]:
+        lh = line_height(f_title)
+        if y + lh > zone1_bottom - 65:
+            break
+        draw.text((MX, y), line, font=f_title, fill=text_primary)
+        y += lh + 6
+    y += 4
+
+    # Summary
+    draw_lines_clipped(card_summary, f_body, MX, y, "#c9d1d9", zone1_bottom - 28,
+                       width_chars=85, padding=4)
+
+    # Source — pinned to bottom of zone 1
+    if source_site:
+        src_h = line_height(f_body)
+        draw.text((MX, zone1_bottom - src_h - 2),
+                  f"Source: {source_site}", font=f_body, fill=text_secondary)
+
+    # ── Divider ─────────────────────────────────────────
+    div_y = zone1_bottom
+    draw.line([(MX, div_y), (W - MX, div_y)], fill="#30363d", width=2)
+
+    # ── ZONE 2: Meta (THREAT + TARGET always render here) ─
+    zone2_top   = div_y + 12
+    meta_col2_x = MX + 120
+    row_y       = zone2_top
+
+    if cve:
+        lh = line_height(f_meta_l)
+        draw.text((MX, row_y), "THREAT:", font=f_meta_l, fill=text_secondary)
+        cve_text = cve if len(cve) <= 58 else cve[:55] + "…"
+        draw.text((meta_col2_x, row_y), cve_text, font=f_meta_v, fill=accent_color)
+        row_y += lh + 10
+
+    if target:
+        draw.text((MX, row_y), "TARGET:", font=f_meta_l, fill=text_secondary)
+        target_text = target if len(target) <= 58 else target[:55] + "…"
+        draw.text((meta_col2_x, row_y), target_text, font=f_meta_v, fill=text_primary)
+
+    # ── ZONE 3: Footer (SIMPLY PUT) ─────────────────────
+    footer_top = H - FOOTER_H
+    draw.rectangle([(0, footer_top), (W, H)], fill=footer_color)
+    draw.line([(0, footer_top), (W, footer_top)], fill="#30363d", width=2)
+
+    draw.text((MX, footer_top + 10), "SIMPLY PUT:", font=f_foot_l, fill=text_secondary)
+    draw_lines_clipped(simply_put, f_foot_v, MX, footer_top + 32,
+                       text_primary, H - 6, width_chars=90, padding=4)
+
+    output_filename = "threat_card.png"
+    image.save(output_filename, "PNG")
+    return output_filename
+
+
+# ─────────────────────────────────────────────
+# TWITTER — SINGLE TWEET ONLY ($0.01 per run)
+# ─────────────────────────────────────────────
+def post_tweet(text: str, media_path: str = None):
     client_v2 = tweepy.Client(
         consumer_key=X_API_KEY,
         consumer_secret=X_API_SECRET,
         access_token=X_ACCESS_TOKEN,
         access_token_secret=X_ACCESS_TOKEN_SECRET,
     )
-    auth     = tweepy.OAuth1UserHandler(X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_TOKEN_SECRET)
-    api_v1   = tweepy.API(auth)
-    return client_v2, api_v1
 
-def upload_media(api_v1, media_path: str):
+    media_id = None
     if media_path and os.path.exists(media_path):
-        media = api_v1.media_upload(filename=media_path)
-        return media.media_id
-    return None
-
-def post_thread(tweets: list[str], media_path: str = None):
-    client_v2, api_v1 = get_twitter_clients()
-    reply_to_id = None
-
-    for i, text in enumerate(tweets):
-        media_ids = None
-        if i == 1 and media_path:
-            media_id = upload_media(api_v1, media_path)
-            if media_id:
-                media_ids = [media_id]
-
-        kwargs = {"text": text}
-        if reply_to_id:
-            kwargs["in_reply_to_tweet_id"] = reply_to_id
-        if media_ids:
-            kwargs["media_ids"] = media_ids
-
-        response    = client_v2.create_tweet(**kwargs)
-        reply_to_id = response.data["id"]
-        print(f"  Tweet {i+1} posted. ID: {reply_to_id}")
-
-    return reply_to_id
-
-def post_single_tweet(text: str, media_path: str = None):
-    client_v2, api_v1 = get_twitter_clients()
-    media_ids = None
-    if media_path:
-        media_id = upload_media(api_v1, media_path)
-        if media_id:
-            media_ids = [media_id]
+        auth   = tweepy.OAuth1UserHandler(
+            X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_TOKEN_SECRET
+        )
+        api_v1 = tweepy.API(auth)
+        media  = api_v1.media_upload(filename=media_path)
+        media_id = media.media_id
 
     kwargs = {"text": text}
-    if media_ids:
-        kwargs["media_ids"] = media_ids
+    if media_id:
+        kwargs["media_ids"] = [media_id]
 
     response = client_v2.create_tweet(**kwargs)
-    print(f"  Single tweet posted. ID: {response.data['id']}")
+    print(f"Tweet posted. ID: {response.data['id']}")
+
+
+# ─────────────────────────────────────────────
+# SAFE TWEET TRIMMER
+# ─────────────────────────────────────────────
+def safe_trim(text: str, limit: int = 278) -> str:
+    """
+    Trims to limit chars, breaking at the last whole word.
+    Appends '…' only if trimmed. Never cuts mid-word.
+    Note: Twitter t.co shortens URLs to ~23 chars regardless of
+    original length, so 278 chars of text is safe.
+    """
+    if len(text) <= limit:
+        return text
+    trimmed = text[:limit].rsplit(" ", 1)[0]
+    return trimmed.rstrip(".,;:—-") + "…"
+
 
 # ─────────────────────────────────────────────
 # DISCORD ERROR ALERTS
 # ─────────────────────────────────────────────
 def send_discord_alert(error_message: str):
     if not DISCORD_WEBHOOK_URL:
-        print("No Discord Webhook URL configured. Skipping alert.")
         return
     data = {
         "content": (
             f"🚨 **CyberNewsBot Crash Report** 🚨\n"
-            f"An error occurred during the latest run:\n```python\n{error_message}\n```"
+            f"```python\n{error_message}\n```"
         )
     }
     try:
@@ -325,15 +365,17 @@ def send_discord_alert(error_message: str):
     except Exception as e:
         print(f"Failed to send Discord alert: {e}")
 
+
 # ─────────────────────────────────────────────
 # MAIN AGENT
 # ─────────────────────────────────────────────
 def run_agent():
     print("Agent waking up. Checking for new cybersecurity news...")
 
+    # Daily cap check
     todays_count = get_todays_post_count()
     if todays_count >= DAILY_POST_CAP:
-        print(f"Daily cap of {DAILY_POST_CAP} posts reached. Exiting.")
+        print(f"Daily cap of {DAILY_POST_CAP} reached ({todays_count} posts today). Exiting.")
         return
 
     random.shuffle(RSS_FEEDS)
@@ -349,7 +391,7 @@ def run_agent():
 
             print(f"New article found: {entry.title}")
 
-            # TWEAK: Bulletproof UTC time conversion
+            # Age filter (strict UTC)
             if hasattr(entry, "published_parsed") and entry.published_parsed:
                 article_time = datetime.fromtimestamp(timegm(entry.published_parsed), timezone.utc)
                 if datetime.now(timezone.utc) - article_time > timedelta(hours=ARTICLE_MAX_AGE_HOURS):
@@ -357,33 +399,29 @@ def run_agent():
                     continue
 
             try:
-                print("Asking Groq to generate thread content...")
-                thread_data = generate_thread_content(
-                    entry.title,
-                    entry.description,
-                    feed_info["name"],
-                )
+                # ── Single Groq call ──────────────────────────
+                print("Calling Groq...")
+                data = generate_content(entry.title, entry.description, feed_info["name"])
 
-                if thread_data is None:
+                if data is None:
                     save_posted_url(entry.link)
-                    print("Skipped (promotional/non-threat content).")
+                    print("Skipped (non-threat content).")
                     continue
 
-                severity_icon  = thread_data.get("severity_icon", "🟡")
-                cve_id = thread_data.get("cve_id", "")
-                threat_actor   = thread_data.get("threat_actor", "")
-                target         = thread_data.get("target", "")
-                simply_put     = thread_data.get("simply_put", "")
-                hook_tweet     = thread_data.get("hook", "")
-                technical_tweet = thread_data.get("technical", "")
-                impact_tweet   = thread_data.get("impact", "")
-                closer_tweet   = thread_data.get("closer", "")
-                if "XXX" in cve_id.upper():
-                    cve_id = ""
-                if cve_id:
-                    print(f"Fetching CVSS score for {cve_id}...")
-                    cvss_score = get_nvd_cvss(cve_id)
+                severity_icon = data.get("severity_icon", "🟡")
+                cve           = data.get("cve", "").strip()
+                threat_actor  = data.get("threat_actor", "").strip()
+                target        = data.get("target", "").strip()
+                tweet_text    = data.get("tweet", "").strip()
+                card_summary  = data.get("card_summary", "").strip()
+                simply_put    = data.get("simply_put", "").strip()
 
+                # ── NVD CVSS enrichment ───────────────────────
+                if cve:
+                    print(f"Fetching CVSS for {cve}...")
+                    cvss_score = get_nvd_cvss(cve)
+
+                    # Override severity emoji from official score
                     try:
                         score_float = float(cvss_score)
                         if score_float >= 9.0:
@@ -397,70 +435,64 @@ def run_agent():
                     except ValueError:
                         pass
 
-                    score_str = f"{cve_id} (CVSS: {cvss_score}/10)" if cvss_score not in ["N/A", "Score Pending"] \
-                                else f"{cve_id} (CVSS: {cvss_score})"
+                    # Inject CVSS into tweet text
+                    if cvss_score not in ["N/A", "Score Pending"]:
+                        score_str = f"{cve} (CVSS: {cvss_score}/10)"
+                    else:
+                        score_str = f"{cve} (CVSS: {cvss_score})"
 
-                    technical_tweet = technical_tweet.replace(cve_id, score_str)
-                    hook_tweet      = hook_tweet.replace(cve_id, score_str)
+                    tweet_text = tweet_text.replace(cve, score_str)
 
-                print(f"\nSeverity: {severity_icon}")
-                print(f"Hook:      {hook_tweet}")
-                print(f"Technical: {technical_tweet}")
-                print(f"Impact:    {impact_tweet}")
-                print(f"Closer:    {closer_tweet}\n")
+                # ── Safe trim AFTER CVSS injection ────────────
+                tweet_text = safe_trim(tweet_text, limit=278)
 
+                print(f"\nSeverity : {severity_icon}")
+                print(f"CVE      : {cve or 'N/A'}")
+                print(f"Target   : {target or 'N/A'}")
+                print(f"Tweet    : {tweet_text}")
+                print(f"Length   : {len(tweet_text)} chars\n")
+
+                # ── Generate threat card ──────────────────────
+                card_filename = None
                 try:
                     card_filename = generate_threat_card(
                         severity_icon,
                         entry.title,
-                        hook_tweet.lstrip(severity_icon).strip(),
-                        cve_id,
+                        card_summary,
+                        cve,
                         target or threat_actor,
                         simply_put,
                         feed_info["name"],
                     )
+                    print(f"Threat card generated: {card_filename}")
                 except Exception as img_e:
-                    print(f"Threat card generation failed: {img_e}")
-                    card_filename = None
+                    print(f"Threat card failed: {img_e}")
 
-                is_high_priority = severity_icon in ("🔴", "🟠")
-
+                # ── Post single tweet ($0.01) ─────────────────
                 print("Posting to X...")
+                post_tweet(tweet_text, media_path=card_filename)
 
-                if is_high_priority:
-                    tweets = [
-                        hook_tweet,
-                        technical_tweet,
-                        impact_tweet,
-                        closer_tweet,
-                    ]
-                    tweets = [t[:277] + "..." if len(t) > 280 else t for t in tweets]
-                    post_thread(tweets, media_path=card_filename)
-                else:
-                    single = f"{hook_tweet}\n\n{closer_tweet}"
-                    if len(single) > 280:
-                        single = single[:277] + "..."
-                    post_single_tweet(single, media_path=card_filename)
-
+                # ── Persist ───────────────────────────────────
                 save_posted_url(entry.link)
 
                 db_data = load_db()
                 db_data.append({
                     "date":    datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
-                    "content": "\n".join([hook_tweet, technical_tweet, impact_tweet, closer_tweet]),
+                    "content": tweet_text,
                     "url":     entry.link,
                 })
                 save_db(db_data)
 
                 print("Agent finished successfully. Exiting.")
-                return 
+                return  # One tweet per GitHub Actions run
 
             except Exception as e:
-                print(f"An error occurred processing article: {e}")
+                print(f"Error processing article: {e}")
                 traceback.print_exc()
                 return
 
     print("No new articles found. Exiting.")
+
 
 # ─────────────────────────────────────────────
 # ENTRY POINT
