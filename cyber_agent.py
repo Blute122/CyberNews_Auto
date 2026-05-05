@@ -24,7 +24,7 @@ GROQ_API_KEY          = os.environ.get("GROQ_API_KEY")
 DISCORD_WEBHOOK_URL   = os.environ.get("DISCORD_WEBHOOK_URL")
 
 DAILY_POST_CAP        = 7    # Max tweets per day (UTC)
-ARTICLE_MAX_AGE_HOURS = 6    # Skip articles older than this
+ARTICLE_MAX_AGE_HOURS = 12    # Skip articles older than this
 
 RSS_FEEDS = [
     {"url": "https://feeds.feedburner.com/TheHackersNews", "name": "The Hacker News"},
