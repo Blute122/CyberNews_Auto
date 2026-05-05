@@ -605,10 +605,30 @@
 
         function getSeverity(content) {
             if (!content) return 'unknown';
+
+            // Primary: emoji check (new entries always have this)
             if (content.includes('🔴')) return 'critical';
             if (content.includes('🟠')) return 'high';
             if (content.includes('🟡')) return 'medium';
             if (content.includes('🟢')) return 'low';
+
+            // Fallback: keyword inference for older entries without emoji
+            const lower = content.toLowerCase();
+
+            // Critical signals — breach confirmed, ransomware, zero-day, APT, high CVSS
+            if (/cvss:\s*(9\.[0-9]|10(\.0)?)/i.test(content)) return 'critical';
+            if (/\b(data breach|ransomware|zero.?day|apt|state.sponsored|actively exploit)/i.test(lower)) return 'critical';
+
+            // High signals — 7.x/8.x CVSS, malware, large phishing
+            if (/cvss:\s*[78]\.[0-9]/i.test(content)) return 'high';
+            if (/\b(malware|phishing|vulnerability exploit|remote code|rce|privilege escalat)/i.test(lower)) return 'high';
+
+            // Medium signals — vuln discovered, no active exploit
+            if (/\b(vulnerability|cve-|security flaw|patch|disclosed)/i.test(lower)) return 'medium';
+
+            // Low signals — news, policy, advisory
+            if (/\b(advisory|policy|update|industry|report|awareness)/i.test(lower)) return 'low';
+
             return 'unknown';
         }
 

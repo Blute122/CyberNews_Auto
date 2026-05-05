@@ -184,22 +184,27 @@ Summary: {summary}"""
 
 
 # ─────────────────────────────────────────────
-# THREAT CARD — FIXED ZONE LAYOUT
+# THREAT CARD — DYNAMIC LAYOUT
 # ─────────────────────────────────────────────
 def generate_threat_card(severity_icon: str, title: str, card_summary: str,
                          cve: str, target: str, simply_put: str, source_site: str) -> str:
     """
-    Three fixed vertical zones so THREAT and TARGET always render
-    regardless of title or summary length.
-
-    Zone 1 (top)    — Alert label + title + summary + source
-    Zone 2 (middle) — THREAT row + TARGET row
-    Zone 3 (bottom) — SIMPLY PUT footer
+    Layout strategy:
+      - Footer (SIMPLY PUT) is always pinned to the bottom at fixed height.
+      - Meta zone (THREAT + TARGET) sits directly above the footer at fixed height.
+      - Header content (label + title + summary + source) is drawn top-down.
+      - Divider is placed at actual content end, not a fixed boundary —
+        eliminating the gap when title/summary are short.
+      - Source line is drawn BEFORE the divider with a guaranteed gap,
+        fixing the overlap bug.
     """
-    W, H      = 1024, 512
-    FOOTER_H  = 95   # Zone 3 height
-    META_H    = 85   # Zone 2 height
-    HEADER_H  = H - FOOTER_H - META_H  # Zone 1 height (~332px)
+    W, H        = 1024, 512
+    FOOTER_H    = 95          # SIMPLY PUT zone
+    META_H      = 90          # THREAT + TARGET zone
+    FOOTER_TOP  = H - FOOTER_H
+    META_TOP    = FOOTER_TOP - META_H
+    # Header content may use any vertical space above META_TOP
+    HEADER_MAX  = META_TOP - 10
 
     bg_color     = "#0d1117"
     footer_color = "#161b22"
@@ -222,82 +227,73 @@ def generate_threat_card(severity_icon: str, title: str, card_summary: str,
         f_label = f_title = f_body = f_meta_l = f_meta_v = \
         f_foot_l = f_foot_v = ImageFont.load_default()
 
-    MX = 45  # Horizontal margin
+    MX = 45
 
-    # ── Top accent bar ──────────────────────────────────
-    draw.rectangle([(0, 0), (W, 10)], fill=accent_color)
+    def lh(font) -> int:
+        b = font.getbbox("Ag")
+        return b[3] - b[1]
 
-    def line_height(font) -> int:
-        bbox = font.getbbox("Ag")
-        return bbox[3] - bbox[1]
-
-    def draw_lines_clipped(text: str, font, x: int, y: int, fill, max_y: int,
-                           width_chars: int = 80, padding: int = 5) -> int:
-        """Wraps and draws text lines, stopping before max_y. Returns final y."""
-        for line in textwrap.TextWrapper(width=width_chars).wrap(text):
-            lh = line_height(font)
-            if y + lh > max_y:
-                break
+    def draw_wrapped(text: str, font, x: int, y: int, fill,
+                     width_chars: int = 80, padding: int = 5,
+                     max_lines: int = 99) -> int:
+        """Draw wrapped text, return y after last line."""
+        lines = textwrap.TextWrapper(width=width_chars).wrap(text)[:max_lines]
+        for line in lines:
             draw.text((x, y), line, font=font, fill=fill)
-            y += lh + padding
+            y += lh(font) + padding
         return y
 
-    # ── ZONE 1: Header ──────────────────────────────────
-    zone1_top    = 14
-    zone1_bottom = HEADER_H   # ~332
+    # ── Top accent bar ───────────────────────────────────
+    draw.rectangle([(0, 0), (W, 10)], fill=accent_color)
 
-    y = zone1_top + 8
+    # ── HEADER: draw top-down, track actual y ────────────
+    y = 22
     draw.text((MX, y), "THREAT INTELLIGENCE ALERT", font=f_label, fill=accent_color)
-    y += 26
+    y += lh(f_label) + 10
 
-    # Title — hard cap at 2 lines
-    for line in textwrap.TextWrapper(width=52).wrap(title)[:2]:
-        lh = line_height(f_title)
-        if y + lh > zone1_bottom - 65:
-            break
-        draw.text((MX, y), line, font=f_title, fill=text_primary)
-        y += lh + 6
-    y += 4
+    # Title — max 2 lines, each ~52 chars wide at font size 30
+    y = draw_wrapped(title, f_title, MX, y, text_primary,
+                     width_chars=52, padding=7, max_lines=2)
+    y += 6
 
-    # Summary
-    draw_lines_clipped(card_summary, f_body, MX, y, "#c9d1d9", zone1_bottom - 28,
-                       width_chars=85, padding=4)
+    # Summary — max 3 lines
+    y = draw_wrapped(card_summary, f_body, MX, y, "#c9d1d9",
+                     width_chars=85, padding=4, max_lines=3)
+    y += 8
 
-    # Source — pinned to bottom of zone 1
-    if source_site:
-        src_h = line_height(f_body)
-        draw.text((MX, zone1_bottom - src_h - 2),
-                  f"Source: {source_site}", font=f_body, fill=text_secondary)
+    # Source — drawn HERE (before divider), with a natural gap above divider
+    src_label = f"Source: {source_site}" if source_site else ""
+    if src_label:
+        draw.text((MX, y), src_label, font=f_body, fill=text_secondary)
+        y += lh(f_body) + 12  # 12px gap between source and divider
 
-    # ── Divider ─────────────────────────────────────────
-    div_y = zone1_bottom
+    # ── Divider placed at actual content bottom ──────────
+    # Clamp so it never invades the meta zone
+    div_y = min(y, HEADER_MAX - 4)
     draw.line([(MX, div_y), (W - MX, div_y)], fill="#30363d", width=2)
 
-    # ── ZONE 2: Meta (THREAT + TARGET always render here) ─
-    zone2_top   = div_y + 12
+    # ── META ZONE: THREAT + TARGET ───────────────────────
+    # Pinned to fixed position — always renders, no matter header length
     meta_col2_x = MX + 120
-    row_y       = zone2_top
+    row_y = META_TOP + 10
 
     if cve:
-        lh = line_height(f_meta_l)
         draw.text((MX, row_y), "THREAT:", font=f_meta_l, fill=text_secondary)
-        cve_text = cve if len(cve) <= 58 else cve[:55] + "…"
+        cve_text = cve if len(cve) <= 60 else cve[:57] + "…"
         draw.text((meta_col2_x, row_y), cve_text, font=f_meta_v, fill=accent_color)
-        row_y += lh + 10
+        row_y += lh(f_meta_l) + 12
 
     if target:
         draw.text((MX, row_y), "TARGET:", font=f_meta_l, fill=text_secondary)
-        target_text = target if len(target) <= 58 else target[:55] + "…"
+        target_text = target if len(target) <= 60 else target[:57] + "…"
         draw.text((meta_col2_x, row_y), target_text, font=f_meta_v, fill=text_primary)
 
-    # ── ZONE 3: Footer (SIMPLY PUT) ─────────────────────
-    footer_top = H - FOOTER_H
-    draw.rectangle([(0, footer_top), (W, H)], fill=footer_color)
-    draw.line([(0, footer_top), (W, footer_top)], fill="#30363d", width=2)
-
-    draw.text((MX, footer_top + 10), "SIMPLY PUT:", font=f_foot_l, fill=text_secondary)
-    draw_lines_clipped(simply_put, f_foot_v, MX, footer_top + 32,
-                       text_primary, H - 6, width_chars=90, padding=4)
+    # ── FOOTER: SIMPLY PUT ───────────────────────────────
+    draw.rectangle([(0, FOOTER_TOP), (W, H)], fill=footer_color)
+    draw.line([(0, FOOTER_TOP), (W, FOOTER_TOP)], fill="#30363d", width=2)
+    draw.text((MX, FOOTER_TOP + 10), "SIMPLY PUT:", font=f_foot_l, fill=text_secondary)
+    draw_wrapped(simply_put, f_foot_v, MX, FOOTER_TOP + 32,
+                 text_primary, width_chars=90, padding=4, max_lines=2)
 
     output_filename = "threat_card.png"
     image.save(output_filename, "PNG")
@@ -442,6 +438,12 @@ def run_agent():
                         score_str = f"{cve} (CVSS: {cvss_score})"
 
                     tweet_text = tweet_text.replace(cve, score_str)
+
+                # ── Guarantee emoji leads the tweet ──────────
+                # Groq occasionally drops the leading emoji despite being told not to.
+                # If the tweet doesn't start with the severity icon, prepend it.
+                if not tweet_text.startswith(severity_icon):
+                    tweet_text = f"{severity_icon} {tweet_text.lstrip()}"
 
                 # ── Safe trim AFTER CVSS injection ────────────
                 tweet_text = safe_trim(tweet_text, limit=278)
