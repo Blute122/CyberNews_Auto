@@ -123,5 +123,10 @@
         "date": "2026-05-06 14:45 UTC",
         "content": "No notable security incident reported regarding emails via Cisco Talos with #CyberSecurity",
         "url": "https://blog.talosintelligence.com/insights-into-the-clustering-and-reuse-of-phone-numbers-in-scam-emails/"
+    },
+    {
+        "date": "2026-05-06 16:53 UTC",
+        "content": "",
+        "url": "https://www.securityweek.com/iranian-apt-intrusion-masquerades-as-chaos-ransomware-attack/"
     }
 ]
