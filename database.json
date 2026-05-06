@@ -103,5 +103,10 @@
         "date": "2026-05-06 04:02 UTC",
         "content": "\ud83d\udfe0 Critical Linux kernel LPE (CVE-2026-31431 (CVSS: 7.8/10)) allows root access to millions of systems. via Unit 42",
         "url": "https://unit42.paloaltonetworks.com/cve-2026-31431-copy-fail/"
+    },
+    {
+        "date": "2026-05-06 06:44 UTC",
+        "content": "Cyber attacks targeting UAE tripled amid war with Iran, threatening critical infrastructure. via Dark Reading #CYBERATTACK #GulfSecurity",
+        "url": "https://www.darkreading.com/cyberattacks-data-breaches/middle-east-cyber-battle-field-broadens-uae"
     }
 ]
