@@ -23,3 +23,4 @@ https://www.darkreading.com/cyberattacks-data-breaches/trellix-source-code-breac
 https://unit42.paloaltonetworks.com/cve-2026-31431-copy-fail/
 https://www.darkreading.com/cyberattacks-data-breaches/middle-east-cyber-battle-field-broadens-uae
 https://securelist.com/suspicious-websites-undefined-trust-level/119675/
+https://www.securityweek.com/romanian-extradited-to-us-for-role-in-hacking-scheme-17-years-ago/
