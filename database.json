@@ -118,5 +118,10 @@
         "date": "2026-05-06 12:05 UTC",
         "content": "A Romanian hacker is extradited to the US for a role in a 2009 hacking scheme. He was indicted in 2017.",
         "url": "https://www.securityweek.com/romanian-extradited-to-us-for-role-in-hacking-scheme-17-years-ago/"
+    },
+    {
+        "date": "2026-05-06 14:45 UTC",
+        "content": "No notable security incident reported regarding emails via Cisco Talos with #CyberSecurity",
+        "url": "https://blog.talosintelligence.com/insights-into-the-clustering-and-reuse-of-phone-numbers-in-scam-emails/"
     }
 ]
