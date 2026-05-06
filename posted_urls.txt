@@ -19,3 +19,4 @@ https://www.darkreading.com/cyberattacks-data-breaches/how-story-usb-penetration
 https://www.bleepingcomputer.com/news/security/ftc-to-ban-data-broker-kochava-from-selling-americans-location-data/
 https://www.bleepingcomputer.com/news/security/student-hacked-taiwan-high-speed-rail-to-trigger-emergency-brakes/
 https://www.securityweek.com/microsoft-warns-of-sophisticated-phishing-campaign-targeting-us-organizations/
+https://www.darkreading.com/cyberattacks-data-breaches/trellix-source-code-breach-supply-chain-threats
