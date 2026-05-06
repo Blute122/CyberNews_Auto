@@ -22,3 +22,4 @@ https://www.securityweek.com/microsoft-warns-of-sophisticated-phishing-campaign-
 https://www.darkreading.com/cyberattacks-data-breaches/trellix-source-code-breach-supply-chain-threats
 https://unit42.paloaltonetworks.com/cve-2026-31431-copy-fail/
 https://www.darkreading.com/cyberattacks-data-breaches/middle-east-cyber-battle-field-broadens-uae
+https://securelist.com/suspicious-websites-undefined-trust-level/119675/
