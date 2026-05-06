@@ -98,5 +98,10 @@
         "date": "2026-05-06 00:03 UTC",
         "content": "\ud83d\udd34 Breach of Trellix source code reveals security product's inner workings, potentially aiding attacks. via Dark Reading",
         "url": "https://www.darkreading.com/cyberattacks-data-breaches/trellix-source-code-breach-supply-chain-threats"
+    },
+    {
+        "date": "2026-05-06 04:02 UTC",
+        "content": "\ud83d\udfe0 Critical Linux kernel LPE (CVE-2026-31431 (CVSS: 7.8/10)) allows root access to millions of systems. via Unit 42",
+        "url": "https://unit42.paloaltonetworks.com/cve-2026-31431-copy-fail/"
     }
 ]

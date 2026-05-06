@@ -20,3 +20,4 @@ https://www.bleepingcomputer.com/news/security/ftc-to-ban-data-broker-kochava-fr
 https://www.bleepingcomputer.com/news/security/student-hacked-taiwan-high-speed-rail-to-trigger-emergency-brakes/
 https://www.securityweek.com/microsoft-warns-of-sophisticated-phishing-campaign-targeting-us-organizations/
 https://www.darkreading.com/cyberattacks-data-breaches/trellix-source-code-breach-supply-chain-threats
+https://unit42.paloaltonetworks.com/cve-2026-31431-copy-fail/
