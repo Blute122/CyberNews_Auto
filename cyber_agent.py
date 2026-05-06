@@ -38,7 +38,6 @@ RSS_FEEDS = [
     # ── Tier 2: Threat research ──────────────────────────────────────
     {"url": "https://blog.talosintelligence.com/rss",                    "name": "Cisco Talos"},
     {"url": "https://unit42.paloaltonetworks.com/feed/",                 "name": "Unit 42"},
-    {"url": "https://securelist.com/feed",                               "name": "Kaspersky Securelist"},
     {"url": "https://www.recordedfuture.com/feed",                       "name": "Recorded Future"},
     {"url": "https://googleprojectzero.blogspot.com/feeds/posts/default","name": "Google Project Zero"},
     {"url": "https://isc.sans.edu/rssfeed.xml",                          "name": "SANS ISC"},
