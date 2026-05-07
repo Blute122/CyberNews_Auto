@@ -128,5 +128,10 @@
         "date": "2026-05-06 16:53 UTC",
         "content": "",
         "url": "https://www.securityweek.com/iranian-apt-intrusion-masquerades-as-chaos-ransomware-attack/"
+    },
+    {
+        "date": "2026-05-07 00:02 UTC",
+        "content": "\ud83d\udfe0 New Mirai-derived botnet, xlabs_v1, targets Android Debug Bridge to hijack IoT devices for DDoS attacks. Hundreds of devices affected via Netherlands-hosted server. via The Hacker News #DDoS #IoT",
+        "url": "https://thehackernews.com/2026/05/mirai-based-xlabsv1-botnet-exploits-adb.html"
     }
 ]
