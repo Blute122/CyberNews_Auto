@@ -34,3 +34,4 @@ https://thehackernews.com/2026/05/vm2-nodejs-library-vulnerabilities.html
 https://thehackernews.com/2026/05/pypi-packages-deliver-zichatbot-malware.html
 https://thehackernews.com/2026/05/threatsday-bulletin-edge-plaintext.html
 https://www.darkreading.com/ics-ot-security/worlds-first-ai-driven-cyberattack-couldnt-breach-ot-systems
+https://thehackernews.com/2026/05/one-click-total-shutdown-patient-zero.html

@@ -158,5 +158,10 @@
         "date": "2026-05-07 14:48 UTC",
         "content": "\ud83d\udd34 Critical: An AI-powered cyberattack failed to breach OT systems after being thwarted by a SCADA login screen. A new zero-day vulnerability has been exposed. via Dark Reading #OTSecurity",
         "url": "https://www.darkreading.com/ics-ot-security/worlds-first-ai-driven-cyberattack-couldnt-breach-ot-systems"
+    },
+    {
+        "date": "2026-05-07 17:03 UTC",
+        "content": "\ud83d\udd34 Hackers use AI to create stealthy emails that can compromise a single laptop. All it takes is a single click to shut down your network. via The Hacker News #CyberSecurity",
+        "url": "https://thehackernews.com/2026/05/one-click-total-shutdown-patient-zero.html"
     }
 ]
