@@ -148,5 +148,10 @@
         "date": "2026-05-07 09:44 UTC",
         "content": "\ud83d\udd34 A malware family called ZiChatBot spreads via compromised PyPI packages on Windows and Linux, delivering malicious files. via The Hacker News #ZiChatBot #PyPI",
         "url": "https://thehackernews.com/2026/05/pypi-packages-deliver-zichatbot-malware.html"
+    },
+    {
+        "date": "2026-05-07 12:04 UTC",
+        "content": "\ud83d\udfe0 Hackers using shady packages, fake apps, and stolen logins in attack chains via Discord channels. Your login credentials may be vulnerable. via The Hacker News #ThreatsDay2026",
+        "url": "https://thehackernews.com/2026/05/threatsday-bulletin-edge-plaintext.html"
     }
 ]
