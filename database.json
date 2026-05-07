@@ -138,5 +138,10 @@
         "date": "2026-05-07 04:02 UTC",
         "content": "\ud83d\udfe0 A PAN-OS captive portal zero-day vulnerability (CVE-2026-0300 (CVSS: Score Pending)) enables unauthenticated RCE via buffer overflow. PAN-OS is affected via User-ID Auth Portal via buffer overflow. via Unit 42 #cybersecurity",
         "url": "https://unit42.paloaltonetworks.com/captive-portal-zero-day/"
+    },
+    {
+        "date": "2026-05-07 06:51 UTC",
+        "content": "\ud83d\udd34 A dozen critical vulnerabilities in the open-source vm2 Node.js library can be exploited to escape the sandbox and execute arbitrary code, affecting susceptible systems. via The Hacker News #vm2 #Node.js",
+        "url": "https://thehackernews.com/2026/05/vm2-nodejs-library-vulnerabilities.html"
     }
 ]
