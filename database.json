@@ -143,5 +143,10 @@
         "date": "2026-05-07 06:51 UTC",
         "content": "\ud83d\udd34 A dozen critical vulnerabilities in the open-source vm2 Node.js library can be exploited to escape the sandbox and execute arbitrary code, affecting susceptible systems. via The Hacker News #vm2 #Node.js",
         "url": "https://thehackernews.com/2026/05/vm2-nodejs-library-vulnerabilities.html"
+    },
+    {
+        "date": "2026-05-07 09:44 UTC",
+        "content": "\ud83d\udd34 A malware family called ZiChatBot spreads via compromised PyPI packages on Windows and Linux, delivering malicious files. via The Hacker News #ZiChatBot #PyPI",
+        "url": "https://thehackernews.com/2026/05/pypi-packages-deliver-zichatbot-malware.html"
     }
 ]

@@ -31,3 +31,4 @@ https://www.securityweek.com/iranian-apt-intrusion-masquerades-as-chaos-ransomwa
 https://thehackernews.com/2026/05/mirai-based-xlabsv1-botnet-exploits-adb.html
 https://unit42.paloaltonetworks.com/captive-portal-zero-day/
 https://thehackernews.com/2026/05/vm2-nodejs-library-vulnerabilities.html
+https://thehackernews.com/2026/05/pypi-packages-deliver-zichatbot-malware.html
