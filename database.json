@@ -133,5 +133,10 @@
         "date": "2026-05-07 00:02 UTC",
         "content": "\ud83d\udfe0 New Mirai-derived botnet, xlabs_v1, targets Android Debug Bridge to hijack IoT devices for DDoS attacks. Hundreds of devices affected via Netherlands-hosted server. via The Hacker News #DDoS #IoT",
         "url": "https://thehackernews.com/2026/05/mirai-based-xlabsv1-botnet-exploits-adb.html"
+    },
+    {
+        "date": "2026-05-07 04:02 UTC",
+        "content": "\ud83d\udfe0 A PAN-OS captive portal zero-day vulnerability (CVE-2026-0300 (CVSS: Score Pending)) enables unauthenticated RCE via buffer overflow. PAN-OS is affected via User-ID Auth Portal via buffer overflow. via Unit 42 #cybersecurity",
+        "url": "https://unit42.paloaltonetworks.com/captive-portal-zero-day/"
     }
 ]

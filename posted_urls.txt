@@ -29,3 +29,4 @@ https://www.securityweek.com/autonomous-offensive-security-firm-xbow-raises-35-m
 https://www.securityweek.com/herd-security-raises-3-million-for-ai-powered-training-platform/
 https://www.securityweek.com/iranian-apt-intrusion-masquerades-as-chaos-ransomware-attack/
 https://thehackernews.com/2026/05/mirai-based-xlabsv1-botnet-exploits-adb.html
+https://unit42.paloaltonetworks.com/captive-portal-zero-day/
