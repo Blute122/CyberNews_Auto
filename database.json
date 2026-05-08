@@ -178,5 +178,10 @@
         "date": "2026-05-08 07:56 UTC",
         "content": "\ud83d\udd34 Linux 'Dirty Frag' zero-day exploit: local attackers can gain root access on most major distros via unauthenticated RCE. Multiple distros affected via single command via BleepingComputer #Linux #ZeroDay",
         "url": "https://www.bleepingcomputer.com/news/security/new-linux-dirty-frag-zero-day-with-poc-exploit-gives-root-privileges/"
+    },
+    {
+        "date": "2026-05-08 09:51 UTC",
+        "content": "\ud83d\udfe1 A former government contractor was convicted of conspiring to delete dozens of federal databases. He and accomplices affected sensitive gov't data. via BleepingComputer #governmenthacking",
+        "url": "https://www.bleepingcomputer.com/news/security/former-govt-contractor-convicted-for-wiping-dozens-of-federal-databases/"
     }
 ]
