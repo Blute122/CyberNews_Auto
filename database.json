@@ -188,5 +188,10 @@
         "date": "2026-05-08 11:44 UTC",
         "content": "\ud83d\udd34 Critical: Braintrust suffered data breach via their AWS account. AI provider secrets compromised. via SecurityWeek #dataprotection",
         "url": "https://www.securityweek.com/ai-firm-braintrust-prompts-api-key-rotation-after-data-breach/"
+    },
+    {
+        "date": "2026-05-08 14:15 UTC",
+        "content": "\ud83d\udd34 Quasar Linux RAT (QLNX) steals DevOps credentials for software supply chain compromise via silent implants. Developers across all sectors targeted. via The Hacker News #linuxsecurity",
+        "url": "https://thehackernews.com/2026/05/quasar-linux-rat-steals-developer.html"
     }
 ]

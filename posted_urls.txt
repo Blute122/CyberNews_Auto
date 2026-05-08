@@ -41,3 +41,4 @@ https://krebsonsecurity.com/2026/05/canvas-breach-disrupts-schools-colleges-nati
 https://www.bleepingcomputer.com/news/security/new-linux-dirty-frag-zero-day-with-poc-exploit-gives-root-privileges/
 https://www.bleepingcomputer.com/news/security/former-govt-contractor-convicted-for-wiping-dozens-of-federal-databases/
 https://www.securityweek.com/ai-firm-braintrust-prompts-api-key-rotation-after-data-breach/
+https://thehackernews.com/2026/05/quasar-linux-rat-steals-developer.html
