@@ -168,5 +168,10 @@
         "date": "2026-05-08 00:04 UTC",
         "content": " \ud83d\udd34 \ud83d\udd34 Cyber attackers 'PCPJack' steal sensitive cloud info via parquet files. Multiple cloud environments at risk. via Dark Reading #cloudsecurity",
         "url": "https://www.darkreading.com/cloud-security/teampcp-malware-pcpjack-steals-cloud-secrets"
+    },
+    {
+        "date": "2026-05-08 03:52 UTC",
+        "content": "\ud83d\udd34 Ransom demand from cybercrime group threatens to leak data from 275 million students and faculty on Canvas education platform via Krebs on Security #cybersecurity",
+        "url": "https://krebsonsecurity.com/2026/05/canvas-breach-disrupts-schools-colleges-nationwide/"
     }
 ]

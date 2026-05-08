@@ -37,3 +37,4 @@ https://www.darkreading.com/ics-ot-security/worlds-first-ai-driven-cyberattack-c
 https://thehackernews.com/2026/05/one-click-total-shutdown-patient-zero.html
 https://www.securityweek.com/worries-about-ais-risks-to-humanity-loom-over-the-trial-pitting-musk-against-openais-leaders/
 https://www.darkreading.com/cloud-security/teampcp-malware-pcpjack-steals-cloud-secrets
+https://krebsonsecurity.com/2026/05/canvas-breach-disrupts-schools-colleges-nationwide/
