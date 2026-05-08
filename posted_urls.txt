@@ -42,3 +42,5 @@ https://www.bleepingcomputer.com/news/security/new-linux-dirty-frag-zero-day-wit
 https://www.bleepingcomputer.com/news/security/former-govt-contractor-convicted-for-wiping-dozens-of-federal-databases/
 https://www.securityweek.com/ai-firm-braintrust-prompts-api-key-rotation-after-data-breach/
 https://thehackernews.com/2026/05/quasar-linux-rat-steals-developer.html
+https://isc.sans.edu/diary/rss/32968
+https://edscoop.com/shinyhunters-claims-nearly-9000-schools-affected-by-canvas-data-breach/
