@@ -163,5 +163,10 @@
         "date": "2026-05-07 17:03 UTC",
         "content": "\ud83d\udd34 Hackers use AI to create stealthy emails that can compromise a single laptop. All it takes is a single click to shut down your network. via The Hacker News #CyberSecurity",
         "url": "https://thehackernews.com/2026/05/one-click-total-shutdown-patient-zero.html"
+    },
+    {
+        "date": "2026-05-08 00:04 UTC",
+        "content": " \ud83d\udd34 \ud83d\udd34 Cyber attackers 'PCPJack' steal sensitive cloud info via parquet files. Multiple cloud environments at risk. via Dark Reading #cloudsecurity",
+        "url": "https://www.darkreading.com/cloud-security/teampcp-malware-pcpjack-steals-cloud-secrets"
     }
 ]
