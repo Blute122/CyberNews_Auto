@@ -38,3 +38,4 @@ https://thehackernews.com/2026/05/one-click-total-shutdown-patient-zero.html
 https://www.securityweek.com/worries-about-ais-risks-to-humanity-loom-over-the-trial-pitting-musk-against-openais-leaders/
 https://www.darkreading.com/cloud-security/teampcp-malware-pcpjack-steals-cloud-secrets
 https://krebsonsecurity.com/2026/05/canvas-breach-disrupts-schools-colleges-nationwide/
+https://www.bleepingcomputer.com/news/security/new-linux-dirty-frag-zero-day-with-poc-exploit-gives-root-privileges/
