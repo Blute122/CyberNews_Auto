@@ -183,5 +183,10 @@
         "date": "2026-05-08 09:51 UTC",
         "content": "\ud83d\udfe1 A former government contractor was convicted of conspiring to delete dozens of federal databases. He and accomplices affected sensitive gov't data. via BleepingComputer #governmenthacking",
         "url": "https://www.bleepingcomputer.com/news/security/former-govt-contractor-convicted-for-wiping-dozens-of-federal-databases/"
+    },
+    {
+        "date": "2026-05-08 11:44 UTC",
+        "content": "\ud83d\udd34 Critical: Braintrust suffered data breach via their AWS account. AI provider secrets compromised. via SecurityWeek #dataprotection",
+        "url": "https://www.securityweek.com/ai-firm-braintrust-prompts-api-key-rotation-after-data-breach/"
     }
 ]
