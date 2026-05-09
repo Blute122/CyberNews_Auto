@@ -47,3 +47,4 @@ https://edscoop.com/shinyhunters-claims-nearly-9000-schools-affected-by-canvas-d
 https://www.darkreading.com/cyberattacks-data-breaches/shinyhunters-second-attack-instructure
 https://thehackernews.com/2026/05/tclbanker-banking-trojan-targets.html
 https://thehackernews.com/2026/05/cpanel-whm-patch-3-new-vulnerabilities.html
+https://www.bleepingcomputer.com/news/security/fake-openai-repository-on-hugging-face-pushes-infostealer-malware/

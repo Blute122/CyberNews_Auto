@@ -208,5 +208,10 @@
         "date": "2026-05-09 08:50 UTC",
         "content": "\ud83d\udfe0 Critical vulnerabilities patched in cPanel & WHM! \ud83d\udca5 Exploits privilege escalation, code execution, and DoS. Patch ASAP! via The Hacker News #cybersecurity",
         "url": "https://thehackernews.com/2026/05/cpanel-whm-patch-3-new-vulnerabilities.html"
+    },
+    {
+        "date": "2026-05-09 15:11 UTC",
+        "content": "\ud83d\udfe0 Infostealer malware pushed to Windows users via fake OpenAI repository on Hugging Face. Affected: Windows users who downloaded the malicious project. via BleepingComputer #OpenAI #HuggingFace",
+        "url": "https://www.bleepingcomputer.com/news/security/fake-openai-repository-on-hugging-face-pushes-infostealer-malware/"
     }
 ]
