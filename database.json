@@ -198,5 +198,10 @@
         "date": "2026-05-08 16:43 UTC",
         "content": "\ud83d\udd34 ShinyHunters claims 9,000 schools affected by Canvas data breach, plans to leak student data via CyberScoop #datasecurity #EDU",
         "url": "https://edscoop.com/shinyhunters-claims-nearly-9000-schools-affected-by-canvas-data-breach/"
+    },
+    {
+        "date": "2026-05-09 00:09 UTC",
+        "content": "\ud83d\udd34 TCLBANKER banking trojan detected on 59 fintech and cryptocurrency platforms using WhatsApp and Outlook worms. Targets Brazilian banks. via The Hacker News #bankingtrocjan",
+        "url": "https://thehackernews.com/2026/05/tclbanker-banking-trojan-targets.html"
     }
 ]

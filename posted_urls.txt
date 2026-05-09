@@ -44,3 +44,5 @@ https://www.securityweek.com/ai-firm-braintrust-prompts-api-key-rotation-after-d
 https://thehackernews.com/2026/05/quasar-linux-rat-steals-developer.html
 https://isc.sans.edu/diary/rss/32968
 https://edscoop.com/shinyhunters-claims-nearly-9000-schools-affected-by-canvas-data-breach/
+https://www.darkreading.com/cyberattacks-data-breaches/shinyhunters-second-attack-instructure
+https://thehackernews.com/2026/05/tclbanker-banking-trojan-targets.html
