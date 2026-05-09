@@ -213,5 +213,10 @@
         "date": "2026-05-09 15:11 UTC",
         "content": "\ud83d\udfe0 Infostealer malware pushed to Windows users via fake OpenAI repository on Hugging Face. Affected: Windows users who downloaded the malicious project. via BleepingComputer #OpenAI #HuggingFace",
         "url": "https://www.bleepingcomputer.com/news/security/fake-openai-repository-on-hugging-face-pushes-infostealer-malware/"
+    },
+    {
+        "date": "2026-05-09 21:01 UTC",
+        "content": "\ud83d\udd34 Critical: JDownloader site hacked, installers replaced with Python RAT malware via Windows & Linux payloads, via BleepingComputer #cybersecurity",
+        "url": "https://www.bleepingcomputer.com/news/security/jdownloader-site-hacked-to-replace-installers-with-python-rat-malware/"
     }
 ]
