@@ -203,5 +203,10 @@
         "date": "2026-05-09 00:09 UTC",
         "content": "\ud83d\udd34 TCLBANKER banking trojan detected on 59 fintech and cryptocurrency platforms using WhatsApp and Outlook worms. Targets Brazilian banks. via The Hacker News #bankingtrocjan",
         "url": "https://thehackernews.com/2026/05/tclbanker-banking-trojan-targets.html"
+    },
+    {
+        "date": "2026-05-09 08:50 UTC",
+        "content": "\ud83d\udfe0 Critical vulnerabilities patched in cPanel & WHM! \ud83d\udca5 Exploits privilege escalation, code execution, and DoS. Patch ASAP! via The Hacker News #cybersecurity",
+        "url": "https://thehackernews.com/2026/05/cpanel-whm-patch-3-new-vulnerabilities.html"
     }
 ]
