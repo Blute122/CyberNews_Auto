@@ -223,5 +223,10 @@
         "date": "2026-05-10 13:54 UTC",
         "content": "\ud83d\udd34 Ollama has 300K+ servers vulnerable to CVE-2026-7482 (CVSS: 9.1/10) (9.1 CVSS): unauthenticated attackers can leak process memory via out-of-bounds read. via The Hacker News #OllamaVulnerability #CVE20267482",
         "url": "https://thehackernews.com/2026/05/ollama-out-of-bounds-read-vulnerability.html"
+    },
+    {
+        "date": "2026-05-10 15:12 UTC",
+        "content": "\ud83d\udd34 \ud83d\udc94 Critical breach: Police shut down Crimenetwork marketplace relaunch and arrest admin generating over 3.6 million euros via illegal activities. via BleepingComputer #cybersecurity",
+        "url": "https://www.bleepingcomputer.com/news/security/police-shut-down-reboot-of-crimenetwork-marketplace-arrest-admin/"
     }
 ]
