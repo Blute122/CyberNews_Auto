@@ -233,5 +233,10 @@
         "date": "2026-05-10 18:05 UTC",
         "content": "\ud83d\udfe1 Attackers abuse Google Ads & Claude.ai chats to push Mac malware. Mac users searching for Claude download may be affected. via BleepingComputer #mac security",
         "url": "https://www.bleepingcomputer.com/news/security/hackers-abuse-google-ads-claudeai-chats-to-push-mac-malware/"
+    },
+    {
+        "date": "2026-05-10 23:07 UTC",
+        "content": "\ud83d\udfe1 A medium severity vulnerability was found in YARA-X 1.16.0, no exploit details are given. via SANS ISC #YARA-X",
+        "url": "https://isc.sans.edu/diary/rss/32970"
     }
 ]
