@@ -51,3 +51,4 @@ https://www.bleepingcomputer.com/news/security/fake-openai-repository-on-hugging
 https://www.bleepingcomputer.com/news/security/jdownloader-site-hacked-to-replace-installers-with-python-rat-malware/
 https://thehackernews.com/2026/05/ollama-out-of-bounds-read-vulnerability.html
 https://www.bleepingcomputer.com/news/security/police-shut-down-reboot-of-crimenetwork-marketplace-arrest-admin/
+https://www.bleepingcomputer.com/news/security/hackers-abuse-google-ads-claudeai-chats-to-push-mac-malware/
