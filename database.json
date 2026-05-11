@@ -263,5 +263,10 @@
         "date": "2026-05-11 21:40 UTC",
         "content": "\ud83d\udfe0 Critical: Checkmarx Jenkins AST plugin compromised via modified version. Ensure version 2.0.13-829.vc72453fa_1c16, published Dec 17, 2025, is used. via The Hacker News #Checkmarx #Jenkins",
         "url": "https://thehackernews.com/2026/05/teampcp-compromises-checkmarx-jenkins.html"
+    },
+    {
+        "date": "2026-05-11 23:10 UTC",
+        "content": "\ud83d\udfe2 Apple patches 84 vulnerabilities across its operating systems (iOS, iPadOS, macOS, tvOS, watchOS, vision OS) via SANS ISC #AppleSecurity #vulnerabilities",
+        "url": "https://isc.sans.edu/diary/rss/32976"
     }
 ]

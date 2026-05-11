@@ -59,3 +59,4 @@ https://www.bleepingcomputer.com/news/security/trickmo-android-banker-adopts-ton
 https://www.bleepingcomputer.com/news/security/instructure-confirms-hackers-used-canvas-flaw-to-deface-portals/
 https://www.darkreading.com/vulnerabilities-threats/dirty-frag-exploit-blow-up-enterprise-linux-distros
 https://thehackernews.com/2026/05/teampcp-compromises-checkmarx-jenkins.html
+https://isc.sans.edu/diary/rss/32976
