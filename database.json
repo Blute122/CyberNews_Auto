@@ -238,5 +238,10 @@
         "date": "2026-05-10 23:07 UTC",
         "content": "\ud83d\udfe1 A medium severity vulnerability was found in YARA-X 1.16.0, no exploit details are given. via SANS ISC #YARA-X",
         "url": "https://isc.sans.edu/diary/rss/32970"
+    },
+    {
+        "date": "2026-05-11 08:35 UTC",
+        "content": "\ud83d\udd34 Critical data breach: A fake @OpenAI Privacy Filter repo has been downloaded over 244K times from @HuggingFace, delivering a Rust-based info stealer to Windows users. via The Hacker News #OpenAI #DataBreaches",
+        "url": "https://thehackernews.com/2026/05/fake-openai-privacy-filter-repo-hits-1.html"
     }
 ]
