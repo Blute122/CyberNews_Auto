@@ -253,5 +253,10 @@
         "date": "2026-05-11 16:11 UTC",
         "content": "\ud83d\udd34 Critical: Hackers used a flaw in Canvas to deface login portals and leave an extortion message. Multiple Instructure customers affected via BleepingComputer #cybersecurity",
         "url": "https://www.bleepingcomputer.com/news/security/instructure-confirms-hackers-used-canvas-flaw-to-deface-portals/"
+    },
+    {
+        "date": "2026-05-11 20:02 UTC",
+        "content": "\u02ef\ufe0f \u2703\ufe0f 'Dirty Frag' exploit may already be exploited on Enterprise Linux distros via privilege escalation. via Dark Reading #LinuxSecurity",
+        "url": "https://www.darkreading.com/vulnerabilities-threats/dirty-frag-exploit-blow-up-enterprise-linux-distros"
     }
 ]

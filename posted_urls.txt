@@ -57,3 +57,4 @@ https://thehackernews.com/2026/05/fake-openai-privacy-filter-repo-hits-1.html
 https://cyberscoop.com/the-missing-cyber-leader-virtual-fractional-ciso-smb-op-ed/
 https://www.bleepingcomputer.com/news/security/trickmo-android-banker-adopts-ton-blockchain-for-covert-comms/
 https://www.bleepingcomputer.com/news/security/instructure-confirms-hackers-used-canvas-flaw-to-deface-portals/
+https://www.darkreading.com/vulnerabilities-threats/dirty-frag-exploit-blow-up-enterprise-linux-distros
