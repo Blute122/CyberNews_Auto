@@ -258,5 +258,10 @@
         "date": "2026-05-11 20:02 UTC",
         "content": "\u02ef\ufe0f \u2703\ufe0f 'Dirty Frag' exploit may already be exploited on Enterprise Linux distros via privilege escalation. via Dark Reading #LinuxSecurity",
         "url": "https://www.darkreading.com/vulnerabilities-threats/dirty-frag-exploit-blow-up-enterprise-linux-distros"
+    },
+    {
+        "date": "2026-05-11 21:40 UTC",
+        "content": "\ud83d\udfe0 Critical: Checkmarx Jenkins AST plugin compromised via modified version. Ensure version 2.0.13-829.vc72453fa_1c16, published Dec 17, 2025, is used. via The Hacker News #Checkmarx #Jenkins",
+        "url": "https://thehackernews.com/2026/05/teampcp-compromises-checkmarx-jenkins.html"
     }
 ]
