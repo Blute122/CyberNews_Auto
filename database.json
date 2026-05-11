@@ -248,5 +248,10 @@
         "date": "2026-05-11 12:21 UTC",
         "content": "\ud83d\udd34 Red Alert! TrickMo Android banking malware adopts TON blockchain for covert comms, targeting users in Europe via phishing campaigns. via BleepingComputer #MobileSecurity",
         "url": "https://www.bleepingcomputer.com/news/security/trickmo-android-banker-adopts-ton-blockchain-for-covert-comms/"
+    },
+    {
+        "date": "2026-05-11 16:11 UTC",
+        "content": "\ud83d\udd34 Critical: Hackers used a flaw in Canvas to deface login portals and leave an extortion message. Multiple Instructure customers affected via BleepingComputer #cybersecurity",
+        "url": "https://www.bleepingcomputer.com/news/security/instructure-confirms-hackers-used-canvas-flaw-to-deface-portals/"
     }
 ]
