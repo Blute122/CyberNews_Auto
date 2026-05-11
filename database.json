@@ -243,5 +243,10 @@
         "date": "2026-05-11 08:35 UTC",
         "content": "\ud83d\udd34 Critical data breach: A fake @OpenAI Privacy Filter repo has been downloaded over 244K times from @HuggingFace, delivering a Rust-based info stealer to Windows users. via The Hacker News #OpenAI #DataBreaches",
         "url": "https://thehackernews.com/2026/05/fake-openai-privacy-filter-repo-hits-1.html"
+    },
+    {
+        "date": "2026-05-11 12:21 UTC",
+        "content": "\ud83d\udd34 Red Alert! TrickMo Android banking malware adopts TON blockchain for covert comms, targeting users in Europe via phishing campaigns. via BleepingComputer #MobileSecurity",
+        "url": "https://www.bleepingcomputer.com/news/security/trickmo-android-banker-adopts-ton-blockchain-for-covert-comms/"
     }
 ]

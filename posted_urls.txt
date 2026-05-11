@@ -54,3 +54,5 @@ https://www.bleepingcomputer.com/news/security/police-shut-down-reboot-of-crimen
 https://www.bleepingcomputer.com/news/security/hackers-abuse-google-ads-claudeai-chats-to-push-mac-malware/
 https://isc.sans.edu/diary/rss/32970
 https://thehackernews.com/2026/05/fake-openai-privacy-filter-repo-hits-1.html
+https://cyberscoop.com/the-missing-cyber-leader-virtual-fractional-ciso-smb-op-ed/
+https://www.bleepingcomputer.com/news/security/trickmo-android-banker-adopts-ton-blockchain-for-covert-comms/
