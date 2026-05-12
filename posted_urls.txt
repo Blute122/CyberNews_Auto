@@ -60,3 +60,5 @@ https://www.bleepingcomputer.com/news/security/instructure-confirms-hackers-used
 https://www.darkreading.com/vulnerabilities-threats/dirty-frag-exploit-blow-up-enterprise-linux-distros
 https://thehackernews.com/2026/05/teampcp-compromises-checkmarx-jenkins.html
 https://isc.sans.edu/diary/rss/32976
+https://cyberscoop.com/canvas-instructure-data-theft-extortion-the-com/
+https://www.bleepingcomputer.com/news/legal/gm-agrees-to-1275m-california-settlement-over-sale-of-drivers-data/

@@ -268,5 +268,10 @@
         "date": "2026-05-11 23:10 UTC",
         "content": "\ud83d\udfe2 Apple patches 84 vulnerabilities across its operating systems (iOS, iPadOS, macOS, tvOS, watchOS, vision OS) via SANS ISC #AppleSecurity #vulnerabilities",
         "url": "https://isc.sans.edu/diary/rss/32976"
+    },
+    {
+        "date": "2026-05-12 04:03 UTC",
+        "content": "\ud83d\udfe1 GM faces $12.75M settlement over violating CCPA, exposing drivers' data via California Attorney General. via BleepingComputer #DataBreach",
+        "url": "https://www.bleepingcomputer.com/news/legal/gm-agrees-to-1275m-california-settlement-over-sale-of-drivers-data/"
     }
 ]
