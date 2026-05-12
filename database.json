@@ -293,5 +293,10 @@
         "date": "2026-05-12 18:17 UTC",
         "content": "\ud83d\udd34 A critical vulnerability was discovered in Hugging Face AI models, where a single file tweak can hijack model outputs and exfiltrate data.\n\nThe Breakdown: A tokenizer library file in the models can be manipulated.\n\nThe Technical Vector: This can be done with a simple file tweak.\n\nThe Impact: Attackers can exfiltrate data via manipulated model outputs.\nvia Dark Reading\n#cybersecurity #adversarialMachineLearning #HuggingFace",
         "url": "https://www.darkreading.com/cloud-security/hugging-face-packages-weaponized-single-file-tweak"
+    },
+    {
+        "date": "2026-05-12 20:49 UTC",
+        "content": "\ud83d\udd34 Microsoft's latest security update patches 137 critical vulnerabilities in Azure, Windows, Dynamics 365, and the SSO Plugin for Jira & Confluence. The fixes address remote code execution (RCE) and denial of service (DoS) flaws. via SecurityWeek #cybersecurity #Microsoft",
+        "url": "https://www.securityweek.com/microsoft-patches-137-vulnerabilities/"
     }
 ]

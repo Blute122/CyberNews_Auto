@@ -68,3 +68,4 @@ https://www.bleepingcomputer.com/news/security/shai-hulud-attack-ships-signed-ma
 https://www.bleepingcomputer.com/news/security/sap-fixes-critical-vulnerabilities-in-commerce-cloud-and-s-4hana/
 https://thehackernews.com/2026/05/new-trickmo-variant-uses-ton-c2-and.html
 https://www.darkreading.com/cloud-security/hugging-face-packages-weaponized-single-file-tweak
+https://www.securityweek.com/microsoft-patches-137-vulnerabilities/
