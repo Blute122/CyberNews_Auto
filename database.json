@@ -283,5 +283,10 @@
         "date": "2026-05-12 12:15 UTC",
         "content": "\ud83d\udfe0 A critical vulnerability has been identified in SAP S/4HANA and Commerce products. Attackers can inject malicious code through the flaw. This could lead to information disclosure and code execution.\n \u2022 SAP has released patches to fix the issues.\n \u2022 The vulnerabilities could impact users who have not applied the latest updates.\n via SecurityWeek #cybersecurity #SAP #SAPvulnerability",
         "url": "https://www.securityweek.com/sap-patches-critical-s-4hana-commerce-vulnerabilities/"
+    },
+    {
+        "date": "2026-05-12 15:45 UTC",
+        "content": "\ud83d\udfe0 New Android Banking Trojan Alert! TrickMo variant spotted using TON C2 and SOCKS5 to create network pivots targeting banking and crypto wallet users in France, Italy, and Austria. The threat spreads via runtime-loaded APKs. via The Hacker News #cybersecurity #TrickMo",
+        "url": "https://thehackernews.com/2026/05/new-trickmo-variant-uses-ton-c2-and.html"
     }
 ]

@@ -64,3 +64,6 @@ https://cyberscoop.com/canvas-instructure-data-theft-extortion-the-com/
 https://www.bleepingcomputer.com/news/legal/gm-agrees-to-1275m-california-settlement-over-sale-of-drivers-data/
 https://thehackernews.com/2026/05/mini-shai-hulud-worm-compromises.html
 https://www.securityweek.com/sap-patches-critical-s-4hana-commerce-vulnerabilities/
+https://www.bleepingcomputer.com/news/security/shai-hulud-attack-ships-signed-malicious-tanstack-mistral-npm-packages/
+https://www.bleepingcomputer.com/news/security/sap-fixes-critical-vulnerabilities-in-commerce-cloud-and-s-4hana/
+https://thehackernews.com/2026/05/new-trickmo-variant-uses-ton-c2-and.html
