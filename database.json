@@ -288,5 +288,10 @@
         "date": "2026-05-12 15:45 UTC",
         "content": "\ud83d\udfe0 New Android Banking Trojan Alert! TrickMo variant spotted using TON C2 and SOCKS5 to create network pivots targeting banking and crypto wallet users in France, Italy, and Austria. The threat spreads via runtime-loaded APKs. via The Hacker News #cybersecurity #TrickMo",
         "url": "https://thehackernews.com/2026/05/new-trickmo-variant-uses-ton-c2-and.html"
+    },
+    {
+        "date": "2026-05-12 18:17 UTC",
+        "content": "\ud83d\udd34 A critical vulnerability was discovered in Hugging Face AI models, where a single file tweak can hijack model outputs and exfiltrate data.\n\nThe Breakdown: A tokenizer library file in the models can be manipulated.\n\nThe Technical Vector: This can be done with a simple file tweak.\n\nThe Impact: Attackers can exfiltrate data via manipulated model outputs.\nvia Dark Reading\n#cybersecurity #adversarialMachineLearning #HuggingFace",
+        "url": "https://www.darkreading.com/cloud-security/hugging-face-packages-weaponized-single-file-tweak"
     }
 ]
