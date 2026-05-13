@@ -70,3 +70,4 @@ https://thehackernews.com/2026/05/new-trickmo-variant-uses-ton-c2-and.html
 https://www.darkreading.com/cloud-security/hugging-face-packages-weaponized-single-file-tweak
 https://www.securityweek.com/microsoft-patches-137-vulnerabilities/
 https://www.bleepingcomputer.com/news/security/uk-fines-water-supplier-13m-for-exposing-data-of-664k-customers/
+https://www.bleepingcomputer.com/news/security/us-govt-seeks-instructure-testimony-on-massive-canvas-cyberattack/
