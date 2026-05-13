@@ -77,3 +77,4 @@ https://www.securityweek.com/government-to-scrutinize-instructure-on-canvas-disr
 https://www.securityweek.com/716000-impacted-by-openloop-health-data-breach/
 https://cyberscoop.com/openai-daybreak-gpt-5-5-anthropic-mythos-cybersecurity/
 https://www.securityweek.com/foxconn-confirms-north-american-factories-hit-by-cyberattack/
+https://cyberscoop.com/federal-voter-data-collection-doj-legal-memo/

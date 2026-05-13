@@ -333,5 +333,10 @@
         "date": "2026-05-13 19:06 UTC",
         "content": "\ud83d\udd34 FOXCONN CONFIRMED CYBERATTACK\n \nA Nitrogen ransomware group claims to have hacked Foxconn's North American factories, stealing 8TB of data, including confidential documents. \nThe attackers demand $35M in Bitcoin to restore access.\n\u2022 The attack was allegedly carried out using the Nitrogen ransomware.\n\u2022 The compromised data includes employee and customer information.\n\u2022 Foxconn has yet to comment on the potential impact of this breach.\n via SecurityWeek\n #cybersecurity #ransomware #Nitrogen",
         "url": "https://www.securityweek.com/foxconn-confirms-north-american-factories-hit-by-cyberattack/"
+    },
+    {
+        "date": "2026-05-13 20:54 UTC",
+        "content": "\ud83d\udd34 Critical\nDOJ Releases Nationwide Voter Data Collection Memo\n\nThe US Department of Justice (DOJ) has released a legal memo justifying the collection of nationwide voter data, sparking controversy among election officials.\n\nThe Breakdown:\n\u2022 The memo outlines the executive branch's role in vetting voter eligibility, potentially allowing for data collection across the country.\n\nThe Technical Vector:\nThe memo suggests a top-down approach to verifying voter eligibility, which some argue could lead to widespread data collection.\n\nThe Impact:\n\u2022 Many election officials are concerned about the potential for mass voter data collection, as it could compromise sensitive information.\nvia CyberScoop\n#cybersecurity #ElectionSecurity #DOJ",
+        "url": "https://cyberscoop.com/federal-voter-data-collection-doj-legal-memo/"
     }
 ]
