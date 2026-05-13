@@ -318,5 +318,10 @@
         "date": "2026-05-13 10:42 UTC",
         "content": "\ud83d\udd34 Critical: Researchers warn of a new campaign, GemStuffer, using 150+ RubyGems to exfiltrate data from UK council portals. No malware is involved. Developers with low or no download activity are most at risk. via The Hacker News #cybersecurity #RubyGems #GemStuffer",
         "url": "https://thehackernews.com/2026/05/gemstuffer-abuses-150-rubygems-to.html"
+    },
+    {
+        "date": "2026-05-13 13:27 UTC",
+        "content": "\ud83d\udfe0 Data breach alert! 716,000 users impacted in January cyberattack on OpenLoop Health. Hacker stole personal info from the telehealth platform's systems. \n   The Breakdown: Hack occurred in January, leading to personal data exfiltration. \n   The Technical Vector: Exact attack vector not specified. \n   The Impact: Over 716,000 users at risk, with their personal info compromised. via SecurityWeek #cybersecurity #telehealth #data breach",
+        "url": "https://www.securityweek.com/716000-impacted-by-openloop-health-data-breach/"
     }
 ]

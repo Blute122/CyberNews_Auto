@@ -73,3 +73,5 @@ https://www.bleepingcomputer.com/news/security/uk-fines-water-supplier-13m-for-e
 https://www.bleepingcomputer.com/news/security/us-govt-seeks-instructure-testimony-on-massive-canvas-cyberattack/
 https://www.securityweek.com/ics-patch-tuesday-new-security-advisories-from-siemens-schneider-cisa/
 https://thehackernews.com/2026/05/gemstuffer-abuses-150-rubygems-to.html
+https://www.securityweek.com/government-to-scrutinize-instructure-on-canvas-disruption-data-breach/
+https://www.securityweek.com/716000-impacted-by-openloop-health-data-breach/
