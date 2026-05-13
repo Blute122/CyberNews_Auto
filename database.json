@@ -308,5 +308,10 @@
         "date": "2026-05-13 00:13 UTC",
         "content": "\ud83d\udd34 Critical: ShinyHunters cyberattacks target Instructure's Canvas platform. Threat actors stole student data and disrupted schools during final exams. The U.S. House Committee on Homeland Security has called for Instructure executives to testify.\n   The Breakdown: Two cyberattacks were carried out on Canvas, allowing ShinyHunters to steal sensitive data and disrupt educational institutions.\n   The Technical Vector: The exact exploitation method is unknown, but the attacks were successful in compromising the Canvas platform.\n   The Impact: Student data and educational institutions were put at risk,\n   via BleepingComputer. #cybersecurity #ShinyHunters #Instructure #Canvas",
         "url": "https://www.bleepingcomputer.com/news/security/us-govt-seeks-instructure-testimony-on-massive-canvas-cyberattack/"
+    },
+    {
+        "date": "2026-05-13 07:27 UTC",
+        "content": "\ud83d\udfe1 ICS Patch Tuesday Review: Siemens, Schneider, and CISA release new security advisories. Vulnerabilities left unpatched by multiple vendors put users at risk. via SecurityWeek #cybersecurity #ICS #industrial_control",
+        "url": "https://www.securityweek.com/ics-patch-tuesday-new-security-advisories-from-siemens-schneider-cisa/"
     }
 ]
