@@ -313,5 +313,10 @@
         "date": "2026-05-13 07:27 UTC",
         "content": "\ud83d\udfe1 ICS Patch Tuesday Review: Siemens, Schneider, and CISA release new security advisories. Vulnerabilities left unpatched by multiple vendors put users at risk. via SecurityWeek #cybersecurity #ICS #industrial_control",
         "url": "https://www.securityweek.com/ics-patch-tuesday-new-security-advisories-from-siemens-schneider-cisa/"
+    },
+    {
+        "date": "2026-05-13 10:42 UTC",
+        "content": "\ud83d\udd34 Critical: Researchers warn of a new campaign, GemStuffer, using 150+ RubyGems to exfiltrate data from UK council portals. No malware is involved. Developers with low or no download activity are most at risk. via The Hacker News #cybersecurity #RubyGems #GemStuffer",
+        "url": "https://thehackernews.com/2026/05/gemstuffer-abuses-150-rubygems-to.html"
     }
 ]

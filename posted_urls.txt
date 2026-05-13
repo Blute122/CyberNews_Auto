@@ -72,3 +72,4 @@ https://www.securityweek.com/microsoft-patches-137-vulnerabilities/
 https://www.bleepingcomputer.com/news/security/uk-fines-water-supplier-13m-for-exposing-data-of-664k-customers/
 https://www.bleepingcomputer.com/news/security/us-govt-seeks-instructure-testimony-on-massive-canvas-cyberattack/
 https://www.securityweek.com/ics-patch-tuesday-new-security-advisories-from-siemens-schneider-cisa/
+https://thehackernews.com/2026/05/gemstuffer-abuses-150-rubygems-to.html
