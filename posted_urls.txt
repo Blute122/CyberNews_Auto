@@ -75,3 +75,4 @@ https://www.securityweek.com/ics-patch-tuesday-new-security-advisories-from-siem
 https://thehackernews.com/2026/05/gemstuffer-abuses-150-rubygems-to.html
 https://www.securityweek.com/government-to-scrutinize-instructure-on-canvas-disruption-data-breach/
 https://www.securityweek.com/716000-impacted-by-openloop-health-data-breach/
+https://cyberscoop.com/openai-daybreak-gpt-5-5-anthropic-mythos-cybersecurity/
