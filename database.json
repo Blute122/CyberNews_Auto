@@ -328,5 +328,10 @@
         "date": "2026-05-13 16:36 UTC",
         "content": "\ud83d\udfe2 LOW\n\n    OpenAI's Daybreak faces off against Anthropic's Mythos model in the AI arms race for cybersecurity.\n\n    The main difference: Daybreak is more open and gated. Mythos, on the other hand, has strict restrictions.\n\n    \u2022 Daybreak: more accessible but still secure.\n\n    \u2022 Mythos: tightly restricted, more exclusive.\n\n    via CyberScoop\n\n    #cybersecurity #AIarmsrace #OpenAI",
         "url": "https://cyberscoop.com/openai-daybreak-gpt-5-5-anthropic-mythos-cybersecurity/"
+    },
+    {
+        "date": "2026-05-13 19:06 UTC",
+        "content": "\ud83d\udd34 FOXCONN CONFIRMED CYBERATTACK\n \nA Nitrogen ransomware group claims to have hacked Foxconn's North American factories, stealing 8TB of data, including confidential documents. \nThe attackers demand $35M in Bitcoin to restore access.\n\u2022 The attack was allegedly carried out using the Nitrogen ransomware.\n\u2022 The compromised data includes employee and customer information.\n\u2022 Foxconn has yet to comment on the potential impact of this breach.\n via SecurityWeek\n #cybersecurity #ransomware #Nitrogen",
+        "url": "https://www.securityweek.com/foxconn-confirms-north-american-factories-hit-by-cyberattack/"
     }
 ]
