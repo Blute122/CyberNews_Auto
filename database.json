@@ -353,5 +353,10 @@
         "date": "2026-05-14 07:23 UTC",
         "content": "\ud83d\udd34 Outlook Junk folder vulnerability - A bypass of the link preview function allows visible URLs, which could enable malicious messages to evade detection via #cybersecurity #Outlook #Phishing",
         "url": "https://isc.sans.edu/diary/rss/32990"
+    },
+    {
+        "date": "2026-05-14 10:31 UTC",
+        "content": "\ud83d\udfe0 Critical flaw in PraisonAI exposed: Hackers target PraisonAI vulnerability hours after disclosure, with exploitation attempts beginning mere hours after public disclosure.\n\nThe Breakdown: PraisonAI security flaw disclosed, exploited by hackers shortly after.\n\nThe Technical Vector: Unauthenticated exploit possible due to authentication bypass vulnerability\n\nThe Impact: Users of PraisonAI at risk. via SecurityWeek #cybersecurity #AIvulnerabilities #PraisonAI",
+        "url": "https://www.securityweek.com/hackers-targeted-praisonai-vulnerability-hours-after-disclosure/"
     }
 ]
