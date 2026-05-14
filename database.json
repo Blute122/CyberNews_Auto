@@ -368,5 +368,10 @@
         "date": "2026-05-14 15:31 UTC",
         "content": "\ud83d\udd34 Ghostwriter Targets Ukrainian Government With Geofenced PDF Phishing, Cobalt Strike\nThe Breakdown: Ghostwriter, a Belarus-aligned threat group, has been attributed to attacks targeting Ukrainian government orgs.\nThe Technical Vector: Geofenced PDF phishing and Cobalt Strike used for espionage and influence ops.\nThe Impact: Neighboring countries, esp Ukraine, at risk via Ghostwriter's cyber activities.\nvia The Hacker News #cybersecurity #Ghostwriter #CobaltStrike",
         "url": "https://thehackernews.com/2026/05/ghostwriter-targets-ukrainian.html"
+    },
+    {
+        "date": "2026-05-14 18:06 UTC",
+        "content": "\ud83d\udd34 Critical: 18-year-old NGINX flaw allows DoS and RCE.\nThe Breakdown: An autonomous scanning system discovered an 18-year-old vulnerability in NGINX.\nThe Technical Vector: This flaw can be exploited for DoS and, under certain conditions, RCE.\nThe Impact: Any server using NGINX with this vulnerability is at risk via network vector.\nvia BleepingComputer. #cybersecurity #NGINXvulnerability #DOS",
+        "url": "https://www.bleepingcomputer.com/news/security/18-year-old-nginx-vulnerability-allows-dos-potential-rce/"
     }
 ]

@@ -84,3 +84,4 @@ https://isc.sans.edu/diary/rss/32990
 https://www.securityweek.com/hackers-targeted-praisonai-vulnerability-hours-after-disclosure/
 https://www.bleepingcomputer.com/news/security/kongtuke-hackers-now-use-microsoft-teams-for-corporate-breaches/
 https://thehackernews.com/2026/05/ghostwriter-targets-ukrainian.html
+https://www.bleepingcomputer.com/news/security/18-year-old-nginx-vulnerability-allows-dos-potential-rce/
