@@ -82,3 +82,4 @@ https://www.bleepingcomputer.com/news/security/west-pharmaceutical-says-hackers-
 https://cyberscoop.com/ai-autonomous-cyber-capability-benchmarks-broken-gpt5-claude-mythos/
 https://isc.sans.edu/diary/rss/32990
 https://www.securityweek.com/hackers-targeted-praisonai-vulnerability-hours-after-disclosure/
+https://www.bleepingcomputer.com/news/security/kongtuke-hackers-now-use-microsoft-teams-for-corporate-breaches/

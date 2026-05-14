@@ -358,5 +358,10 @@
         "date": "2026-05-14 10:31 UTC",
         "content": "\ud83d\udfe0 Critical flaw in PraisonAI exposed: Hackers target PraisonAI vulnerability hours after disclosure, with exploitation attempts beginning mere hours after public disclosure.\n\nThe Breakdown: PraisonAI security flaw disclosed, exploited by hackers shortly after.\n\nThe Technical Vector: Unauthenticated exploit possible due to authentication bypass vulnerability\n\nThe Impact: Users of PraisonAI at risk. via SecurityWeek #cybersecurity #AIvulnerabilities #PraisonAI",
         "url": "https://www.securityweek.com/hackers-targeted-praisonai-vulnerability-hours-after-disclosure/"
+    },
+    {
+        "date": "2026-05-14 13:04 UTC",
+        "content": "\ud83d\udd34 CRITICAL: KongTuke hackers now use Microsoft Teams for corporate breaches, gaining access in just 5 minutes. They take advantage of unsuspecting employees to gain persistent access to corporate networks. \nThe Breakdown: Initial access broker KongTuke has shifted to using Microsoft Teams for social engineering attacks.\nThe Technical Vector: Attackers trick users into approving malicious Microsoft Teams invitations, which grants them access to the corporate network.\nThe Impact: Users are at risk of persistent access being gained to their corporate networks.\nvia BleepingComputer",
+        "url": "https://www.bleepingcomputer.com/news/security/kongtuke-hackers-now-use-microsoft-teams-for-corporate-breaches/"
     }
 ]
