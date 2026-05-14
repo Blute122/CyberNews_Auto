@@ -343,5 +343,10 @@
         "date": "2026-05-14 00:14 UTC",
         "content": "\ud83d\udd34 Critical Alert: West Pharmaceutical Services hacked via cyberattack, resulting in data exfiltration and system encryption. The Breakdown: Hackers stole data and encrypted systems. The Technical Vector: Undisclosed attack vector used to breach WestPharma. The Impact: All who rely on WestPharma data and services are at risk. via BleepingComputer #cybersecurity #ransomware #healthcare",
         "url": "https://www.bleepingcomputer.com/news/security/west-pharmaceutical-says-hackers-stole-data-encrypted-systems/"
+    },
+    {
+        "date": "2026-05-14 04:14 UTC",
+        "content": "\u26a0\ufe0f BREAKING: Researchers say AI has broken every benchmark for autonomous cyber capability. Anthropic's Claude Mythos Preview and OpenAI's GPT-5.5 have outpaced every trend line. Is this a one-time leap or the new normal? via CyberScoop #cybersecurity #AIsecurity #machinelearning",
+        "url": "https://cyberscoop.com/ai-autonomous-cyber-capability-benchmarks-broken-gpt5-claude-mythos/"
     }
 ]
