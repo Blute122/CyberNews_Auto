@@ -363,5 +363,10 @@
         "date": "2026-05-14 13:04 UTC",
         "content": "\ud83d\udd34 CRITICAL: KongTuke hackers now use Microsoft Teams for corporate breaches, gaining access in just 5 minutes. They take advantage of unsuspecting employees to gain persistent access to corporate networks. \nThe Breakdown: Initial access broker KongTuke has shifted to using Microsoft Teams for social engineering attacks.\nThe Technical Vector: Attackers trick users into approving malicious Microsoft Teams invitations, which grants them access to the corporate network.\nThe Impact: Users are at risk of persistent access being gained to their corporate networks.\nvia BleepingComputer",
         "url": "https://www.bleepingcomputer.com/news/security/kongtuke-hackers-now-use-microsoft-teams-for-corporate-breaches/"
+    },
+    {
+        "date": "2026-05-14 15:31 UTC",
+        "content": "\ud83d\udd34 Ghostwriter Targets Ukrainian Government With Geofenced PDF Phishing, Cobalt Strike\nThe Breakdown: Ghostwriter, a Belarus-aligned threat group, has been attributed to attacks targeting Ukrainian government orgs.\nThe Technical Vector: Geofenced PDF phishing and Cobalt Strike used for espionage and influence ops.\nThe Impact: Neighboring countries, esp Ukraine, at risk via Ghostwriter's cyber activities.\nvia The Hacker News #cybersecurity #Ghostwriter #CobaltStrike",
+        "url": "https://thehackernews.com/2026/05/ghostwriter-targets-ukrainian.html"
     }
 ]
