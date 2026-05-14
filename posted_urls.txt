@@ -80,3 +80,4 @@ https://www.securityweek.com/foxconn-confirms-north-american-factories-hit-by-cy
 https://cyberscoop.com/federal-voter-data-collection-doj-legal-memo/
 https://www.bleepingcomputer.com/news/security/west-pharmaceutical-says-hackers-stole-data-encrypted-systems/
 https://cyberscoop.com/ai-autonomous-cyber-capability-benchmarks-broken-gpt5-claude-mythos/
+https://isc.sans.edu/diary/rss/32990
