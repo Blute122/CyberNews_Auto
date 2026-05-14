@@ -78,3 +78,4 @@ https://www.securityweek.com/716000-impacted-by-openloop-health-data-breach/
 https://cyberscoop.com/openai-daybreak-gpt-5-5-anthropic-mythos-cybersecurity/
 https://www.securityweek.com/foxconn-confirms-north-american-factories-hit-by-cyberattack/
 https://cyberscoop.com/federal-voter-data-collection-doj-legal-memo/
+https://www.bleepingcomputer.com/news/security/west-pharmaceutical-says-hackers-stole-data-encrypted-systems/
