@@ -88,3 +88,4 @@ https://www.bleepingcomputer.com/news/security/18-year-old-nginx-vulnerability-a
 https://www.darkreading.com/cyber-risk/securityscorecard-snags-driftnet-to-level-up-threat-intelligence
 https://www.darkreading.com/ics-ot-security/taiwan-incident-highlights-cybersecurity-gaps
 https://thehackernews.com/2026/05/on-prem-microsoft-exchange-server-cve.html
+https://www.securityweek.com/american-lending-center-data-breach-affects-123000-individuals/

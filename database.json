@@ -388,5 +388,10 @@
         "date": "2026-05-15 08:16 UTC",
         "content": "\ud83d\udfe0 A critical vulnerability in \nMicrosoft Exchange Server for on-premise versions has been exploited via crafted email.\nThe bug, CVE-2026-42897 (CVSS: 8.1/10), is a spoofing issue stemming from a cross-site scripting flaw.\nAttackers can leverage this vulnerability to gain unauthorized access.\n\u2022 Impacted version: on-premise Exchange Server\n\u2022 CVSS: 8.1\nvia The Hacker News\n#cybersecurity #Microsoft #CVE202642897",
         "url": "https://thehackernews.com/2026/05/on-prem-microsoft-exchange-server-cve.html"
+    },
+    {
+        "date": "2026-05-15 11:29 UTC",
+        "content": "\ud83d\udd34 Ransomware attack compromised American Lending Center data. 123,000 individuals affected. The breach went undetected for nearly a year.\nThe Breakdown: A ransomware attack was discovered by the non-bank lender, who only recently finished an investigation.\nThe Technical Vector: Details about the ransomware variant are not provided.\nThe Impact: The data breach affects 123,000 individuals. via SecurityWeek. #cybersecurity #ransomware #dataloss",
+        "url": "https://www.securityweek.com/american-lending-center-data-breach-affects-123000-individuals/"
     }
 ]
