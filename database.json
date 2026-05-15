@@ -393,5 +393,10 @@
         "date": "2026-05-15 11:29 UTC",
         "content": "\ud83d\udd34 Ransomware attack compromised American Lending Center data. 123,000 individuals affected. The breach went undetected for nearly a year.\nThe Breakdown: A ransomware attack was discovered by the non-bank lender, who only recently finished an investigation.\nThe Technical Vector: Details about the ransomware variant are not provided.\nThe Impact: The data breach affects 123,000 individuals. via SecurityWeek. #cybersecurity #ransomware #dataloss",
         "url": "https://www.securityweek.com/american-lending-center-data-breach-affects-123000-individuals/"
+    },
+    {
+        "date": "2026-05-15 14:33 UTC",
+        "content": "\ud83d\udd34 CISCO UNDER ATTACK: A persistent threat group is exploiting a zero-day vulnerability in Cisco's firewalls and SD-WAN systems. Linked to recently disclosed vulnerabilities, the attacks are ongoing. via CyberScoop #cybersecurity #Cisco #zero-day",
+        "url": "https://cyberscoop.com/cisco-sd-wan-zero-day-exploited/"
     }
 ]
