@@ -91,3 +91,4 @@ https://thehackernews.com/2026/05/on-prem-microsoft-exchange-server-cve.html
 https://www.securityweek.com/american-lending-center-data-breach-affects-123000-individuals/
 https://cyberscoop.com/cisco-sd-wan-zero-day-exploited/
 https://thehackernews.com/2026/05/four-openclaw-flaws-enable-data-theft.html
+https://www.bleepingcomputer.com/news/security/pwn2own-day-two-hackers-demo-microsoft-exchange-windows-11-red-had-enterprise-linux-zero-days/
