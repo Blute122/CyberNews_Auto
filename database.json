@@ -383,5 +383,10 @@
         "date": "2026-05-15 04:16 UTC",
         "content": "\ud83d\udd34 Cybersecurity breach causes three bullet trains to shut down in Taiwan.\nA Taiwanese student experimenting with software-defined radio technology inadvertently brought the trains to a halt, prompting an anti-terrorism response.\n\u2022 Student's experiment affected rail systems via radio frequency interference.\n\u2022 Incident highlights cybersecurity gaps in modern rail systems.\nvia Dark Reading #cybersecurity #RailSystemSecurity",
         "url": "https://www.darkreading.com/ics-ot-security/taiwan-incident-highlights-cybersecurity-gaps"
+    },
+    {
+        "date": "2026-05-15 08:16 UTC",
+        "content": "\ud83d\udfe0 A critical vulnerability in \nMicrosoft Exchange Server for on-premise versions has been exploited via crafted email.\nThe bug, CVE-2026-42897 (CVSS: 8.1/10), is a spoofing issue stemming from a cross-site scripting flaw.\nAttackers can leverage this vulnerability to gain unauthorized access.\n\u2022 Impacted version: on-premise Exchange Server\n\u2022 CVSS: 8.1\nvia The Hacker News\n#cybersecurity #Microsoft #CVE202642897",
+        "url": "https://thehackernews.com/2026/05/on-prem-microsoft-exchange-server-cve.html"
     }
 ]
