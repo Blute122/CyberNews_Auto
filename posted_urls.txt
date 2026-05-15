@@ -85,3 +85,4 @@ https://www.securityweek.com/hackers-targeted-praisonai-vulnerability-hours-afte
 https://www.bleepingcomputer.com/news/security/kongtuke-hackers-now-use-microsoft-teams-for-corporate-breaches/
 https://thehackernews.com/2026/05/ghostwriter-targets-ukrainian.html
 https://www.bleepingcomputer.com/news/security/18-year-old-nginx-vulnerability-allows-dos-potential-rce/
+https://www.darkreading.com/cyber-risk/securityscorecard-snags-driftnet-to-level-up-threat-intelligence
