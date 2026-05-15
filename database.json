@@ -378,5 +378,10 @@
         "date": "2026-05-15 00:09 UTC",
         "content": "\ud83d\udea8 CRITICAL: SecurityScorecard acquires Driftnet to bolster threat intelligence on third-party ecosystems, increasing risk of supply chain attacks. The Breakdown: SecurityScorecard acquires Driftnet to combat rising supply chain threats. The Technical Vector: Third-party ecosystems heighten the risk of supply chain attacks. The Impact: Companies may be vulnerable to increased risk of breaches due to third-party ecosystem vulnerabilities. via Dark Reading #cybersecurity #SupplyChainAttack #ThirdPartyRisk",
         "url": "https://www.darkreading.com/cyber-risk/securityscorecard-snags-driftnet-to-level-up-threat-intelligence"
+    },
+    {
+        "date": "2026-05-15 04:16 UTC",
+        "content": "\ud83d\udd34 Cybersecurity breach causes three bullet trains to shut down in Taiwan.\nA Taiwanese student experimenting with software-defined radio technology inadvertently brought the trains to a halt, prompting an anti-terrorism response.\n\u2022 Student's experiment affected rail systems via radio frequency interference.\n\u2022 Incident highlights cybersecurity gaps in modern rail systems.\nvia Dark Reading #cybersecurity #RailSystemSecurity",
+        "url": "https://www.darkreading.com/ics-ot-security/taiwan-incident-highlights-cybersecurity-gaps"
     }
 ]

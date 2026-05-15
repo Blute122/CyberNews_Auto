@@ -86,3 +86,4 @@ https://www.bleepingcomputer.com/news/security/kongtuke-hackers-now-use-microsof
 https://thehackernews.com/2026/05/ghostwriter-targets-ukrainian.html
 https://www.bleepingcomputer.com/news/security/18-year-old-nginx-vulnerability-allows-dos-potential-rce/
 https://www.darkreading.com/cyber-risk/securityscorecard-snags-driftnet-to-level-up-threat-intelligence
+https://www.darkreading.com/ics-ot-security/taiwan-incident-highlights-cybersecurity-gaps
