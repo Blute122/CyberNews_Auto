@@ -398,5 +398,10 @@
         "date": "2026-05-15 14:33 UTC",
         "content": "\ud83d\udd34 CISCO UNDER ATTACK: A persistent threat group is exploiting a zero-day vulnerability in Cisco's firewalls and SD-WAN systems. Linked to recently disclosed vulnerabilities, the attacks are ongoing. via CyberScoop #cybersecurity #Cisco #zero-day",
         "url": "https://cyberscoop.com/cisco-sd-wan-zero-day-exploited/"
+    },
+    {
+        "date": "2026-05-15 17:00 UTC",
+        "content": "\ud83d\udd34 Critical: Four security flaws in OpenClaw (CVE-XXXX-XXXXX) disclosed by Cyera, enabling data theft, privilege escalation, and persistence via the \"Claw Chain.\" Threat actors can exploit this to establish a foothold, expose sensitive data, and plant backdoors. via The Hacker News\n\n#cybersecurity #OpenClaw #Cyera",
+        "url": "https://thehackernews.com/2026/05/four-openclaw-flaws-enable-data-theft.html"
     }
 ]
