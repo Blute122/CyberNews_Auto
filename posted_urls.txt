@@ -92,3 +92,4 @@ https://www.securityweek.com/american-lending-center-data-breach-affects-123000-
 https://cyberscoop.com/cisco-sd-wan-zero-day-exploited/
 https://thehackernews.com/2026/05/four-openclaw-flaws-enable-data-theft.html
 https://www.bleepingcomputer.com/news/security/pwn2own-day-two-hackers-demo-microsoft-exchange-windows-11-red-had-enterprise-linux-zero-days/
+https://cyberscoop.com/colorado-election-denier-tina-peters-sentence-commuted-governor-jared-polis/

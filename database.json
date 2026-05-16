@@ -408,5 +408,10 @@
         "date": "2026-05-15 18:52 UTC",
         "content": "\ud83d\udd34 Microsoft Exchange & Windows 11 hacked at Pwn2Own Berlin. 15 zero-day vulnerabilities exploited for $385,750 in cash awards, impacting multiple products. The Breakdown: Competitors successfully targeted Windows 11, Microsoft Exchange & Red Hat Enterprise Linux for Workstations. The Technical Vector: Exploiters took advantage of unique zero-day vulnerabilities in each product. The Impact: 15 unique zero-day vulnerabilities were discovered, which could put millions of users at risk of data breaches. via BleepingComputer #cybersecurity #Pwn2Own #Windows11",
         "url": "https://www.bleepingcomputer.com/news/security/pwn2own-day-two-hackers-demo-microsoft-exchange-windows-11-red-had-enterprise-linux-zero-days/"
+    },
+    {
+        "date": "2026-05-16 03:59 UTC",
+        "content": "\ud83d\udfe1 MEDIUM \u2014 Colorado Governor Jared Polis commutes prison sentence for election denier Tina Peters, who stole voting data.\nThe Breakdown:\nTina Peters, a Colorado election official, was sentenced to 9 years for stealing voting data.\nThe Technical Vector:\n\u2022 Unspecified hacking incident\nThe Impact:\n\u2022 Potential compromise of voting data via unauthenticated access.\nvia CyberScoop #cybersecurity #votingmachine #electionsecurity",
+        "url": "https://cyberscoop.com/colorado-election-denier-tina-peters-sentence-commuted-governor-jared-polis/"
     }
 ]
