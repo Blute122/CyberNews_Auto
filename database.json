@@ -418,5 +418,10 @@
         "date": "2026-05-16 06:33 UTC",
         "content": "\ud83d\udd34 The Boring Stuff is Dangerous Now\nThe emergence of AI agents that exploit obscure vulns has forced defenders to adapt to vast amounts of flawed AI-generated code. Key takeaways: AI-created code poses significant security risks, forcing defenders to rethink their approaches.\n\n\u2022 AI agents can discover and exploit previously unknown vulns.\n\u2022 The rise of AI-generated code has led to a surge in potentially flawed code. via Dark Reading.\n#cybersecurity #AIsecurity #DevSecOps",
         "url": "https://www.darkreading.com/cyber-risk/ai-code-and-agents-forces-defenders-adapt"
+    },
+    {
+        "date": "2026-05-16 10:37 UTC",
+        "content": "\ud83d\udd34 Critical NGINX Vulnerability Disclosed! \nA 14-year-old security flaw in NGINX has been published and fixed in NGINX Plus and open source. Unauthenticated attackers can exploit this to inject code. This impacts NGINX users who haven't patched yet. via SecurityWeek #cybersecurity #nginx #criticalvulnerability",
+        "url": "https://www.securityweek.com/poc-code-published-for-critical-nginx-vulnerability/"
     }
 ]

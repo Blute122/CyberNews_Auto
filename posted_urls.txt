@@ -94,3 +94,4 @@ https://thehackernews.com/2026/05/four-openclaw-flaws-enable-data-theft.html
 https://www.bleepingcomputer.com/news/security/pwn2own-day-two-hackers-demo-microsoft-exchange-windows-11-red-had-enterprise-linux-zero-days/
 https://cyberscoop.com/colorado-election-denier-tina-peters-sentence-commuted-governor-jared-polis/
 https://www.darkreading.com/cyber-risk/ai-code-and-agents-forces-defenders-adapt
+https://www.securityweek.com/poc-code-published-for-critical-nginx-vulnerability/
