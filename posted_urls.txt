@@ -97,3 +97,4 @@ https://www.darkreading.com/cyber-risk/ai-code-and-agents-forces-defenders-adapt
 https://www.securityweek.com/poc-code-published-for-critical-nginx-vulnerability/
 https://www.bleepingcomputer.com/news/security/russian-hackers-turn-kazuar-backdoor-into-modular-p2p-botnet/
 https://thehackernews.com/2026/05/funnel-builder-flaw-under-active.html
+https://www.bleepingcomputer.com/news/security/microsoft-rejects-critical-azure-vulnerability-report-no-cve-issued/

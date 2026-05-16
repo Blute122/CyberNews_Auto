@@ -433,5 +433,10 @@
         "date": "2026-05-16 17:13 UTC",
         "content": "\ud83d\udd34 Breaking: Active exploitation of a critical #WordPress plugin flaw in Funnel Builder allows checkout skimming. Attack injects malicious JavaScript to steal payment data. CVE: no identifier published yet. Impact: WooCommerce stores at risk. via The Hacker News #cybersecurity #WooCommerce #WordPress",
         "url": "https://thehackernews.com/2026/05/funnel-builder-flaw-under-active.html"
+    },
+    {
+        "date": "2026-05-16 21:02 UTC",
+        "content": "\ud83d\udfe0 Critical Azure Azure Backup for AKS vulnerability report rejected by Microsoft without CVE.\n   A security researcher claims a vulnerability was quietly fixed, but Microsoft disputes this, stating no product changes were made.\n   The researcher documented a silent fix, raising concerns about the security update process.\n   via BleepingComputer. #cybersecurity #Azure #AzureVulnerability",
+        "url": "https://www.bleepingcomputer.com/news/security/microsoft-rejects-critical-azure-vulnerability-report-no-cve-issued/"
     }
 ]
