@@ -423,5 +423,10 @@
         "date": "2026-05-16 10:37 UTC",
         "content": "\ud83d\udd34 Critical NGINX Vulnerability Disclosed! \nA 14-year-old security flaw in NGINX has been published and fixed in NGINX Plus and open source. Unauthenticated attackers can exploit this to inject code. This impacts NGINX users who haven't patched yet. via SecurityWeek #cybersecurity #nginx #criticalvulnerability",
         "url": "https://www.securityweek.com/poc-code-published-for-critical-nginx-vulnerability/"
+    },
+    {
+        "date": "2026-05-16 15:14 UTC",
+        "content": "\u2b55\ufe0e MEDIUM \ud83d\udd34 MEDIUM: Russian hackers turn Kazuar backdoor into a modular P2P botnet. Secret Blizzard's long-running backdoor has been repurposed for stealthy data collection.\n\nThe Breakdown:\n\u2022 Kazuar backdoor modified to form P2P botnet\n\u2022 Designed for long-term persistence\n\nThe Technical Vector:\n\u2022 Modularity allows for easy updates\n\u2022 Steals sensitive data\n\nThe Impact:\n\u2022 End-users at risk of data theft via infected systems\nvia BleepingComputer #cybersecurity #Russianhacker #botnet",
+        "url": "https://www.bleepingcomputer.com/news/security/russian-hackers-turn-kazuar-backdoor-into-modular-p2p-botnet/"
     }
 ]
