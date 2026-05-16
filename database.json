@@ -413,5 +413,10 @@
         "date": "2026-05-16 03:59 UTC",
         "content": "\ud83d\udfe1 MEDIUM \u2014 Colorado Governor Jared Polis commutes prison sentence for election denier Tina Peters, who stole voting data.\nThe Breakdown:\nTina Peters, a Colorado election official, was sentenced to 9 years for stealing voting data.\nThe Technical Vector:\n\u2022 Unspecified hacking incident\nThe Impact:\n\u2022 Potential compromise of voting data via unauthenticated access.\nvia CyberScoop #cybersecurity #votingmachine #electionsecurity",
         "url": "https://cyberscoop.com/colorado-election-denier-tina-peters-sentence-commuted-governor-jared-polis/"
+    },
+    {
+        "date": "2026-05-16 06:33 UTC",
+        "content": "\ud83d\udd34 The Boring Stuff is Dangerous Now\nThe emergence of AI agents that exploit obscure vulns has forced defenders to adapt to vast amounts of flawed AI-generated code. Key takeaways: AI-created code poses significant security risks, forcing defenders to rethink their approaches.\n\n\u2022 AI agents can discover and exploit previously unknown vulns.\n\u2022 The rise of AI-generated code has led to a surge in potentially flawed code. via Dark Reading.\n#cybersecurity #AIsecurity #DevSecOps",
+        "url": "https://www.darkreading.com/cyber-risk/ai-code-and-agents-forces-defenders-adapt"
     }
 ]
