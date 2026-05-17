@@ -448,5 +448,10 @@
         "date": "2026-05-17 15:16 UTC",
         "content": "\ud83d\udfe0 NGINX CVE-2026-42945 (CVSS: 8.1/10) Exploited in the Wild\nA critical security flaw in NGINX, exploited since its public disclosure, causing worker crashes and potential RCE. The heap buffer overflow (9.2 CVSS) affects NGINX versions 0.6.27-1.30.0.\nThe Breakdown: NGINX versions 0.6.27-1.30.0 are vulnerable to a heap buffer overflow in ngx_http_rewrite_module.\nThe Technical Vector: The vulnerability causes worker crashes and potential RCE.\nThe Impact: NGINX users, especially those running vulnerable versions, are at risk of crashes and potential code execution.",
         "url": "https://thehackernews.com/2026/05/nginx-cve-2026-42945-exploited-in-wild.html"
+    },
+    {
+        "date": "2026-05-17 17:12 UTC",
+        "content": "\ud83d\udfe0 High: Tycoon2FA hijacks Microsoft 365 accounts via device-code phishing. The phishing kit abuses Trustifi click-tracking URLs. This exploit is used for account hijacking. via BleepingComputer #cybersecurity #phishing kit #Microsoft 365",
+        "url": "https://www.bleepingcomputer.com/news/security/tycoon2fa-hijacks-microsoft-365-accounts-via-device-code-phishing/"
     }
 ]
