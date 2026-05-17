@@ -443,5 +443,10 @@
         "date": "2026-05-17 09:59 UTC",
         "content": "\ud83d\udd34 Grafana GitHub Token Breach Exposed \ud83d\udea8\nA critical security incident occurred at Grafana, where an unauthorized party accessed their GitHub environment. They were able to download their codebase and attempted to extort the company.\n \n\u2022 The Breakdown: An unauthorized party accessed Grafana's GitHub environment using a stolen token,\nwhich granted them access to their codebase. They downloaded the code and attempted to extort the company.\n \n\u2022 The Technical Vector: The attackers used a stolen GitHub token to access Grafana's environment. No further technical details are provided.\n \n\u2022 The Impact: Grafana's customers' data and personal information were not accessed, but the company's codebase was compromised. Customer systems or operations were not impacted. \n   \nvia The Hacker News #cybersecurity #GitHubTokenBreach",
         "url": "https://thehackernews.com/2026/05/grafana-github-token-breach-led-to.html"
+    },
+    {
+        "date": "2026-05-17 15:16 UTC",
+        "content": "\ud83d\udfe0 NGINX CVE-2026-42945 (CVSS: 8.1/10) Exploited in the Wild\nA critical security flaw in NGINX, exploited since its public disclosure, causing worker crashes and potential RCE. The heap buffer overflow (9.2 CVSS) affects NGINX versions 0.6.27-1.30.0.\nThe Breakdown: NGINX versions 0.6.27-1.30.0 are vulnerable to a heap buffer overflow in ngx_http_rewrite_module.\nThe Technical Vector: The vulnerability causes worker crashes and potential RCE.\nThe Impact: NGINX users, especially those running vulnerable versions, are at risk of crashes and potential code execution.",
+        "url": "https://thehackernews.com/2026/05/nginx-cve-2026-42945-exploited-in-wild.html"
     }
 ]
