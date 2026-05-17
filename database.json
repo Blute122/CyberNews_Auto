@@ -438,5 +438,10 @@
         "date": "2026-05-16 21:02 UTC",
         "content": "\ud83d\udfe0 Critical Azure Azure Backup for AKS vulnerability report rejected by Microsoft without CVE.\n   A security researcher claims a vulnerability was quietly fixed, but Microsoft disputes this, stating no product changes were made.\n   The researcher documented a silent fix, raising concerns about the security update process.\n   via BleepingComputer. #cybersecurity #Azure #AzureVulnerability",
         "url": "https://www.bleepingcomputer.com/news/security/microsoft-rejects-critical-azure-vulnerability-report-no-cve-issued/"
+    },
+    {
+        "date": "2026-05-17 09:59 UTC",
+        "content": "\ud83d\udd34 Grafana GitHub Token Breach Exposed \ud83d\udea8\nA critical security incident occurred at Grafana, where an unauthorized party accessed their GitHub environment. They were able to download their codebase and attempted to extort the company.\n \n\u2022 The Breakdown: An unauthorized party accessed Grafana's GitHub environment using a stolen token,\nwhich granted them access to their codebase. They downloaded the code and attempted to extort the company.\n \n\u2022 The Technical Vector: The attackers used a stolen GitHub token to access Grafana's environment. No further technical details are provided.\n \n\u2022 The Impact: Grafana's customers' data and personal information were not accessed, but the company's codebase was compromised. Customer systems or operations were not impacted. \n   \nvia The Hacker News #cybersecurity #GitHubTokenBreach",
+        "url": "https://thehackernews.com/2026/05/grafana-github-token-breach-led-to.html"
     }
 ]
